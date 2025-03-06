@@ -1,4 +1,4 @@
-""" 
+"""
 This module contains the client class for interacting with the Sofascore API.
 """
 
@@ -18,22 +18,17 @@ class SofascoreClient:
         """
         self.__service = SofascoreService()
 
-    def get_events(
-        self, date: str = None, status: str = "nostarted"
-    ) -> typing.List[Event]:
+    def get_events(self, date: str = None, live: bool = False) -> typing.List[Event]:
         """
         Get the scheduled events.
 
         Args:
             date (str): The date of the events in the format "YYYY-MM-DD".
-            status (str): The status of the events. (default is "nostarted")
-
-            Available options:
-            - "nostarted": Events that have not started yet.
-            - "inprogress": Events that are currently live.
-            - "finished": Events that have finished.
+            live (bool): Whether to get the live events (more precise).
 
         Returns:
             list[Event]: The scheduled events.
         """
-        return self.__service.get_events(date, status)
+        if live:
+            return self.__service.get_live_events()
+        return self.__service.get_events(date)

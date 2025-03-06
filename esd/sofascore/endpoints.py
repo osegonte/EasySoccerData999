@@ -20,3 +20,13 @@ class SofascoreEndpoints:
             str: The URL of the endpoint to get the scheduled events.
         """
         return self.base_url + "/sport/football/scheduled-events/{date}"
+
+    @property
+    def live_events_endpoint(self) -> str:
+        """
+        Returns the URL of the endpoint to get the live events.
+
+        Returns:
+            str: The URL of the endpoint to get the live events.
+        """
+        return self.base_url + "/sport/football/events/live"
