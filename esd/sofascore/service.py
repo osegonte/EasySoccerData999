@@ -18,7 +18,7 @@ class SofascoreService:
         """
         self.endpoints = SofascoreEndpoints()
 
-    def get_events(self, date: str = None, status: str = "nostarted") -> list[Event]:
+    def get_events(self, date: str = None) -> list[Event]:
         """
         Get the scheduled events.
 
@@ -32,7 +32,19 @@ class SofascoreService:
             date = get_today()
         try:
             url = self.endpoints.events_endpoint.format(date=date)
-            data = get_json(url)["events"]
-            return parse_events(data, target_status=status)
+            return parse_events(get_json(url)["events"])
+        except Exception as exc:
+            raise exc
+
+    def get_live_events(self) -> list[Event]:
+        """
+        Get the live events.
+
+        Returns:
+            list[Event]: The live events.
+        """
+        try:
+            url = self.endpoints.live_events_endpoint
+            return parse_events(get_json(url)["events"])
         except Exception as exc:
             raise exc
