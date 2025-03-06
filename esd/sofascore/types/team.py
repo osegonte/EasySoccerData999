@@ -28,10 +28,10 @@ class TeamSummary:
     name: str = field(default="")
     short_name: str = field(default="")
     slug: str = field(default="")
-    gender: str = field(default="")
+    # gender: str = field(default="")
     name_code: str = field(default="")
-    disabled: bool = field(default=False)
-    type: int = field(default=0)
+    # disabled: bool = field(default=False)
+    # type: int = field(default=0)
     id: int = field(default=0)
     country: Country = field(default_factory=Country)
     entity_type: str = field(default="")
@@ -71,10 +71,10 @@ def parse_team_summary(data: Dict) -> TeamSummary:
         name=data.get("name", ""),
         short_name=data.get("shortName", ""),
         slug=data.get("slug", ""),
-        gender=data.get("gender", ""),
         name_code=data.get("nameCode", ""),
-        disabled=data.get("disabled", False),
-        type=data.get("type", 0),
+        # disabled=data.get("disabled", False),
+        # type=data.get("type", 0),
+        # gender=data.get("gender", ""),
         id=data.get("id", 0),
         country=parse_country(data.get("country", {})),
         entity_type=data.get("entityType", ""),
