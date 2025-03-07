@@ -1,14 +1,16 @@
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict
-from .country import Country, parse_country
-from .color import Color, parse_color
+from .country import parse_country
+from .color import parse_color
 from .team import Team
 from .manager import Manager, parse_manager
+from .player import Player
 
 
 @dataclass
 class TeamEx(Team):
     manager: Manager = field(default_factory=Manager)
+    players: List[Player] = field(default_factory=list)
 
 
 def parse_team_ex(data: Dict) -> TeamEx:
