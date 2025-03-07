@@ -3,7 +3,7 @@ This module contains the Team related data classes.
 """
 
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict
+from typing import Dict
 from .country import Country, parse_country
 from .color import Color, parse_color
 
