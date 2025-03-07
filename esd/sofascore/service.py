@@ -4,7 +4,7 @@ Sofascore service module
 
 from ..utils import get_json, get_today
 from .endpoints import SofascoreEndpoints
-from .types import Event, parse_events, parse_team_ex
+from .types import Event, parse_events, parse_team_ex, parse_player
 
 
 class SofascoreService:
@@ -60,8 +60,26 @@ class SofascoreService:
             dict: The team information.
         """
         try:
-            url = f"{self.endpoints.base_url}/team/{team_id}"
+            url = self.endpoints.team_endpoint(team_id)
             data = get_json(url)["team"]
             return parse_team_ex(data)
+        except Exception as exc:
+            raise exc
+
+    def get_team_players(self, team_id: int) -> dict:
+        """
+        Get the team players.
+
+        Args:
+            team_id (int): The team id.
+
+        Returns:
+            dict: The team players.
+        """
+        try:
+            url = self.endpoints.team_players_endpoint(team_id)
+            return [
+                parse_player(player["player"]) for player in get_json(url)["players"]
+            ]
         except Exception as exc:
             raise exc
