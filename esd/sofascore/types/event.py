@@ -2,7 +2,8 @@ import time
 from datetime import datetime
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict
-from .team import TeamSummary, parse_team_summary, TeamScore, parse_team_score
+from .team import Team, parse_team
+from .team_score import TeamScore, parse_team_score
 
 
 @dataclass
@@ -80,9 +81,9 @@ class StatusTime:
 class Event:
     id: int = field(default=0)
     status: Status = field(default_factory=Status)
-    home_team: TeamSummary = field(default_factory=TeamSummary)
+    home_team: Team = field(default_factory=Team)
     home_score: TeamScore = field(default_factory=TeamScore)
-    away_team: TeamSummary = field(default_factory=TeamSummary)
+    away_team: Team = field(default_factory=Team)
     away_score: TeamScore = field(default_factory=TeamScore)
     time: TimeEvent = field(default_factory=TimeEvent)
     status_time: StatusTime = field(default_factory=StatusTime)
@@ -210,8 +211,8 @@ def parse_events(events: List[Dict]) -> List[Event]:
             # coverage=event.get("coverage"),
             time=parse_time_event(event.get("time", {})),
             status_time=parse_status_time(event.get("statusTime", {})),
-            home_team=parse_team_summary(event.get("homeTeam", {})),
-            away_team=parse_team_summary(event.get("awayTeam", {})),
+            home_team=parse_team(event.get("homeTeam", {})),
+            away_team=parse_team(event.get("awayTeam", {})),
             home_score=parse_team_score(event.get("homeScore", {})),
             away_score=parse_team_score(event.get("awayScore", {})),
             status=parse_status(event.get("status", {})),

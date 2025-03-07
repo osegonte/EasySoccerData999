@@ -32,3 +32,15 @@ class SofascoreClient:
         if live:
             return self.__service.get_live_events()
         return self.__service.get_events(date)
+
+    def get_team(self, team_id: int) -> dict:
+        """
+        Get detailed information about a team.
+
+        Args:
+            team_id (int): The team id.
+
+        Returns:
+            dict: The team information.
+        """
+        return self.__service.get_team(team_id)
