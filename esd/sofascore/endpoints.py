@@ -30,3 +30,27 @@ class SofascoreEndpoints:
             str: The URL of the endpoint to get the live events.
         """
         return self.base_url + "/sport/football/events/live"
+
+    def team_endpoint(self, team_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the team information.
+
+        Args:
+            team_id (int): The team id.
+
+        Returns:
+            str: The URL of the endpoint to get the team information.
+        """
+        return f"{self.base_url}/team/{team_id}"
+
+    def team_players_endpoint(self, team_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the team players.
+
+        Args:
+            team_id (int): The team id.
+
+        Returns:
+            str: The URL of the endpoint to get the team players.
+        """
+        return self.team_endpoint(team_id) + "/players"
