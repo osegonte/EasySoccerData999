@@ -4,7 +4,7 @@ This module contains the client class for interacting with the Sofascore API.
 
 import typing
 from .service import SofascoreService
-from .types import Event
+from .types import Event, TeamEx, Player
 
 
 class SofascoreClient:
@@ -33,7 +33,7 @@ class SofascoreClient:
             return self.__service.get_live_events()
         return self.__service.get_events(date)
 
-    def get_team(self, team_id: int) -> dict:
+    def get_team(self, team_id: int) -> TeamEx:
         """
         Get detailed information about a team.
 
@@ -41,6 +41,21 @@ class SofascoreClient:
             team_id (int): The team id.
 
         Returns:
-            dict: The team information.
+            TeamEx: The team information.
         """
-        return self.__service.get_team(team_id)
+        team: TeamEx = self.__service.get_team(team_id)
+        players: typing.List[Player] = self.__service.get_team_players(team_id)
+        team.players = players
+        return team
+
+    def get_team_players(self, team_id: int) -> typing.List[dict]:
+        """
+        Get the players of a team.
+
+        Args:
+            team_id (int): The team id.
+
+        Returns:
+            list[dict]: The players of the team.
+        """
+        return self.__service.get_team_players(team_id)
