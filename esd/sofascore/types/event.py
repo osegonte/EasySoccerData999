@@ -190,6 +190,34 @@ def parse_status(data: Dict) -> Status:
     )
 
 
+def parse_event(data: Dict) -> Event:
+    """
+    Parse the event data.
+
+    Args:
+        data (dict): The event data.
+
+    Returns:
+        Event: The event object.
+    """
+    return Event(
+        id=data.get("id"),
+        start_timestamp=data.get("startTimestamp"),
+        slug=data.get("slug"),
+        # custom_id=data.get("customId"),
+        # feed_locked=data.get("feedLocked"),
+        # final_result_only=data.get("finalResultOnly"),
+        # coverage=data.get("coverage"),
+        time=parse_time_event(data.get("time", {})),
+        status_time=parse_status_time(data.get("statusTime", {})),
+        home_team=parse_team(data.get("homeTeam", {})),
+        away_team=parse_team(data.get("awayTeam", {})),
+        home_score=parse_team_score(data.get("homeScore", {})),
+        away_score=parse_team_score(data.get("awayScore", {})),
+        status=parse_status(data.get("status", {})),
+        round_info=parse_round_info(data.get("roundInfo", {})),
+    )
+
 def parse_events(events: List[Dict]) -> List[Event]:
     """
     Parse the events data.
@@ -200,23 +228,4 @@ def parse_events(events: List[Dict]) -> List[Event]:
     Returns:
         list[Event]: The parsed events data.
     """
-    return [
-        Event(
-            id=event.get("id"),
-            start_timestamp=event.get("startTimestamp"),
-            slug=event.get("slug"),
-            # custom_id=event.get("customId"),
-            # feed_locked=event.get("feedLocked"),
-            # final_result_only=event.get("finalResultOnly"),
-            # coverage=event.get("coverage"),
-            time=parse_time_event(event.get("time", {})),
-            status_time=parse_status_time(event.get("statusTime", {})),
-            home_team=parse_team(event.get("homeTeam", {})),
-            away_team=parse_team(event.get("awayTeam", {})),
-            home_score=parse_team_score(event.get("homeScore", {})),
-            away_score=parse_team_score(event.get("awayScore", {})),
-            status=parse_status(event.get("status", {})),
-            round_info=parse_round_info(event.get("roundInfo", {})),
-        )
-        for event in events
-    ]
+    return [parse_event(event) for event in events]
