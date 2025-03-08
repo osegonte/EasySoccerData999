@@ -27,11 +27,11 @@ And more! Check out [examples](https://github.com/manucabral/EasySoccerData/tree
 
 # Supported modules
 
-| Name | Implemented | Supported Since Version |
-| :---  | :---: |  :---: |
-| Sofascore   | ✔️ |  v0.0.1  |
-| FBref    | ❌ |  ❌  |
-| Understat | ❌ |  ❌  |
+| Name | Implemented |
+| :---  | :---: |
+| Sofascore   | ✔️ |
+| FBref    | ❌ |
+| Understat | ❌ |
 ...
 
 ### Constributions
