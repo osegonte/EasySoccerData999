@@ -54,3 +54,15 @@ class SofascoreEndpoints:
             str: The URL of the endpoint to get the team players.
         """
         return self.team_endpoint(team_id) + "/players"
+
+    def match_stats_endpoint(self, event_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the match statistics.
+
+        Args:
+            event_id (int): The event id.
+        
+        Returns:
+            str: The URL of the endpoint to get the match statistics.
+        """
+        return f"{self.base_url}/event/{event_id}/statistics"
