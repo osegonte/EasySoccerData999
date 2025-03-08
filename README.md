@@ -17,10 +17,19 @@ Simple example using Sofascore
 ```py
 import esd
 
+# get live events
 client = esd.SofascoreClient()
 events = client.get_events(live=True)
 for event in events:
     print(event)
+
+# search matchs
+matchs: list[esd.Event] = client.search(
+    "Real Madrid", entity=esd.EntityType.EVENT
+)
+for match in matchs:
+    print(f"Match ID: {match.id}, Status: {match.status.description}")
+    print(f"{match.home_team.name} vs {match.away_team.name}")
 ```
 
 And more! Check out [examples](https://github.com/manucabral/EasySoccerData/tree/main/examples)
