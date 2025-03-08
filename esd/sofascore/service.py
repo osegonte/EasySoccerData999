@@ -4,7 +4,14 @@ Sofascore service module
 
 from ..utils import get_json, get_today
 from .endpoints import SofascoreEndpoints
-from .types import Event, parse_events, parse_team_ex, parse_player
+from .types import (
+    Event,
+    parse_events,
+    parse_team_ex,
+    parse_player,
+    MatchStats,
+    parse_match_stats,
+)
 
 
 class SofascoreService:
@@ -46,6 +53,23 @@ class SofascoreService:
         try:
             url = self.endpoints.live_events_endpoint
             return parse_events(get_json(url)["events"])
+        except Exception as exc:
+            raise exc
+
+    def get_match_stats(self, event_id: int) -> dict:
+        """
+        Get the match statistics.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            dict: The match statistics.
+        """
+        try:
+            url = self.endpoints.match_stats_endpoint(event_id)
+            data = get_json(url).get("statistics", {})
+            return parse_match_stats(data)
         except Exception as exc:
             raise exc
 
