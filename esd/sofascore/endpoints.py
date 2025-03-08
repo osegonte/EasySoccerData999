@@ -31,6 +31,19 @@ class SofascoreEndpoints:
         """
         return self.base_url + "/sport/football/events/live"
 
+    def search_endpoint(self, query: str, entity_type: str) -> str:
+        """
+        Returns the URL of the endpoint to search for entities.
+
+        Args:
+            query (str): The search query.
+            entity_type (str): The entity type.
+
+        Returns:
+            str: The URL of the endpoint to search for entities.
+        """
+        return f"{self.base_url}/search/{entity_type}?q={query}&page=0"
+
     def team_endpoint(self, team_id: int) -> str:
         """
         Returns the URL of the endpoint to get the team information.
