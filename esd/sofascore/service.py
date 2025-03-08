@@ -2,15 +2,21 @@
 Sofascore service module
 """
 
+import typing
 from ..utils import get_json, get_today
 from .endpoints import SofascoreEndpoints
 from .types import (
     Event,
+    parse_event,
     parse_events,
     parse_team_ex,
     parse_player,
+    parse_team,
+    Team,
+    Player,
     MatchStats,
     parse_match_stats,
+    EntityType,
 )
 
 
@@ -56,7 +62,7 @@ class SofascoreService:
         except Exception as exc:
             raise exc
 
-    def get_match_stats(self, event_id: int) -> dict:
+    def get_match_stats(self, event_id: int) -> MatchStats:
         """
         Get the match statistics.
 
@@ -64,7 +70,7 @@ class SofascoreService:
             event_id (int): The event id.
 
         Returns:
-            dict: The match statistics.
+            MatchStats: The match statistics.
         """
         try:
             url = self.endpoints.match_stats_endpoint(event_id)
@@ -105,5 +111,40 @@ class SofascoreService:
             return [
                 parse_player(player["player"]) for player in get_json(url)["players"]
             ]
+        except Exception as exc:
+            raise exc
+
+    def search(
+        self, query: str, entity: EntityType = EntityType.ALL
+    ) -> typing.List[typing.Union[Event, Team, Player]]:
+        """ """
+        try:
+            entity_type = entity.value
+            url = self.endpoints.search_endpoint(query=query, entity_type=entity_type)
+            results = get_json(url)["results"]
+
+            specific_parsers = {
+                EntityType.TEAM: parse_team,
+                EntityType.PLAYER: parse_player,
+                EntityType.EVENT: parse_event,
+                EntityType.TOURNAMENT: lambda x: x,
+            }
+
+            if entity == EntityType.ALL:
+                type_parsers = {
+                    "team": parse_team,
+                    "player": parse_player,
+                    "event": parse_events,
+                }
+                entities = []
+                for result in results:
+                    result_type = result.get("type")
+                    entity_data = result.get("entity")
+                    parser = type_parsers.get(result_type, lambda x: x)
+                    entities.append(parser(entity_data))
+                return entities
+            else:
+                parser = specific_parsers.get(entity, lambda x: x)
+                return [parser(result.get("entity")) for result in results]
         except Exception as exc:
             raise exc
