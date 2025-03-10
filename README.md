@@ -22,15 +22,13 @@ client = esd.SofascoreClient()
 events = client.get_events(live=True)
 for event in events:
     print(event)
-
-# search matchs
-matchs: list[esd.Event] = client.search(
-    "Real Madrid", entity=esd.EntityType.EVENT
-)
-for match in matchs:
-    print(f"Match ID: {match.id}, Status: {match.status.description}")
-    print(f"{match.home_team.name} vs {match.away_team.name}")
 ```
+
+[How to search for matches, teams, tournaments, and players](https://github.com/manucabral/EasySoccerData/blob/main/examples/search_matchs.py)
+
+[How to get lineups for a match](https://github.com/manucabral/EasySoccerData/blob/main/examples/match_lineups.py)
+
+[How to get live match statistics](https://github.com/manucabral/EasySoccerData/blob/main/examples/get_live_matchs.py)
 
 And more! Check out [examples](https://github.com/manucabral/EasySoccerData/tree/main/examples)
 
