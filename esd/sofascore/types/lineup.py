@@ -1,10 +1,20 @@
+"""
+This module contains the dataclasses for the Lineups object.
+"""
+
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict, Any
+from typing import Optional, Any
 from .player import Player, parse_player
 
 
+# pylint: disable=too-many-instance-attributes
 @dataclass
 class Statistics:
+    """
+    Player statistics data class.
+    Unique for each player in the lineup.
+    """
+
     total_pass: Optional[int] = field(default=None)
     accurate_pass: Optional[int] = field(default=None)
     total_long_balls: Optional[int] = field(default=None)
@@ -29,6 +39,12 @@ class Statistics:
 
 @dataclass
 class PlayerLineup:
+    """
+    Player lineup data class.
+    It's different from the Player class.
+    Also the attribute "info" is the player object.
+    """
+
     info: Player = field(default=None)
     team_id: int = field(default=0)
     substitute: bool = field(default=False)
@@ -38,6 +54,10 @@ class PlayerLineup:
 
 @dataclass
 class TeamColor:
+    """
+    Team color data class. Simple.
+    """
+
     primary: str = field(default="")
     number: str = field(default="")
     outline: str = field(default="")
@@ -46,8 +66,12 @@ class TeamColor:
 
 @dataclass
 class TeamLineup:
-    players: List[PlayerLineup] = field(default_factory=list)
-    support_staff: List[Any] = field(default_factory=list)
+    """
+    Team lineup data class.
+    """
+
+    players: list[PlayerLineup] = field(default_factory=list)
+    support_staff: list[Any] = field(default_factory=list)
     formation: str = field(default="")
     player_color: TeamColor = field(default=None)
     goalkeeper_color: TeamColor = field(default=None)
@@ -55,13 +79,36 @@ class TeamLineup:
 
 @dataclass
 class Lineups:
+    """
+    Lineups data class.
+    """
+
     confirmed: bool = field(default=False)
     home: TeamLineup = field(default=None)
     away: Optional[TeamLineup] = field(default=None)
 
 
-def parse_lineups(data: Dict) -> Lineups:
-    def parse_team_color(d: Dict) -> TeamColor:
+def parse_lineups(data: dict) -> Lineups:
+    """
+    Parse the lineups data.
+
+    Args:
+        data (dict): The lineups data.
+
+    Returns:
+        Lineups: The lineups object.
+    """
+
+    def parse_team_color(d: dict) -> TeamColor:
+        """
+        Parse the team color data.
+
+        Args:
+            d (dict): The team color data.
+
+        Returns:
+            TeamColor: The team color object.
+        """
         return TeamColor(
             primary=d.get("primary", ""),
             number=d.get("number", ""),
@@ -69,7 +116,16 @@ def parse_lineups(data: Dict) -> Lineups:
             fancy_number=d.get("fancyNumber", ""),
         )
 
-    def parse_statistics(d: Dict) -> Statistics:
+    def parse_statistics(d: dict) -> Statistics:
+        """
+        Parse the player statistics data.
+
+        Args:
+            d (dict): The player statistics data.
+
+        Returns:
+            Statistics: The player statistics object.
+        """
         return Statistics(
             total_pass=d.get("totalPass"),
             accurate_pass=d.get("accuratePass"),
@@ -93,7 +149,16 @@ def parse_lineups(data: Dict) -> Lineups:
             aerial_lost=d.get("aerialLost"),
         )
 
-    def parse_player_item(d: Dict) -> PlayerLineup:
+    def parse_player_item(d: dict) -> PlayerLineup:
+        """
+        Parse the player item data.
+
+        Args:
+            d (dict): The player item data.
+
+        Returns:
+            PlayerLineup: The player lineup object.
+        """
         player_obj = parse_player(d.get("player", {}))
         return PlayerLineup(
             info=player_obj,
@@ -107,7 +172,16 @@ def parse_lineups(data: Dict) -> Lineups:
             ),
         )
 
-    def parse_team_lineup(d: Dict) -> TeamLineup:
+    def parse_team_lineup(d: dict) -> TeamLineup:
+        """
+        Parse the team lineup data.
+
+        Args:
+            d (dict): The team lineup data.
+
+        Returns:
+            TeamLineup: The team lineup object.
+        """
         players = [parse_player_item(item) for item in d.get("players", [])]
         support_staff = d.get("supportStaff", [])
         formation = d.get("formation", "")
