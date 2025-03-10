@@ -4,7 +4,7 @@ This module contains the client class for interacting with the Sofascore API.
 
 import typing
 from .service import SofascoreService
-from .types import EntityType, Event, TeamEx, Player, MatchStats
+from .types import EntityType, Event, TeamEx, Player, MatchStats, Lineups
 
 
 class SofascoreClient:
@@ -44,6 +44,18 @@ class SofascoreClient:
             MatchStats: The match statistics.
         """
         return self.__service.get_match_stats(event_id)
+
+    def get_match_lineups(self, event_id: int) -> Lineups:
+        """
+        Get the match lineups.
+
+        Args:
+            event_id (int): The event id.
+        
+        Returns:
+            Lineups: The match lineups.
+        """
+        return self.__service.get_match_lineups(event_id)
 
     def get_team(self, team_id: int) -> TeamEx:
         """
