@@ -74,7 +74,7 @@ class SofascoreEndpoints:
 
         Args:
             event_id (int): The event id.
-        
+
         Returns:
             str: The URL of the endpoint to get the match statistics.
         """
@@ -86,7 +86,7 @@ class SofascoreEndpoints:
 
         Args:
             event_id (int): The event id.
-        
+
         Returns:
             str: The URL of the endpoint to get the match probabilities.
         """
@@ -98,7 +98,7 @@ class SofascoreEndpoints:
 
         Args:
             event_id (int): The event id.
-        
+
         Returns:
             str: The URL of the endpoint to get the match lineups.
         """
