@@ -139,11 +139,11 @@ class SofascoreService:
     ) -> list[Event | Team | Player]:
         """
         Search query for matches, teams, players, and tournaments.
-        
+
         Args:
             query (str): The search query.
             entity (EntityType): The entity type to search for.
-        
+
         Returns:
             a list of Event, Team, or Player objects.
         """
