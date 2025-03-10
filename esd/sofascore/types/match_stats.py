@@ -236,14 +236,33 @@ def parse_period_stats(groups: List[Dict[str, Any]]) -> PeriodStats:
 
 
 @dataclass
+class WinProbability:
+    home: float = field(default=0.0)
+    draw: float = field(default=0.0)
+    away: float = field(default=0.0)
+
+
+@dataclass
 class MatchStats:
     all: Optional[PeriodStats] = field(default=None)
     first_half: Optional[PeriodStats] = field(default=None)
     second_half: Optional[PeriodStats] = field(default=None)
+    win_probability: Optional[WinProbability] = field(default=None)
 
 
-def parse_match_stats(data: List[Dict[str, Any]]) -> MatchStats:
+def parse_match_probabilities(data: Dict[str, Any]) -> Dict[str, Any]:
+    return WinProbability(
+        home=data.get("homeWin", 0.0),
+        draw=data.get("draw", 0.0),
+        away=data.get("awayWin", 0.0),
+    )
+
+
+def parse_match_stats(
+    data: List[Dict[str, Any]], win_probabilities: Dict[str, Any]
+) -> MatchStats:
     match_stats = MatchStats()
+    match_stats.win_probability = parse_match_probabilities(win_probabilities)
     if not data:
         # No data available
         return match_stats
