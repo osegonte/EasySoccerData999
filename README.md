@@ -14,7 +14,7 @@ pip install easysoccerdata
 
 # Usage
 
-Simple demonstration of a live table using Sofascore module (see [source code]())
+Simple demonstration of a live table using Sofascore module (see [source code](https://github.com/manucabral/EasySoccerData/blob/main/examples/live_table.py))
 <p align="center">
 <img src="https://github.com/manucabral/EasySoccerData/blob/main/assets/sofascore-live-table.gif" width="550" title="LiveTableUsingSofascore">
 </p>
