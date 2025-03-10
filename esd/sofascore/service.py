@@ -16,6 +16,8 @@ from .types import (
     Player,
     MatchStats,
     parse_match_stats,
+    Lineups,
+    parse_lineups,
     EntityType,
 )
 
@@ -59,6 +61,22 @@ class SofascoreService:
         try:
             url = self.endpoints.live_events_endpoint
             return parse_events(get_json(url)["events"])
+        except Exception as exc:
+            raise exc
+    
+    def get_match_lineups(self, event_id: int) -> Lineups:
+        """
+        Get the match lineups.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            dict: The match lineups.
+        """
+        try:
+            url = self.endpoints.match_lineups_endpoint(event_id)
+            return parse_lineups(get_json(url))
         except Exception as exc:
             raise exc
 
