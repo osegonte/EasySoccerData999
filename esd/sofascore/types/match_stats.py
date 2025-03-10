@@ -3,7 +3,7 @@ This module contains functions to parse match statistics data.
 """
 
 from dataclasses import dataclass, field
-from typing import Optional, Dict, Any, List
+from typing import Optional
 from .lineup import Lineups
 
 
@@ -396,7 +396,7 @@ def parse_match_probabilities(data: dict[str, any]) -> WinProbability:
 
 
 def parse_match_stats(
-    data: List[Dict[str, Any]], win_probabilities: Dict[str, Any]
+    data: list[dict[str, any]], win_probabilities: dict[str, any]
 ) -> MatchStats:
     """
     Parse match statistics.
