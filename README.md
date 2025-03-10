@@ -9,7 +9,7 @@ A simple python package for extracting real-time soccer data from diverse online
 
 # Installation
 ```
-pip install easysoccerdata
+pip install EasySoccerData
 ```
 
 # Usage
