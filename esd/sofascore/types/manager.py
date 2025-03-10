@@ -1,10 +1,17 @@
+"""
+The manager type. Used in the team type.
+"""
+
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict
 from .country import Country, parse_country
 
 
 @dataclass
 class Manager:
+    """
+    The manager class.
+    """
+
     id: int = field(default=0)
     country: Country = field(default_factory=Country)
     name: str = field(default=None)
@@ -12,7 +19,7 @@ class Manager:
     short_name: str = field(default=None)
 
 
-def parse_manager(data: Dict) -> Manager:
+def parse_manager(data: dict) -> Manager:
     """
     Parse the manager data.
 
