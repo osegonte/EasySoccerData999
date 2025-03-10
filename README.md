@@ -13,7 +13,13 @@ pip install easysoccerdata
 ```
 
 # Usage
-Simple example using Sofascore
+
+Simple demonstration of a live table using Sofascore module (see [source code]())
+<p align="center">
+<img src="https://github.com/manucabral/EasySoccerData/blob/main/assets/sofascore-live-table.gif" width="550" title="LiveTableUsingSofascore">
+</p>
+
+Another example
 ```py
 import esd
 
@@ -29,6 +35,7 @@ for event in events:
 [How to get lineups for a match](https://github.com/manucabral/EasySoccerData/blob/main/examples/match_lineups.py)
 
 [How to get live match statistics](https://github.com/manucabral/EasySoccerData/blob/main/examples/get_live_matchs.py)
+
 
 And more! Check out [examples](https://github.com/manucabral/EasySoccerData/tree/main/examples)
 
