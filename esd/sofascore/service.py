@@ -75,7 +75,9 @@ class SofascoreService:
         try:
             url = self.endpoints.match_stats_endpoint(event_id)
             data = get_json(url).get("statistics", {})
-            return parse_match_stats(data)
+            url = self.endpoints.match_probabilities_endpoint(event_id)
+            win_probabilities = get_json(url).get("winProbability", {})
+            return parse_match_stats(data, win_probabilities)
         except Exception as exc:
             raise exc
 
