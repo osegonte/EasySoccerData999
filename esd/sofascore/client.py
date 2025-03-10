@@ -2,7 +2,7 @@
 This module contains the client class for interacting with the Sofascore API.
 """
 
-import typing
+from __future__ import annotations
 from .service import SofascoreService
 from .types import EntityType, Event, TeamEx, Player, MatchStats, Lineups
 
@@ -18,7 +18,7 @@ class SofascoreClient:
         """
         self.__service = SofascoreService()
 
-    def get_events(self, date: str = None, live: bool = False) -> typing.List[Event]:
+    def get_events(self, date: str = None, live: bool = False) -> list[Event]:
         """
         Get the scheduled events.
 
@@ -51,7 +51,7 @@ class SofascoreClient:
 
         Args:
             event_id (int): The event id.
-        
+
         Returns:
             Lineups: The match lineups.
         """
@@ -68,11 +68,11 @@ class SofascoreClient:
             TeamEx: The team information.
         """
         team: TeamEx = self.__service.get_team(team_id)
-        players: typing.List[Player] = self.__service.get_team_players(team_id)
+        players: list[Player] = self.__service.get_team_players(team_id)
         team.players = players
         return team
 
-    def get_team_players(self, team_id: int) -> typing.List[dict]:
+    def get_team_players(self, team_id: int) -> list[Player]:
         """
         Get the players of a team.
 
@@ -80,13 +80,13 @@ class SofascoreClient:
             team_id (int): The team id.
 
         Returns:
-            list[dict]: The players of the team.
+            list[Player]: The players of the team.
         """
         return self.__service.get_team_players(team_id)
 
     def search(
-        self, query: str, entity: typing.Union[str, EntityType] = EntityType.ALL
-    ) -> typing.List[typing.Union[Event, TeamEx, Player]]:
+        self, query: str, entity: str | EntityType = EntityType.ALL
+    ) -> list[Event | TeamEx | Player]:
         """
         Search query for matches, teams, players, and tournaments.
 
