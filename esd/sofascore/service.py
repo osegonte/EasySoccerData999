@@ -2,7 +2,7 @@
 Sofascore service module
 """
 
-import typing
+from __future__ import annotations
 from ..utils import get_json, get_today
 from .endpoints import SofascoreEndpoints
 from .types import (
@@ -63,7 +63,7 @@ class SofascoreService:
             return parse_events(get_json(url)["events"])
         except Exception as exc:
             raise exc
-    
+
     def get_match_lineups(self, event_id: int) -> Lineups:
         """
         Get the match lineups.
@@ -136,8 +136,17 @@ class SofascoreService:
 
     def search(
         self, query: str, entity: EntityType = EntityType.ALL
-    ) -> typing.List[typing.Union[Event, Team, Player]]:
-        """ """
+    ) -> list[Event | Team | Player]:
+        """
+        Search query for matches, teams, players, and tournaments.
+        
+        Args:
+            query (str): The search query.
+            entity (EntityType): The entity type to search for.
+        
+        Returns:
+            a list of Event, Team, or Player objects.
+        """
         try:
             entity_type = entity.value
             url = self.endpoints.search_endpoint(query=query, entity_type=entity_type)
@@ -163,8 +172,7 @@ class SofascoreService:
                     parser = type_parsers.get(result_type, lambda x: x)
                     entities.append(parser(entity_data))
                 return entities
-            else:
-                parser = specific_parsers.get(entity, lambda x: x)
-                return [parser(result.get("entity")) for result in results]
+            parser = specific_parsers.get(entity, lambda x: x)
+            return [parser(result.get("entity")) for result in results]
         except Exception as exc:
             raise exc
