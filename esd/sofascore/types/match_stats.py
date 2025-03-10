@@ -1,7 +1,7 @@
 import re
 from dataclasses import dataclass, field
 from typing import Optional, Dict, Any, List
-
+from .lineup import Lineups
 
 def camel_to_snake(name: str) -> str:
     s1 = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
@@ -247,6 +247,7 @@ class MatchStats:
     all: Optional[PeriodStats] = field(default=None)
     first_half: Optional[PeriodStats] = field(default=None)
     second_half: Optional[PeriodStats] = field(default=None)
+    lineups: Optional[Lineups] = field(default=None)
     win_probability: Optional[WinProbability] = field(default=None)
 
 
