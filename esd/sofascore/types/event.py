@@ -1,15 +1,22 @@
+"""
+Contains the event data types and parsers (also known as matches).
+"""
+
 import time
 from datetime import datetime
 from dataclasses import dataclass, field
-from typing import List, Optional, Dict
 from .team import Team, parse_team
 from .team_score import TeamScore, parse_team_score
 
 
 @dataclass
 class Category:
+    """
+    Category data class.
+    """
+
     id: int
-    country: Dict
+    country: dict
     name: str
     slug: str
     flag: str
@@ -17,37 +24,53 @@ class Category:
 
 @dataclass
 class UniqueTournament:
+    """
+    Unique tournament data class. (will be moved to tournament.py)
+    """
+
+    id: int
     name: str
     slug: str
     category: Category
-    userCount: int
-    hasPerformanceGraphFeature: bool
-    id: int
-    hasEventPlayerStatistics: bool
-    displayInverseHomeAwayTeams: bool
+    has_event_player_statistics: bool
+    # user_count: int
+    # has_performance_graph_feature: bool
+    # displayInverseHomeAwayTeams: bool
 
 
 @dataclass
 class Tournament:
+    """
+    Tournament data class (also will be moved to tournament.py).
+    """
+
     name: str
     slug: str
     category: Category
-    uniqueTournament: UniqueTournament
+    unique_tournament: UniqueTournament
     priority: int
     id: int
 
 
 @dataclass
 class Season:
+    """
+    Season data class (also will be moved to season.py).
+    """
+
     name: str
     year: str
     editor: bool
-    seasonCoverageInfo: Dict
+    season_coverage_info: dict
     id: int
 
 
 @dataclass
 class RoundInfo:
+    """
+    Round info data class.
+    """
+
     round: int
     name: str
     cup_round_type: int
@@ -55,6 +78,10 @@ class RoundInfo:
 
 @dataclass
 class Status:
+    """
+    Status data class.
+    """
+
     code: int = 0
     description: str = "n/a"
     type: str = "n/a"
@@ -62,6 +89,10 @@ class Status:
 
 @dataclass
 class TimeEvent:
+    """
+    Time event data class, half time, extra time, etc.
+    """
+
     first_injury_time: int = 0
     second_injury_time: int = 0
     third_injury_time: int = 0
@@ -71,14 +102,23 @@ class TimeEvent:
 
 @dataclass
 class StatusTime:
+    """
+    Current status time data class.
+    """
+
     initial: int = 0
     max: int = 0
     timestamp: int = 0
     extra: int = 0
 
 
+# pylint: disable=too-many-instance-attributes
 @dataclass
 class Event:
+    """
+    Event data class also known as match.
+    """
+
     id: int = field(default=0)
     status: Status = field(default_factory=Status)
     home_team: Team = field(default_factory=Team)
@@ -105,19 +145,37 @@ class Event:
     # crowdsourcingDataDisplayEnabled: bool = False
 
     @property
-    def current_period_start(self):
+    def current_period_start(self) -> datetime:
+        """
+        Get the current period start time.
+
+        Returns:
+            datetime: The current period start time.
+        """
         return datetime.fromtimestamp(self.time.current_period_start)
 
     @property
-    def total_elapsed_minutes(self):
+    def total_elapsed_minutes(self) -> int:
+        """
+        Get the total elapsed minutes.
+
+        Returns:
+            int: The total elapsed minutes.
+        """
         return int((time.time() - self.start_timestamp) / 60)
 
     @property
-    def current_elapsed_minutes(self):
+    def current_elapsed_minutes(self) -> int:
+        """
+        Get the current elapsed period minutes.
+
+        Returns:
+            int: The current elapsed minutes.
+        """
         return int((time.time() - self.time.current_period_start) / 60)
 
 
-def parse_status_time(data: Dict) -> StatusTime:
+def parse_status_time(data: dict) -> StatusTime:
     """
     Parse the status time data.
 
@@ -135,7 +193,7 @@ def parse_status_time(data: Dict) -> StatusTime:
     )
 
 
-def parse_time_event(data: Dict) -> TimeEvent:
+def parse_time_event(data: dict) -> TimeEvent:
     """
     Parse the time event data.
 
@@ -156,7 +214,7 @@ def parse_time_event(data: Dict) -> TimeEvent:
     )
 
 
-def parse_round_info(data: Dict) -> RoundInfo:
+def parse_round_info(data: dict) -> RoundInfo:
     """
     Parse the round info data.
 
@@ -173,7 +231,7 @@ def parse_round_info(data: Dict) -> RoundInfo:
     )
 
 
-def parse_status(data: Dict) -> Status:
+def parse_status(data: dict) -> Status:
     """
     Parse the status data.
 
@@ -190,7 +248,7 @@ def parse_status(data: Dict) -> Status:
     )
 
 
-def parse_event(data: Dict) -> Event:
+def parse_event(data: dict) -> Event:
     """
     Parse the event data.
 
@@ -218,7 +276,8 @@ def parse_event(data: Dict) -> Event:
         round_info=parse_round_info(data.get("roundInfo", {})),
     )
 
-def parse_events(events: List[Dict]) -> List[Event]:
+
+def parse_events(events: list[dict]) -> list[Event]:
     """
     Parse the events data.
 
