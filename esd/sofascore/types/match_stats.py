@@ -1,15 +1,24 @@
-import re
+"""
+This module contains functions to parse match statistics data.
+"""
+
 from dataclasses import dataclass, field
 from typing import Optional, Dict, Any, List
 from .lineup import Lineups
 
-def camel_to_snake(name: str) -> str:
-    s1 = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
-    return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
-
 
 @dataclass
 class StatisticItem:
+    """
+    The statistic item class.
+    """
+
+    home_value: float = field(default=0.0)
+    away_value: float = field(default=0.0)
+    stat_type: str = field(default="")
+    home_total: Optional[int] = field(default=None)  # as always is not None
+    away_total: Optional[int] = field(default=None)
+    # Unused fields
     # name: str = field(default="")
     # home: str = field(default="")
     # away: str = field(default="")
@@ -17,15 +26,25 @@ class StatisticItem:
     # valueType: str = field(default="")
     # renderType: int = field(default=0)
     # key: str = field(default="")
-    home_value: float = field(default=0.0)
-    away_value: float = field(default=0.0)
-    stat_type: str = field(default="")
-    home_total: Optional[int] = field(default=None)
-    away_total: Optional[int] = field(default=None)
 
 
-def parse_statistic_item(item: Dict[str, Any]) -> StatisticItem:
+def parse_statistic_item(item: dict[str, any]) -> StatisticItem:
+    """
+    Parse a statistic item.
+
+    Args:
+        item (Dict[str, Any]): The statistic item.
+
+    Returns:
+        StatisticItem: The parsed statistic item.
+    """
     return StatisticItem(
+        stat_type=item.get("statisticsType", ""),
+        home_value=item.get("homeValue", 0.0),
+        away_value=item.get("awayValue", 0.0),
+        home_total=item.get("homeTotal"),
+        away_total=item.get("awayTotal"),
+        # Unused fields
         # name=item.get("name", ""),
         # home=item.get("home", ""),
         # away=item.get("away", ""),
@@ -33,16 +52,16 @@ def parse_statistic_item(item: Dict[str, Any]) -> StatisticItem:
         # valueType=item.get("valueType", ""),
         # renderType=item.get("renderType", 0),
         # key=item.get("key", ""),
-        stat_type=item.get("statisticsType", ""),
-        home_value=item.get("homeValue", 0.0),
-        away_value=item.get("awayValue", 0.0),
-        home_total=item.get("homeTotal"),
-        away_total=item.get("awayTotal"),
     )
 
 
+# pylint: disable=too-many-instance-attributes
 @dataclass
 class MatchOverviewStats:
+    """
+    The match overview statistics class.
+    """
+
     ball_possession: StatisticItem = field(default_factory=StatisticItem)
     expected_goals: StatisticItem = field(default_factory=StatisticItem)
     big_chance_created: StatisticItem = field(default_factory=StatisticItem)
@@ -56,7 +75,16 @@ class MatchOverviewStats:
     yellow_cards: StatisticItem = field(default_factory=StatisticItem)
 
 
-def parse_match_overview_stats(items: List[Dict[str, Any]]) -> MatchOverviewStats:
+def parse_match_overview_stats(items: list[dict[str, any]]) -> MatchOverviewStats:
+    """
+    Parse match overview statistics.
+
+    Args:
+        items (List[Dict[str, Any]]): The statistics items.
+
+    Returns:
+        MatchOverviewStats: The parsed match overview statistics.
+    """
     mapping = {item["key"]: parse_statistic_item(item) for item in items}
     return MatchOverviewStats(
         ball_possession=mapping.get("ballPossession", StatisticItem()),
@@ -75,6 +103,10 @@ def parse_match_overview_stats(items: List[Dict[str, Any]]) -> MatchOverviewStat
 
 @dataclass
 class ShotsStats:
+    """
+    The shots statistics class.
+    """
+
     total_shots_on_goal: StatisticItem = field(default_factory=StatisticItem)
     shots_on_goal: StatisticItem = field(default_factory=StatisticItem)
     hit_woodwork: StatisticItem = field(default_factory=StatisticItem)
@@ -84,7 +116,16 @@ class ShotsStats:
     total_shots_outside_box: StatisticItem = field(default_factory=StatisticItem)
 
 
-def parse_shots_stats(items: List[Dict[str, Any]]) -> ShotsStats:
+def parse_shots_stats(items: list[dict[str, any]]) -> ShotsStats:
+    """
+    Parse shots statistics.
+
+    Args:
+        items (List[Dict[str, Any]]): The statistics items.
+
+    Returns:
+        ShotsStats: The parsed shots statistics.
+    """
     mapping = {item["key"]: parse_statistic_item(item) for item in items}
     return ShotsStats(
         total_shots_on_goal=mapping.get("totalShotsOnGoal", StatisticItem()),
@@ -99,6 +140,10 @@ def parse_shots_stats(items: List[Dict[str, Any]]) -> ShotsStats:
 
 @dataclass
 class AttackStats:
+    """
+    The attack statistics class.
+    """
+
     big_chance_scored: StatisticItem = field(default_factory=StatisticItem)
     big_chance_missed: StatisticItem = field(default_factory=StatisticItem)
     touches_in_opp_box: StatisticItem = field(default_factory=StatisticItem)
@@ -106,7 +151,16 @@ class AttackStats:
     offsides: StatisticItem = field(default_factory=StatisticItem)
 
 
-def parse_attack_stats(items: List[Dict[str, Any]]) -> AttackStats:
+def parse_attack_stats(items: list[dict[str, any]]) -> AttackStats:
+    """
+    Parse attack statistics.
+
+    Args:
+        items (List[Dict[str, Any]]): The statistics items.
+
+    Returns:
+        AttackStats: The parsed attack
+    """
     mapping = {item["key"]: parse_statistic_item(item) for item in items}
     return AttackStats(
         big_chance_scored=mapping.get("bigChanceScored", StatisticItem()),
@@ -119,6 +173,10 @@ def parse_attack_stats(items: List[Dict[str, Any]]) -> AttackStats:
 
 @dataclass
 class PassesStats:
+    """
+    The passes statistics class.
+    """
+
     accurate_passes: StatisticItem = field(default_factory=StatisticItem)
     throw_ins: StatisticItem = field(default_factory=StatisticItem)
     final_third_entries: StatisticItem = field(default_factory=StatisticItem)
@@ -127,7 +185,16 @@ class PassesStats:
     accurate_cross: StatisticItem = field(default_factory=StatisticItem)
 
 
-def parse_passes_stats(items: List[Dict[str, Any]]) -> PassesStats:
+def parse_passes_stats(items: list[dict[str, any]]) -> PassesStats:
+    """
+    Parse passes statistics.
+
+    Args:
+        items (List[Dict[str, Any]]): The statistics items.
+
+    Returns:
+        PassesStats: The parsed passes statistics.
+    """
     mapping = {item["key"]: parse_statistic_item(item) for item in items}
     return PassesStats(
         accurate_passes=mapping.get("accuratePasses", StatisticItem()),
@@ -143,6 +210,10 @@ def parse_passes_stats(items: List[Dict[str, Any]]) -> PassesStats:
 
 @dataclass
 class DuelsStats:
+    """
+    The duels statistics class.
+    """
+
     duel_won_percent: StatisticItem = field(default_factory=StatisticItem)
     dispossessed: StatisticItem = field(default_factory=StatisticItem)
     ground_duels_percentage: StatisticItem = field(default_factory=StatisticItem)
@@ -150,7 +221,16 @@ class DuelsStats:
     dribbles_percentage: StatisticItem = field(default_factory=StatisticItem)
 
 
-def parse_duels_stats(items: List[Dict[str, Any]]) -> DuelsStats:
+def parse_duels_stats(items: list[dict[str, any]]) -> DuelsStats:
+    """
+    Parse duels statistics.
+
+    Args:
+        items (List[Dict[str, Any]]): The statistics items.
+
+    Returns:
+        DuelsStats: The parsed duels statistics.
+    """
     mapping = {item["key"]: parse_statistic_item(item) for item in items}
     return DuelsStats(
         duel_won_percent=mapping.get("duelWonPercent", StatisticItem()),
@@ -163,6 +243,10 @@ def parse_duels_stats(items: List[Dict[str, Any]]) -> DuelsStats:
 
 @dataclass
 class DefendingStats:
+    """
+    The defending statistics class.
+    """
+
     won_tackle_percent: StatisticItem = field(default_factory=StatisticItem)
     total_tackle: StatisticItem = field(default_factory=StatisticItem)
     interception_won: StatisticItem = field(default_factory=StatisticItem)
@@ -170,7 +254,16 @@ class DefendingStats:
     total_clearance: StatisticItem = field(default_factory=StatisticItem)
 
 
-def parse_defending_stats(items: List[Dict[str, Any]]) -> DefendingStats:
+def parse_defending_stats(items: list[dict[str, any]]) -> DefendingStats:
+    """
+    Parse defending statistics.
+
+    Args:
+        items (List[Dict[str, Any]]): The statistics items.
+
+    Returns:
+        DefendingStats: The parsed defending statistics.
+    """
     mapping = {item["key"]: parse_statistic_item(item) for item in items}
     return DefendingStats(
         won_tackle_percent=mapping.get("wonTacklePercent", StatisticItem()),
@@ -183,12 +276,25 @@ def parse_defending_stats(items: List[Dict[str, Any]]) -> DefendingStats:
 
 @dataclass
 class GoalkeepingStats:
+    """
+    The goalkeeping statistics class.
+    """
+
     goalkeeper_saves: StatisticItem = field(default_factory=StatisticItem)
     goals_prevented: StatisticItem = field(default_factory=StatisticItem)
     goal_kicks: StatisticItem = field(default_factory=StatisticItem)
 
 
-def parse_goalkeeping_stats(items: List[Dict[str, Any]]) -> GoalkeepingStats:
+def parse_goalkeeping_stats(items: list[dict[str, any]]) -> GoalkeepingStats:
+    """
+    Parse goalkeeping statistics.
+
+    Args:
+        items (List[Dict[str, Any]]): The statistics items.
+
+    Returns:
+        GoalkeepingStats: The parsed goalkeeping statistics.
+    """
     mapping = {item["key"]: parse_statistic_item(item) for item in items}
     return GoalkeepingStats(
         goalkeeper_saves=mapping.get("goalkeeperSaves", StatisticItem()),
@@ -199,6 +305,10 @@ def parse_goalkeeping_stats(items: List[Dict[str, Any]]) -> GoalkeepingStats:
 
 @dataclass
 class PeriodStats:
+    """
+    The period statistics class.
+    """
+
     match_overview: MatchOverviewStats = field(default_factory=MatchOverviewStats)
     shots: ShotsStats = field(default_factory=ShotsStats)
     attack: AttackStats = field(default_factory=AttackStats)
@@ -208,7 +318,16 @@ class PeriodStats:
     goalkeeping: GoalkeepingStats = field(default_factory=GoalkeepingStats)
 
 
-def parse_period_stats(groups: List[Dict[str, Any]]) -> PeriodStats:
+def parse_period_stats(groups: list[dict[str, any]]) -> PeriodStats:
+    """
+    Parse period statistics.
+
+    Args:
+        groups (List[Dict[str, Any]]): The statistics groups.
+
+    Returns:
+        PeriodStats: The parsed period statistics.
+    """
     group_mapping = {group["groupName"].lower(): group for group in groups}
     return PeriodStats(
         match_overview=parse_match_overview_stats(
@@ -237,6 +356,10 @@ def parse_period_stats(groups: List[Dict[str, Any]]) -> PeriodStats:
 
 @dataclass
 class WinProbability:
+    """
+    The win probability class.
+    """
+
     home: float = field(default=0.0)
     draw: float = field(default=0.0)
     away: float = field(default=0.0)
@@ -244,6 +367,10 @@ class WinProbability:
 
 @dataclass
 class MatchStats:
+    """
+    The match statistics class.
+    """
+
     all: Optional[PeriodStats] = field(default=None)
     first_half: Optional[PeriodStats] = field(default=None)
     second_half: Optional[PeriodStats] = field(default=None)
@@ -251,7 +378,16 @@ class MatchStats:
     win_probability: Optional[WinProbability] = field(default=None)
 
 
-def parse_match_probabilities(data: Dict[str, Any]) -> Dict[str, Any]:
+def parse_match_probabilities(data: dict[str, any]) -> WinProbability:
+    """
+    Parse match probabilities.
+
+    Args:
+        data (Dict[str, Any]): The match probabilities data.
+
+    Returns:
+        WinProbability: The parsed match probabilities.
+    """
     return WinProbability(
         home=data.get("homeWin", 0.0),
         draw=data.get("draw", 0.0),
@@ -262,6 +398,16 @@ def parse_match_probabilities(data: Dict[str, Any]) -> Dict[str, Any]:
 def parse_match_stats(
     data: List[Dict[str, Any]], win_probabilities: Dict[str, Any]
 ) -> MatchStats:
+    """
+    Parse match statistics.
+
+    Args:
+        data (List[Dict[str, Any]]): The match statistics data.
+        win_probabilities (Dict[str, Any]): The win probabilities data.
+
+    Returns:
+        MatchStats: The parsed match
+    """
     match_stats = MatchStats()
     match_stats.win_probability = parse_match_probabilities(win_probabilities)
     if not data:
