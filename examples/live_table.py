@@ -5,7 +5,7 @@ def clear_screen():
     print("\033[H\033[J")
 
 
-def update_table() -> list[esd.Event]:
+def update_table() -> list[esd.sofascore.Event]:
     client = esd.SofascoreClient()
     live_events = client.get_events(live=True)
 
@@ -38,7 +38,7 @@ if __name__ == "__main__":
         try:
             index = int(choice)
             event = events[index]
-            details: esd.MatchStats = client.get_match_stats(event.id)
+            details: esd.sofascore.MatchStats = client.get_match_stats(event.id)
             clear_screen()
             print(event.home_team.name, "vs", event.away_team.name)
             print("Score:", event.home_score.current, "-", event.away_score.current)
