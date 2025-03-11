@@ -15,6 +15,7 @@ from .types import (
     TeamColor,
     Category,
     Tournament,
+    Season,
 )
 
 __all__ = [
@@ -30,4 +31,5 @@ __all__ = [
     "TeamColor",
     "Category",
     "Tournament",
+    "Season",
 ]

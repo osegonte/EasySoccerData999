@@ -12,6 +12,8 @@ from .types import (
     parse_player,
     parse_team,
     parse_tournaments,
+    parse_seasons,
+    Season,
     Tournament,
     Team,
     Player,
@@ -152,6 +154,23 @@ class SofascoreService:
             url = self.endpoints.get_tournaments_endpoint(category_id.value)
             data = get_json(url)["groups"][0].get("uniqueTournaments", [])
             return parse_tournaments(data)
+        except Exception as exc:
+            raise exc
+
+    def get_tournament_seasons(self, tournament_id: int) -> list[Season]:
+        """
+        Get the seasons of a tournament.
+
+        Args:
+            tournament_id (int): The tournament id.
+
+        Returns:
+            list[Season]: The seasons of the tournament.
+        """
+        try:
+            url = self.endpoints.get_tournament_seasons_endpoint(tournament_id)
+            data = get_json(url)["seasons"]
+            return parse_seasons(data)
         except Exception as exc:
             raise exc
 

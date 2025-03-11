@@ -13,6 +13,7 @@ from .types import (
     Lineups,
     Category,
     Tournament,
+    Season,
 )
 
 
@@ -96,6 +97,7 @@ class SofascoreClient:
     def get_tournaments(self, category_id: Category) -> list[Tournament]:
         """
         Get the tournaments by category.
+        TODO: maybe add a argument to include seasons.
 
         Args:
             category_id (Category): The category id.
@@ -104,6 +106,18 @@ class SofascoreClient:
             list[Tournament]: The tournaments.
         """
         return self.__service.get_tournaments_by_category(category_id)
+
+    def get_tournament_seasons(self, tournament_id: int) -> list[Season]:
+        """
+        Get the seasons of a tournament.
+
+        Args:
+            tournament_id (int): The tournament id.
+
+        Returns:
+            list[Season]: The seasons of the tournament.
+        """
+        return self.__service.get_tournament_seasons(tournament_id)
 
     def search(
         self, query: str, entity: str | EntityType = EntityType.ALL

@@ -115,3 +115,15 @@ class SofascoreEndpoints:
             str: The URL of the endpoint to get the tournaments of a category.
         """
         return f"{self.base_url}/category/{category_id}/unique-tournaments"
+
+    def get_tournament_seasons_endpoint(self, tournament_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the seasons of a tournament.
+
+        Args:
+            tournament_id (int): The tournament id.
+
+        Returns:
+            str: The URL of the endpoint to get the seasons of a tournament.
+        """
+        return f"{self.base_url}/unique-tournament/{tournament_id}/seasons"
