@@ -9,7 +9,6 @@ from .types import (
     Event,
     parse_event,
     parse_events,
-    parse_team_ex,
     parse_player,
     parse_team,
     Team,
@@ -99,7 +98,7 @@ class SofascoreService:
         except Exception as exc:
             raise exc
 
-    def get_team(self, team_id: int) -> dict:
+    def get_team(self, team_id: int) -> Team:
         """
         Get the team information.
 
@@ -107,16 +106,16 @@ class SofascoreService:
             team_id (int): The team id.
 
         Returns:
-            dict: The team information.
+            Team: The team information
         """
         try:
             url = self.endpoints.team_endpoint(team_id)
             data = get_json(url)["team"]
-            return parse_team_ex(data)
+            return parse_team(data)
         except Exception as exc:
             raise exc
 
-    def get_team_players(self, team_id: int) -> dict:
+    def get_team_players(self, team_id: int) -> list[Player]:
         """
         Get the team players.
 
@@ -124,7 +123,7 @@ class SofascoreService:
             team_id (int): The team id.
 
         Returns:
-            dict: The team players.
+            list[Player]: The players of the team.
         """
         try:
             url = self.endpoints.team_players_endpoint(team_id)

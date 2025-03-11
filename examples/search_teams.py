@@ -16,9 +16,7 @@ The output will be something like:
 import esd
 
 client = esd.SofascoreClient()
-teams: list[esd.Team] = client.search(
-    "Liverpool", entity=esd.EntityType.TEAM
-)
+teams: list[esd.Team] = client.search("Liverpool", entity=esd.EntityType.TEAM)
 
 for team in teams:
     print(f"{team.id}, {team.name}, {team.slug}")

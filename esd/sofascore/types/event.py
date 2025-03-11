@@ -111,6 +111,7 @@ class StatusTime:
     timestamp: int = 0
     extra: int = 0
 
+
 @dataclass
 class Event:
     """

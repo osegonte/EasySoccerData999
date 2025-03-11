@@ -10,6 +10,7 @@ class Player:
     """
     Player dataclass
     """
+
     name: str = field(default=None)
     slug: str = field(default=None)
     short_name: str = field(default=None)
@@ -46,7 +47,7 @@ def parse_player(data: dict) -> Player:
 
     Args:
         data (dict): Player data.
-    
+
     Returns:
         Player: Player dataclass.
     """

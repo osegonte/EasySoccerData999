@@ -1,6 +1,7 @@
 """
 The module for parsing the team score data.
 """
+
 from dataclasses import dataclass, field
 
 
@@ -9,6 +10,7 @@ class TeamScore:
     """
     Team score data class.
     """
+
     current: int = field(default=0)
     first_period: int = field(default=0)  # 1st half
     second_period: int = field(default=0)  # 2nd half
