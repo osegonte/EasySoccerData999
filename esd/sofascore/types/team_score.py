@@ -1,17 +1,22 @@
+"""
+The module for parsing the team score data.
+"""
 from dataclasses import dataclass, field
-from typing import Dict
 
 
 @dataclass
 class TeamScore:
+    """
+    Team score data class.
+    """
     current: int = field(default=0)
-    # display: int = field(default=0)
     first_period: int = field(default=0)  # 1st half
     second_period: int = field(default=0)  # 2nd half
+    # display: int = field(default=0)
     # normaltime: int = field(default=0) # Full time
 
 
-def parse_team_score(data: Dict) -> TeamScore:
+def parse_team_score(data: dict) -> TeamScore:
     """
     Parse the team score data.
 
