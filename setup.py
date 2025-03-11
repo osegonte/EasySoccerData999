@@ -23,8 +23,8 @@ setup(
     url="https://github.com/manucabral/EasySoccerData",
     project_urls={
         "Bug Tracker": "https://github.com/manucabral/EasySoccerData/issues",
-        "Documentation": "https://github.com/manucabral/EasySoccerData/readme.md",
-        "Source Code": "https://github.com/manucabral/EasySoccerData/esd",
+        "Documentation": "https://github.com/manucabral/EasySoccerData/blob/main/README.md",
+        "Source Code": "https://github.com/manucabral/EasySoccerData/tree/main/esd",
     },
     python_requires=">=3.9",
     install_requires=[
