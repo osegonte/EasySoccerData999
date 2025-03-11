@@ -1,3 +1,7 @@
+"""
+Detailed team data class.
+"""
+
 from dataclasses import dataclass, field
 from typing import List, Dict
 from .country import parse_country
@@ -9,6 +13,9 @@ from .player import Player
 
 @dataclass
 class TeamEx(Team):
+    """
+    Detailed team data class.
+    """
     manager: Manager = field(default_factory=Manager)
     players: List[Player] = field(default_factory=list)
 
