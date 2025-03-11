@@ -70,7 +70,7 @@ print("Confirmed lineups:", lineups.confirmed)
 print("FORMATION", match.home_team.name, ":", lineups.home.formation)
 home_players = lineups.home.players
 for player in home_players:
-    info: esd.Player = player.info
+    info: esd.sofascore.Player = player.info
     if player.substitute:
         # ignore substitutes
         continue
@@ -80,7 +80,7 @@ for player in home_players:
 print("FORMATION", match.away_team.name, ":", lineups.away.formation)
 away_players = lineups.away.players
 for player in away_players:
-    info: esd.Player = player.info
+    info: esd.sofascore.Player = player.info
     if player.substitute:
         # ignore substitutes
         continue

@@ -22,8 +22,8 @@ import esd
 import datetime
 
 client = esd.SofascoreClient()
-matchs: list[esd.Event] = client.search(
-    "Manchester United", entity=esd.EntityType.EVENT
+matchs: list[esd.sofascore.Event] = client.search(
+    "Manchester United", entity=esd.sofascore.EntityType.EVENT
 )
 
 for match in matchs:
