@@ -31,6 +31,18 @@ class SofascoreEndpoints:
         """
         return self.base_url + "/sport/football/events/live"
 
+    def event_endpoint(self, event_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the event information.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            str: The URL of the endpoint to get the event information.
+        """
+        return f"{self.base_url}/event/{event_id}"
+
     def search_endpoint(self, query: str, entity_type: str) -> str:
         """
         Returns the URL of the endpoint to search for entities.
@@ -127,3 +139,18 @@ class SofascoreEndpoints:
             str: The URL of the endpoint to get the seasons of a tournament.
         """
         return f"{self.base_url}/unique-tournament/{tournament_id}/seasons"
+
+    def get_tournament_bracket_endpoint(
+        self, tournament_id: int, season_id: int
+    ) -> str:
+        """
+        Returns the URL of the endpoint to get the bracket of a tournament.
+
+        Args:
+            tournament_id (int): The tournament id.
+            season_id (int): The season id.
+
+        Returns:
+            str: The URL of the endpoint to get the bracket of a tournament.
+        """
+        return f"{self.base_url}/unique-tournament/{tournament_id}/season/{season_id}/cuptrees"

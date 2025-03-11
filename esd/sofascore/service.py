@@ -14,6 +14,8 @@ from .types import (
     parse_tournament,
     parse_tournaments,
     parse_seasons,
+    parse_brackets,
+    Bracket,
     Season,
     Tournament,
     Team,
@@ -37,6 +39,23 @@ class SofascoreService:
         Initializes the SofaScore service.
         """
         self.endpoints = SofascoreEndpoints()
+
+    def get_event(self, event_id: int) -> Event:
+        """
+        Get the event information.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            Event: The event information.
+        """
+        try:
+            url = self.endpoints.event_endpoint(event_id)
+            data = get_json(url)["event"]
+            return parse_event(data)
+        except Exception as exc:
+            raise exc
 
     def get_events(self, date: str = None) -> list[Event]:
         """
@@ -172,6 +191,32 @@ class SofascoreService:
             url = self.endpoints.get_tournament_seasons_endpoint(tournament_id)
             data = get_json(url)["seasons"]
             return parse_seasons(data)
+        except Exception as exc:
+            raise exc
+
+    def get_tournament_bracket(
+        self, tournament_id: int | Tournament, season_id: int | Season
+    ) -> list[Bracket]:
+        """
+        Get the tournament bracket.
+
+        Args:
+            tournament_id (int, Tournament): The tournament id.
+            season_id (int, Season): The season id.
+
+        Returns:
+            dict: The tournament bracket.
+        """
+        try:
+            if isinstance(tournament_id, Tournament):
+                tournament_id = tournament_id.id
+            if isinstance(season_id, Season):
+                season_id = season_id.id
+            url = self.endpoints.get_tournament_bracket_endpoint(
+                tournament_id, season_id
+            )
+            data = get_json(url)["cupTrees"]
+            return parse_brackets(data)
         except Exception as exc:
             raise exc
 

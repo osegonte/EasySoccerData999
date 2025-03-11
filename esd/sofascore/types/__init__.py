@@ -9,6 +9,7 @@ from .match_stats import MatchStats, parse_match_stats
 from .lineup import Lineups, PlayerLineup, TeamColor, TeamLineup, parse_lineups
 from .tournament import Tournament, parse_tournaments, parse_tournament
 from .season import Season, parse_seasons, parse_season
+from .bracket import Bracket, parse_bracket, parse_brackets
 from .entity import EntityType
 from .categories import Category
 
@@ -23,6 +24,9 @@ __all__ = [
     "Season",
     "parse_seasons",
     "parse_season",
+    "Bracket",
+    "parse_bracket",
+    "parse_brackets",
     "Team",
     "parse_team",
     "Player",
