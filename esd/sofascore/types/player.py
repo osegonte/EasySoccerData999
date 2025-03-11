@@ -1,8 +1,15 @@
+"""
+Player dataclass and parser.
+"""
+
 from dataclasses import dataclass, field
 
 
 @dataclass
 class Player:
+    """
+    Player dataclass
+    """
     name: str = field(default=None)
     slug: str = field(default=None)
     short_name: str = field(default=None)
@@ -16,25 +23,33 @@ class Player:
     date_of_birth: int = field(default=0)
     contract_until: int = field(default=0)
     market_value: int = field(default=0)  # proposed
-    # userCount: int
-    # market_value_raw: ProposedMarketValueRaw = field(
-    #     default_factory=ProposedMarketValueRaw
-    # )
-    # fieldTranslations: Dict[str, Dict[str, str]]
+    """
+    userCount: int
+    market_value_raw: ProposedMarketValueRaw = field(
+        default_factory=ProposedMarketValueRaw
+    )
+    fieldTranslations: Dict[str, Dict[str, str]]
 
-
-""" not needed for now
-def parse_proposed_market_value_raw(data: dict) -> ProposedMarketValueRaw:
-    return ProposedMarketValueRaw(value=data["value"], currency=data["currency"])
+    def parse_proposed_market_value_raw(data: dict) -> ProposedMarketValueRaw:
+        return ProposedMarketValueRaw(value=data["value"], currency=data["currency"])
 
     @dataclass
-class ProposedMarketValueRaw:
-    value: int = field(default=0)
-    currency: str = field(default=None)
+    class ProposedMarketValueRaw:
+        value: int = field(default=0)
+        currency: str = field(default=None)
 """
 
 
 def parse_player(data: dict) -> Player:
+    """
+    Parse player data.
+
+    Args:
+        data (dict): Player data.
+    
+    Returns:
+        Player: Player dataclass.
+    """
     return Player(
         name=data.get("name", None),
         slug=data.get("slug", None),
