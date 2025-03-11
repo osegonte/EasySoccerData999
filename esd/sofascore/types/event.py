@@ -111,8 +111,6 @@ class StatusTime:
     timestamp: int = 0
     extra: int = 0
 
-
-# pylint: disable=too-many-instance-attributes
 @dataclass
 class Event:
     """

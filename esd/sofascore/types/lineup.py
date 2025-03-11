@@ -7,7 +7,6 @@ from typing import Optional, Any
 from .player import Player, parse_player
 
 
-# pylint: disable=too-many-instance-attributes
 @dataclass
 class Statistics:
     """

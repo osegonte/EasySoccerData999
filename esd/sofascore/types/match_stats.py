@@ -55,7 +55,6 @@ def parse_statistic_item(item: dict[str, any]) -> StatisticItem:
     )
 
 
-# pylint: disable=too-many-instance-attributes
 @dataclass
 class MatchOverviewStats:
     """
