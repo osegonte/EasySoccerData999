@@ -103,3 +103,15 @@ class SofascoreEndpoints:
             str: The URL of the endpoint to get the match lineups.
         """
         return f"{self.base_url}/event/{event_id}/lineups"
+
+    def get_tournaments_endpoint(self, category_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the tournaments of a category.
+
+        Args:
+            category_id (int): The category id. See esd.sofascore.types.categories.
+
+        Returns:
+            str: The URL of the endpoint to get the tournaments of a category.
+        """
+        return f"{self.base_url}/category/{category_id}/unique-tournaments"

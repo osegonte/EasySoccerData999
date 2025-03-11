@@ -11,6 +11,8 @@ from .types import (
     parse_events,
     parse_player,
     parse_team,
+    parse_tournaments,
+    Tournament,
     Team,
     Player,
     MatchStats,
@@ -18,6 +20,7 @@ from .types import (
     Lineups,
     parse_lineups,
     EntityType,
+    Category,
 )
 
 
@@ -130,6 +133,25 @@ class SofascoreService:
             return [
                 parse_player(player["player"]) for player in get_json(url)["players"]
             ]
+        except Exception as exc:
+            raise exc
+
+    def get_tournaments_by_category(self, category_id: Category) -> list[Tournament]:
+        """
+        Get the tournaments by category id.
+
+        Args:
+            category_id (Category): The category id.
+
+        Returns:
+            list[Tournament]: The tournaments.
+        """
+        if not isinstance(category_id, Category):
+            raise ValueError("category_id must be an instance of Category Enum")
+        try:
+            url = self.endpoints.get_tournaments_endpoint(category_id.value)
+            data = get_json(url)["groups"][0].get("uniqueTournaments", [])
+            return parse_tournaments(data)
         except Exception as exc:
             raise exc
 

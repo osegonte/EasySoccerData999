@@ -4,7 +4,16 @@ This module contains the client class for interacting with the Sofascore API.
 
 from __future__ import annotations
 from .service import SofascoreService
-from .types import EntityType, Event, Team, Player, MatchStats, Lineups
+from .types import (
+    EntityType,
+    Event,
+    Team,
+    Player,
+    MatchStats,
+    Lineups,
+    Category,
+    Tournament,
+)
 
 
 class SofascoreClient:
@@ -83,6 +92,18 @@ class SofascoreClient:
             list[Player]: The players of the team.
         """
         return self.__service.get_team_players(team_id)
+
+    def get_tournaments(self, category_id: Category) -> list[Tournament]:
+        """
+        Get the tournaments by category.
+
+        Args:
+            category_id (Category): The category id.
+
+        Returns:
+            list[Tournament]: The tournaments.
+        """
+        return self.__service.get_tournaments_by_category(category_id)
 
     def search(
         self, query: str, entity: str | EntityType = EntityType.ALL
