@@ -1,4 +1,11 @@
 <h1 align="center">EasySoccerData</h1>
+
+<p align="center">
+<img alt="PyPI - Version" src="https://img.shields.io/pypi/v/EasySoccerData?color=00329e">
+<img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/EasySoccerData?color=009903">
+<img alt="GitHub License" src="https://img.shields.io/github/license/manucabral/easysoccerdata">
+</p>
+
 <p align="center">
 A simple python package for extracting real-time soccer data from diverse online sources, providing essential statistics and insights.
 </p>
