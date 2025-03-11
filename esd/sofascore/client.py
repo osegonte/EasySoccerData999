@@ -121,7 +121,7 @@ class SofascoreClient:
 
     def search(
         self, query: str, entity: str | EntityType = EntityType.ALL
-    ) -> list[Event | Team | Player]:
+    ) -> list[Event | Team | Player | Tournament]:
         """
         Search query for matches, teams, players, and tournaments.
 
@@ -130,7 +130,7 @@ class SofascoreClient:
             entity (str, EntityType): The entity type to search for.
 
         Returns:
-            dict: The search results.
+            list[Event | Team | Player | Tournament]: The search results.
         """
         if isinstance(entity, str):
             entity = EntityType(entity)

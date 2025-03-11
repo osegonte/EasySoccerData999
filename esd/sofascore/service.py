@@ -11,6 +11,7 @@ from .types import (
     parse_events,
     parse_player,
     parse_team,
+    parse_tournament,
     parse_tournaments,
     parse_seasons,
     Season,
@@ -176,7 +177,7 @@ class SofascoreService:
 
     def search(
         self, query: str, entity: EntityType = EntityType.ALL
-    ) -> list[Event | Team | Player]:
+    ) -> list[Event | Team | Player | Tournament]:
         """
         Search query for matches, teams, players, and tournaments.
 
@@ -185,7 +186,7 @@ class SofascoreService:
             entity (EntityType): The entity type to search for.
 
         Returns:
-            a list of Event, Team, or Player objects.
+            list[Event | Team | Player | Tournament]: The search results.
         """
         try:
             entity_type = entity.value
@@ -196,7 +197,7 @@ class SofascoreService:
                 EntityType.TEAM: parse_team,
                 EntityType.PLAYER: parse_player,
                 EntityType.EVENT: parse_event,
-                EntityType.TOURNAMENT: lambda x: x,
+                EntityType.TOURNAMENT: parse_tournament,
             }
 
             if entity == EntityType.ALL:
@@ -204,6 +205,7 @@ class SofascoreService:
                     "team": parse_team,
                     "player": parse_player,
                     "event": parse_events,
+                    "uniqueTournament": parse_tournament,
                 }
                 entities = []
                 for result in results:
