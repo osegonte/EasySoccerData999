@@ -22,23 +22,34 @@ pip install EasySoccerData
 
 # Usage
 
-Simple demonstration of a live table using Sofascore module (see [source code](https://github.com/manucabral/EasySoccerData/blob/main/examples/live_table.py))
-<p align="center">
-<img src="https://github.com/manucabral/EasySoccerData/blob/main/assets/sofascore-live-table.gif" width="550" title="LiveTableUsingSofascore">
-</p>
-
-Another example
+Using Sofascore
 ```py
 import esd
 
-# get live events
 client = esd.SofascoreClient()
 events = client.get_events(live=True)
 for event in events:
     print(event)
 ```
 
+Now using FBRef
+```py
+import esd
+
+client = esd.FBrefClient()
+matchs = client.get_matchs()
+for match in matchs:
+    print(match)
+```
+
+Simple demonstration of a live table using Sofascore module (see [source code](https://github.com/manucabral/EasySoccerData/blob/main/examples/live_table.py))
+<p align="center">
+<img src="https://github.com/manucabral/EasySoccerData/blob/main/assets/sofascore-live-table.gif" width="550" title="LiveTableUsingSofascore">
+</p>
+
 [How to search for matches, teams, tournaments, and players](https://github.com/manucabral/EasySoccerData/blob/main/examples/search_matchs.py)
+
+[How to get tournament brackets](https://github.com/manucabral/EasySoccerData/blob/main/examples/tournament_bracket.py)
 
 [How to get lineups for a match](https://github.com/manucabral/EasySoccerData/blob/main/examples/match_lineups.py)
 
@@ -52,9 +63,10 @@ And more! Check out [examples](https://github.com/manucabral/EasySoccerData/tree
 | Name | Implemented |
 | :---  | :---: |
 | Sofascore   | ✔️ |
-| FBref    | ❌ |
+| FBref    | ✔️ |
 | Understat | ❌ |
 ...
+> Keep in mind that it is still under active development.
 
 ### Constributions
 All constributions, bug reports or fixes and ideas are welcome.
