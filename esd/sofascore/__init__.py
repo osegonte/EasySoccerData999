@@ -17,6 +17,7 @@ from .types import (
     Tournament,
     Season,
     Bracket,
+    Standing,
 )
 
 __all__ = [
@@ -34,4 +35,5 @@ __all__ = [
     "Tournament",
     "Season",
     "Bracket",
+    "Standing",
 ]
