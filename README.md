@@ -64,6 +64,7 @@ And more! Check out [examples](https://github.com/manucabral/EasySoccerData/tree
 | :---  | :---: |
 | Sofascore   | ✔️ |
 | FBref    | ✔️ |
+| Promiedos    | ❌ |
 | Understat | ❌ |
 ...
 > Keep in mind that it is still under active development.
