@@ -2,4 +2,7 @@
 FBref client module.
 """
 
-__all__ = []
+from .client import FBrefClient
+from .types import Match
+
+__all__ = ["FBrefClient", "Match"]

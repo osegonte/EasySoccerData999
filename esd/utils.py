@@ -5,6 +5,7 @@ This module contains utility functions that are used in the project.
 import re
 import time
 import httpx
+from lxml import html
 
 
 def get_today() -> str:
@@ -50,4 +51,25 @@ def get_json(url: str) -> dict:
     except httpx.HTTPStatusError as exc:
         if exc.response.status_code == 404:
             return {}
+        raise exc
+
+
+def get_document(url: str) -> html.HtmlElement:
+    """
+    Get the HTML document from the given URL.
+
+    Args:
+        url (str): The URL to get the HTML document.
+
+    Returns:
+        html.HtmlElement: The HTML document.
+    """
+    try:
+        with httpx.Client() as client:
+            response = client.get(url)
+            response.raise_for_status()
+            return html.fromstring(response.content)
+    except httpx.HTTPStatusError as exc:
+        if exc.response.status_code == 404:
+            return html.fromstring("")
         raise exc

@@ -13,9 +13,11 @@ for event in events:
 """
 
 from .sofascore import SofascoreClient
+from .fbref import FBrefClient
 
 __all__ = [
     "SofascoreClient",
+    "FBrefClient",
 ]
 
 __version__ = "0.0.4"
