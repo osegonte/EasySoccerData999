@@ -1,5 +1,5 @@
 """
-Sofascore types module necessary for the client.
+Sofascore client module.
 """
 
 from .client import SofascoreClient
