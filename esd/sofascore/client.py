@@ -15,6 +15,7 @@ from .types import (
     Tournament,
     Season,
     Bracket,
+    Standing,
 )
 
 
@@ -146,6 +147,21 @@ class SofascoreClient:
             list[Bracket]: The tournament bracket.
         """
         return self.__service.get_tournament_bracket(tournament_id, season_id)
+
+    def get_tournament_standings(
+        self, tournament_id: int | Tournament, season_id: int | Season
+    ) -> list[Standing]:
+        """
+        Get the tournament standings.
+
+        Args:
+            tournament_id (int, Tournament): The tournament id.
+            season_id (int, Season): The season id.
+
+        Returns:
+            list[Standing]: The tournament standings.
+        """
+        return self.__service.get_tournament_standings(tournament_id, season_id)
 
     def search(
         self, query: str, entity: str | EntityType = EntityType.ALL

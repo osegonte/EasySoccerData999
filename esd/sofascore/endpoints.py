@@ -116,7 +116,7 @@ class SofascoreEndpoints:
         """
         return f"{self.base_url}/event/{event_id}/lineups"
 
-    def get_tournaments_endpoint(self, category_id: int) -> str:
+    def tournaments_endpoint(self, category_id: int) -> str:
         """
         Returns the URL of the endpoint to get the tournaments of a category.
 
@@ -128,7 +128,7 @@ class SofascoreEndpoints:
         """
         return f"{self.base_url}/category/{category_id}/unique-tournaments"
 
-    def get_tournament_seasons_endpoint(self, tournament_id: int) -> str:
+    def tournament_seasons_endpoint(self, tournament_id: int) -> str:
         """
         Returns the URL of the endpoint to get the seasons of a tournament.
 
@@ -140,9 +140,7 @@ class SofascoreEndpoints:
         """
         return f"{self.base_url}/unique-tournament/{tournament_id}/seasons"
 
-    def get_tournament_bracket_endpoint(
-        self, tournament_id: int, season_id: int
-    ) -> str:
+    def tournament_bracket_endpoint(self, tournament_id: int, season_id: int) -> str:
         """
         Returns the URL of the endpoint to get the bracket of a tournament.
 
@@ -154,3 +152,17 @@ class SofascoreEndpoints:
             str: The URL of the endpoint to get the bracket of a tournament.
         """
         return f"{self.base_url}/unique-tournament/{tournament_id}/season/{season_id}/cuptrees"
+
+    def tournament_standings_endpoint(self, tournament_id: int, season_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the standings of a tournament.
+
+        Args:
+            tournament_id (int): The tournament id.
+            season_id (int): The season id.
+
+        Returns:
+            str: The URL of the endpoint to get the standings of a tournament.
+        """
+        base = self.base_url + "/unique-tournament"
+        return f"{base}/{tournament_id}/season/{season_id}/standings/total"

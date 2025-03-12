@@ -15,9 +15,11 @@ from .types import (
     parse_tournaments,
     parse_seasons,
     parse_brackets,
+    parse_standings,
     Bracket,
     Season,
     Tournament,
+    Standing,
     Team,
     Player,
     MatchStats,
@@ -171,7 +173,7 @@ class SofascoreService:
         if not isinstance(category_id, Category):
             raise ValueError("category_id must be an instance of Category Enum")
         try:
-            url = self.endpoints.get_tournaments_endpoint(category_id.value)
+            url = self.endpoints.tournaments_endpoint(category_id.value)
             data = get_json(url)["groups"][0].get("uniqueTournaments", [])
             return parse_tournaments(data)
         except Exception as exc:
@@ -188,7 +190,7 @@ class SofascoreService:
             list[Season]: The seasons of the tournament.
         """
         try:
-            url = self.endpoints.get_tournament_seasons_endpoint(tournament_id)
+            url = self.endpoints.tournament_seasons_endpoint(tournament_id)
             data = get_json(url)["seasons"]
             return parse_seasons(data)
         except Exception as exc:
@@ -212,11 +214,33 @@ class SofascoreService:
                 tournament_id = tournament_id.id
             if isinstance(season_id, Season):
                 season_id = season_id.id
-            url = self.endpoints.get_tournament_bracket_endpoint(
-                tournament_id, season_id
-            )
+            url = self.endpoints.tournament_bracket_endpoint(tournament_id, season_id)
             data = get_json(url)["cupTrees"]
             return parse_brackets(data)
+        except Exception as exc:
+            raise exc
+
+    def get_tournament_standings(
+        self, tournament_id: int | Tournament, season_id: int | Season
+    ) -> list[Standing]:
+        """
+        Get the tournament standings.
+
+        Args:
+            tournament_id (int, Tournament): The tournament id.
+            season_id (int, Season): The season id.
+
+        Returns:
+            list[Standing]: The tournament standings.
+        """
+        try:
+            if isinstance(tournament_id, Tournament):
+                tournament_id = tournament_id.id
+            if isinstance(season_id, Season):
+                season_id = season_id.id
+            url = self.endpoints.tournament_standings_endpoint(tournament_id, season_id)
+            data = get_json(url)["standings"]
+            return parse_standings(data)
         except Exception as exc:
             raise exc
 
