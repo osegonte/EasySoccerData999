@@ -21,14 +21,12 @@ class FBrefEndpoints:
     def matchs_endpoint(self) -> str:
         """
         Returns the URL of the endpoint to get the scheduled matchs.
-
-        Returns:
-            str: The URL of the endpoint to get the scheduled matchs.
         """
         return self.base_url + "/matches/{date}"
 
     @property
     def match_details_endpoint(self) -> str:
         """
-        TODO: Returns the URL of the endpoint to get the details of a match."
+        Returns the URL of the endpoint to get the match details.
         """
+        return self.base_url + "/{match_id}"

@@ -5,7 +5,9 @@ FBref service module.
 from __future__ import annotations
 from ..utils import get_today, get_document
 from .endpoints import FBrefEndpoints
-from .types import Match, parse_matchs
+from .exceptions import InvalidMatchId
+from .utils import rate_limit
+from .types import Match, parse_matchs, MatchDetails, parse_match_details
 
 
 class FBrefService:
@@ -13,12 +15,14 @@ class FBrefService:
     A class to represent the FBref service.
     """
 
-    def __init__(self, language: str = "en") -> None:
+    def __init__(self, language: str = "en", proxies: dict = None) -> None:
         """
         Initializes the FBref service.
         """
-        self.endpoints = FBrefEndpoints(language=language)
+        self.proxies: dict = proxies or None
+        self.endpoints: FBrefEndpoints = FBrefEndpoints(language=language)
 
+    @rate_limit(calls=9, period=60)
     def get_matchs(self, date: str = None) -> list[Match]:
         """
         Get the scheduled matchs.
@@ -33,12 +37,30 @@ class FBrefService:
             if not date:
                 date = get_today()
             url = self.endpoints.matchs_endpoint.format(date=date)
-            document = get_document(url)
+            document = get_document(self.proxies, url)
             return parse_matchs(document)
         except Exception as exc:
             raise exc
 
-    def get_match_details(self, match_id: str) -> None:
+    @rate_limit(calls=9, period=60)
+    def get_match_details(self, match_id: str) -> MatchDetails:
         """
-        TODO: Get the details of a match.
+        Get the match details.
+
+        Args:
+            match_id (str): The match id.
+
+        Returns:
+            MatchDetails: The match details.
+
+        Raises:
+            InvalidMatchId: If the match id is invalid.
         """
+        if not "matches" in match_id:
+            raise InvalidMatchId(match_id)
+        try:
+            url = self.endpoints.match_details_endpoint.format(match_id=match_id)
+            document = get_document(self.proxies, url)
+            return parse_match_details(document)
+        except Exception as exc:
+            raise exc

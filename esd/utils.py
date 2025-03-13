@@ -54,18 +54,19 @@ def get_json(url: str) -> dict:
         raise exc
 
 
-def get_document(url: str) -> html.HtmlElement:
+def get_document(proxies: dict = None, url: str = None) -> html.HtmlElement:
     """
     Get the HTML document from the given URL.
 
     Args:
+        proxies (dict): The proxy settings.
         url (str): The URL to get the HTML document.
 
     Returns:
         html.HtmlElement: The HTML document.
     """
     try:
-        with httpx.Client() as client:
+        with httpx.Client(proxy=proxies) as client:
             response = client.get(url)
             response.raise_for_status()
             return html.fromstring(response.content)

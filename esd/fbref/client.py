@@ -12,11 +12,11 @@ class FBrefClient:
     A class to represent the client for interacting with the FBref website.
     """
 
-    def __init__(self, language: str = "en") -> None:
+    def __init__(self, language: str = "en", proxies: dict = None) -> None:
         """
         Initializes the Sofascore client.
         """
-        self.__service = FBrefService(language=language)
+        self.__service = FBrefService(language=language, proxies=proxies)
 
     def get_matchs(self, date: str = None) -> list[Match]:
         """
@@ -32,5 +32,9 @@ class FBrefClient:
 
     def get_match_details(self, match_id: str) -> None:
         """
-        TODO: Get the details of a match.
+        Get the match report.
+
+        Args:
+            match_id (str): The match id.
         """
+        return self.__service.get_match_details(match_id)

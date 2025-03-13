@@ -9,7 +9,7 @@ from functools import wraps
 from .exceptions import RateLimitExceeded
 
 
-def rate_limit(calls: int = 8, period: int = 60) -> function:
+def rate_limit(calls: int = 8, period: int = 60) -> callable:
     """
     A decorator to rate limit the number of calls to a function.
 
@@ -18,10 +18,10 @@ def rate_limit(calls: int = 8, period: int = 60) -> function:
         period (int): The time period in seconds.
 
     Returns:
-        function: The decorated function.
+        callable: The decorator.
     """
 
-    def decorator(func: function) -> function:
+    def decorator(func: callable) -> callable:
         timestamps = deque(maxlen=calls)
 
         @wraps(func)
@@ -33,8 +33,8 @@ def rate_limit(calls: int = 8, period: int = 60) -> function:
                 if elapsed < period:
                     sleep_time = period - elapsed
                     raise RateLimitExceeded(
-                        f"Rate limit exceeded. Please wait {sleep_time:.2f} seconds before retrying. "
-                        "Attempting to bypass this limit may result in a temporary block of up to 1 hour."
+                        f"Please wait {sleep_time:.2f} seconds before retrying. "
+                        "Attempting to bypass? Use proxies."
                     )
 
             timestamps.append(time.time())

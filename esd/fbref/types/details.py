@@ -17,6 +17,7 @@ class MatchDetails:
 
 def parse_match_details(data: lxml.html.HtmlElement) -> MatchDetails:
     """
-    Parse the match report data.
+    TODO: Parse the match report data.
     """
+    print(data)
     return MatchDetails()
