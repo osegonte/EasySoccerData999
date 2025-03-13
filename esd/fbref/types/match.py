@@ -13,6 +13,8 @@ class Match:
     A class to represent a match.
     """
 
+    id: str = field(default=None)
+    id_type: str = field(default=None)
     round: str = field(default="")
     gameweek: str = field(default="")
     start_time: str = field(default="")
@@ -25,7 +27,6 @@ class Match:
     attendance: str = field(default="")
     venue: str = field(default="")
     referee: str = field(default="")
-    match_report: str = field(default="")
     notes: str = field(default="")
 
 
@@ -95,7 +96,15 @@ def parse_matchs(data: lxml.html.HtmlElement) -> list[Match]:
                 continue
 
             if stat == "match_report":
-                data_stat[stat] = extract_href(cell)
+                url = extract_href(cell)
+                if url:
+                    url = url[3:]
+                data_stat["id"] = url
+                if "/matches/" in url:
+                    data_stat["id_type"] = "matches"
+                if "/stathead/" in url:
+                    data_stat["id_type"] = "stathead"
+
             elif stat in {"home_team", "away_team"}:
                 data_stat[stat] = extract_team(cell)
             elif stat == "score":
@@ -105,9 +114,11 @@ def parse_matchs(data: lxml.html.HtmlElement) -> list[Match]:
             elif stat in {"home_xg", "away_xg"}:
                 data_stat[stat] = extract_float(cell)
             else:
-                data_stat[stat] = extract_text(cell) or ""
+                data_stat[stat] = extract_text(cell) or None
 
         match = Match(
+            id=data_stat.get("id", ""),
+            id_type=data_stat.get("id_type", ""),
             round=data_stat.get("round", ""),
             gameweek=data_stat.get("gameweek", ""),
             start_time=data_stat.get("start_time", ""),
@@ -120,7 +131,7 @@ def parse_matchs(data: lxml.html.HtmlElement) -> list[Match]:
             attendance=data_stat.get("attendance", ""),
             venue=data_stat.get("venue", ""),
             referee=data_stat.get("referee", ""),
-            match_report=data_stat.get("match_report", ""),
+            # match_report=data_stat.get("match_report", ""),
             notes=data_stat.get("notes", ""),
         )
         matches.append(match)
