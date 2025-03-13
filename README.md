@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-A simple python package for extracting real-time soccer data from diverse online sources, providing essential statistics and insights.
+A simple python package for extracting real-time soccer/football data from diverse online sources, providing essential statistics and insights.
 </p>
 
 
