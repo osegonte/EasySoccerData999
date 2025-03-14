@@ -9,6 +9,8 @@ from .status import Status, parse_status
 from .scores import Scores, parse_scores
 from .tvnetwork import TVNetwork, parse_tv_network
 from .odds import MainOdds, parse_main_odds
+from .league import League
+from .players import Players
 
 
 @dataclass
@@ -30,6 +32,8 @@ class Match:
     time_status_to_display: str = field(default=None)
     tv_networks: list[TVNetwork] = field(default_factory=list)
     main_odds: MainOdds = field(default_factory=MainOdds)
+    league: League = field(default_factory=League)
+    players: Players = field(default_factory=Players)
 
 
 def parse_match(data: dict) -> Match:

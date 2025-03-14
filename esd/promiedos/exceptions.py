@@ -13,3 +13,9 @@ class InvalidDate(PromiedosException):
     """
     Exception raised when the date is invalid.
     """
+
+
+class NotMatchIdProvided(PromiedosException):
+    """
+    Exception raised when no match ID is provided.
+    """

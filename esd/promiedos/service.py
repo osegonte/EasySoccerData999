@@ -6,7 +6,7 @@ from __future__ import annotations
 from ..utils import get_json, is_available_date
 from .endpoints import PromiedosEndpoints
 from .exceptions import InvalidDate
-from .types import Event, parse_events
+from .types import Event, parse_events, parse_match, parse_league, parse_players
 
 
 class PromiedosService:
@@ -42,5 +42,25 @@ class PromiedosService:
             url = self.endpoints.events_endpoint.format(date=date)
             data = get_json(url)["leagues"]
             return parse_events(date, data)
+        except Exception as exc:
+            raise exc
+
+    def get_match(self, match_id: int) -> dict:
+        """
+        Get the match for the given slug and match ID.
+
+        Args:
+            match_id (int): The ID of the match.
+
+        Returns:
+            dict: The match for the given slug and match ID.
+        """
+        try:
+            url = self.endpoints.match_endpoint.format(id=match_id)
+            data = get_json(url)["game"]
+            match = parse_match(data)
+            match.league = parse_league(data["league"])
+            match.players = parse_players(data.get("players", []))
+            return match
         except Exception as exc:
             raise exc

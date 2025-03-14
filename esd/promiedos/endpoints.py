@@ -17,3 +17,10 @@ class PromiedosEndpoints:
         Get the events endpoint.
         """
         return self.base_url + "games/{date}"
+
+    @property
+    def match_endpoint(self) -> str:
+        """
+        Get the match endpoint.
+        """
+        return self.base_url + "gamecenter/{id}"

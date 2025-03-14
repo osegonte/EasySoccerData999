@@ -11,6 +11,7 @@ class Team:
     """
     The team of a match.
     """
+
     id: str = field(default=None)
     name: str = field(default=None)
     slug: str = field(default=None)
