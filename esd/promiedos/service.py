@@ -6,6 +6,7 @@ from __future__ import annotations
 from ..utils import get_json, is_available_date
 from .endpoints import PromiedosEndpoints
 from .exceptions import InvalidDate
+from .types import Event, parse_events
 
 
 class PromiedosService:
@@ -19,7 +20,7 @@ class PromiedosService:
         """
         self.endpoints = PromiedosEndpoints()
 
-    def get_events(self, date: str = "today") -> dict:
+    def get_events(self, date: str = "today") -> list[Event]:
         """
         Get the events for the given date.
 
@@ -27,7 +28,7 @@ class PromiedosService:
             date (str): The date to get the events. Defaults to "today".
 
         Returns:
-            dict: The events for the given date.
+            list[Event]: The events for the given date.
         """
         available_dates = ["today", "yesterday", "tomorrow"]
         if date not in available_dates:
@@ -40,6 +41,6 @@ class PromiedosService:
         try:
             url = self.endpoints.events_endpoint.format(date=date)
             data = get_json(url)["leagues"]
-            return data
+            return parse_events(date, data)
         except Exception as exc:
             raise exc
