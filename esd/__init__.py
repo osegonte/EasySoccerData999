@@ -13,10 +13,13 @@ for event in events:
 """
 
 from .sofascore import SofascoreClient
+from .promiedos import PromiedosClient
 from .fbref import FBrefClient
+
 
 __all__ = [
     "SofascoreClient",
+    "PromiedosClient",
     "FBrefClient",
 ]
 
