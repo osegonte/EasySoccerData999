@@ -4,6 +4,7 @@ This module contains utility functions that are used in the project.
 
 import re
 import time
+from datetime import datetime
 import httpx
 from lxml import html
 
@@ -74,3 +75,21 @@ def get_document(proxies: dict = None, url: str = None) -> html.HtmlElement:
         if exc.response.status_code == 404:
             return html.fromstring("")
         raise exc
+
+
+def is_available_date(date: str, pattern: str) -> None:
+    """
+    Check if the given date is available.
+
+    Args:
+        date (str): The date to check.
+        pattern (str): The pattern of the date.
+
+    Raises:
+        ValueError: If the date is invalid
+    """
+    date_pattern = re.compile(pattern)
+    if date_pattern.match(date):
+        datetime.strptime(date, "%d-%m-%Y")
+    else:
+        raise ValueError("Invalid date.") from None
