@@ -42,6 +42,16 @@ for match in matchs:
     print(match)
 ```
 
+Using Promiedos
+```py
+import esd
+
+client = esd.PromiedosClient()
+events = client.get_events()
+for event in events:
+    print(event)
+```
+
 Simple demonstration of a live table using Sofascore module (see [source code](https://github.com/manucabral/EasySoccerData/blob/main/examples/live_table.py))
 <p align="center">
 <img src="https://github.com/manucabral/EasySoccerData/blob/main/assets/sofascore-live-table.gif" width="550" title="LiveTableUsingSofascore">
@@ -64,7 +74,7 @@ And more! Check out [examples](https://github.com/manucabral/EasySoccerData/tree
 | :---  | :---: |
 | Sofascore   | ✔️ |
 | FBref    | ✔️ |
-| Promiedos    | ❌ |
+| Promiedos    | ✔️ |
 | Understat | ❌ |
 ...
 > Keep in mind that it is still under active development.
