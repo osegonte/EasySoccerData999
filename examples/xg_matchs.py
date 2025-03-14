@@ -22,7 +22,7 @@ Notes: Leg 2 of 2; Inter won
 
 import esd
 
-client = esd.FBrefClient(language="en") # you can change the language.
+client = esd.FBrefClient(language="en")  # you can change the language.
 
 matchs: list[esd.fbref.Match] = client.get_matchs(date="2025-03-11")
 
