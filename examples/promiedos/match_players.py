@@ -4,69 +4,62 @@ Note, this example is using the PromiedosClient.
 
 The output will be something like:
 
-Audax Italiano 0 - 1 U. de Chile
-Segundo Tiempo - 46'
+Real Madrid 2 - 1 Atlético
+Finalizado -
 Goals:
-Di Yorio (40)
-Audax Italiano formation: 4-2-3-1
-Tomás Ahumada - Arquero
-Esteban Matus - Defensor
-Germán Guiffrey - Defensor
-Enzo Ferrario - Defensor
-Jorge Espejo - Defensor
-Marco Collao - Mediocampista
-Oliver Rojas - Defensor
-Nicolás Orellana - Delantero
-Leonardo Valencia - Mediocampista
-Michael Fuentes - Delantero
-Luis Riveros - Delantero
+Rodrygo (4)
+Diaz (55)
+Álvarez (32)
+Real Madrid formation: 4-4-2
+Thibaut Courtois - Arquero
+Ferland Mendy - Defensor
+Antonio Rüdiger - Defensor
+Raúl Asencio - Defensor
+Federico Valverde - Mediocampista
+Brahim Diaz - Mediocampista
+Eduardo Camavinga - Mediocampista
+Aurélien Tchouaméni - Mediocampista
+Rodrygo - Delantero
+Vinicius Júnior - Delantero
+Kylian Mbappe - Delantero
 Substitutes:
-Gonzalo Collao - Arquero
-Gaston Gil Romero - Mediocampista
-Paolo Guajardo - Delantero
-Cristóbal Muñoz - Defensor
-Lautaro Palacios - Delantero
-Mario Sandoval - Mediocampista
-Franco Troyansky - Delantero
+Luka Modric - Mediocampista
+Endrick - Delantero
+Lucas Vázquez - Defensor
+Francisco Garcia - Defensor
+Fran González - Arquero
+Arda Güler - Delantero
+Andriy Lunin - Arquero
+David Alaba - Defensor
 
-U. de Chile formation: 3-5-2
-Gabriel Castellón - Arquero
-Matias Zaldivia - Defensor
-Franco Calderón - Defensor
-Nicolás Ramírez - Defensor
-Matias Sepúlveda - Mediocampista
-Charles Aránguiz - Mediocampista
-Marcelo Diaz - Mediocampista
-Israel Poblete - Mediocampista
-Nicolas Fernandez - Defensor
-Nicolas Guerra - Delantero
-Lucas Di Yorio - Delantero
+Atlético formation: 4-4-2
+Jan Oblak - Arquero
+Javier Galán - Defensor
+Clément Lenglet - Defensor
+José María Giménez - Defensor
+Marcos Llorente - Mediocampista
+Samuel Lino - Delantero
+Pablo Barrios - Mediocampista
+Rodrigo De Paul - Mediocampista
+Giuliano Simeone - Delantero
+Antoine Griezmann - Delantero
+Julián Álvarez - Delantero
 Substitutes:
-Lucas Assadi - Mediocampista
-Rodrigo Contreras - Delantero
-Antonio Díaz - Defensor
-Leandro Fernandez - Delantero
-Gonzalo Montes - Mediocampista
-Ignacio Tapia - Defensor
-Cristopher Toselli - Arquero
+Angel Correa - Delantero
+Conor Gallagher - Mediocampista
+Robin Le Normand - Defensor
+Nahuel Molina - Defensor
+Alexander Sorloth - Delantero
+Antonio Gomís - Arquero
+Reinildo Mandava - Defensor
+Axel Witsel - Mediocampista
+Thomas Lemar - Mediocampista
+Juan Musso - Arquero
+Rodrigo Riquelme - Delantero
 
 """
 
 import esd
-
-
-def find_match_in_progress() -> esd.promiedos.Match:
-    client = esd.PromiedosClient()
-    events = client.get_events()
-    target_match = None
-    for event in events:
-        for match in event.matches:
-            if match.status.enum == 2:  # In progress
-                target_match = match
-                break
-    if target_match is not None:
-        return client.get_match(target_match.id)
-    return None
 
 
 def show_lineup_and_players(team: esd.promiedos.Team, lineup: esd.promiedos.LineupTeam):
@@ -79,10 +72,12 @@ def show_lineup_and_players(team: esd.promiedos.Team, lineup: esd.promiedos.Line
 
 
 if __name__ == "__main__":
-    match = find_match_in_progress()
 
-    home = match.teams[0]
-    away = match.teams[1]
+    client = esd.PromiedosClient()
+    match = client.get_match("ediecjh")
+
+    home = match.home_team
+    away = match.away_team
 
     print(
         f"{home.short_name} {match.scores.home} - {match.scores.away} {away.short_name}"
@@ -103,4 +98,3 @@ if __name__ == "__main__":
     show_lineup_and_players(home, match.players.lineups.home_team)
     print()
     show_lineup_and_players(away, match.players.lineups.away_team)
-
