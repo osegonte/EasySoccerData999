@@ -11,10 +11,10 @@ class StatsItem:
     The stats item data.
     """
 
-    home_value: str = field(default=None)
-    home_percentage: str = field(default=None)
-    away_value: str = field(default=None)
-    away_percentage: str = field(default=None)
+    home_value: str = field(default=0)
+    home_percentage: str = field(default=0)
+    away_value: str = field(default=0)
+    away_percentage: str = field(default=0)
 
 
 @dataclass
@@ -23,15 +23,15 @@ class MatchStats:
     The match stats data.
     """
 
-    total_shots: StatsItem = field(default=None)
-    shots_on_target: StatsItem = field(default=None)
-    possession: StatsItem = field(default=None)
-    free_kicks: StatsItem = field(default=None)
-    corners: StatsItem = field(default=None)
-    offsides: StatsItem = field(default=None)
-    yellow_cards: StatsItem = field(default=None)
-    red_cards: StatsItem = field(default=None)
-    fouls: StatsItem = field(default=None)
+    total_shots: StatsItem = field(default=StatsItem)
+    shots_on_target: StatsItem = field(default=StatsItem)
+    possession: StatsItem = field(default=StatsItem)
+    free_kicks: StatsItem = field(default=StatsItem)
+    corners: StatsItem = field(default=StatsItem)
+    offsides: StatsItem = field(default=StatsItem)
+    yellow_cards: StatsItem = field(default=StatsItem)
+    red_cards: StatsItem = field(default=StatsItem)
+    fouls: StatsItem = field(default=StatsItem)
 
 
 def parse_stats(stat: dict[str, any]) -> StatsItem:
@@ -56,6 +56,8 @@ def parse_match_stats(data: list[dict]) -> MatchStats:
     Returns:
         MatchStats: The match stats
     """
+    if not data or len(data) == 0:
+        return MatchStats()
     stats_map = {
         "Total Remates": "total_shots",
         "Remates al arco": "shots_on_target",

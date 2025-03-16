@@ -68,11 +68,8 @@ class PromiedosService:
             data = get_json(url)["game"]
             match = parse_match(data)
             match.league = parse_league(data["league"])
-            match.stats = (
-                parse_match_stats(data["statistics"])
-                if data.get("statistics")
-                else None
-            )
+            if data.get("statistics"):
+                match.stats = parse_match_stats(data["statistics"])
             match.players = parse_players(data.get("players", []))
             return match
         except Exception as exc:
