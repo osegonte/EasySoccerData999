@@ -37,24 +37,21 @@ for event in events:
 
         print(f"League name: {event.league.name} - {event.date}")
 
-        home_team = match.teams[0]
-        away_team = match.teams[1]
-
         print(
-            f"{home_team.name} {match.scores.home} - {match.scores.away} {away_team.name}"
+            f"{match.home_team.name} {match.scores.home} - {match.scores.away} {match.away_team.name}"
         )
         print(f"Status: {match.status.name} - {match.time_to_display}")
 
-        # get the match details
-        details = client.get_match(match.id)
+        # now we get all the match detailss
+        match = client.get_match(match.id)
 
         print(
-            f"Formations -> {details.players.lineups.home_team.formation} - {details.players.lineups.away_team.formation}"
+            f"Formations -> {match.players.lineups.home_team.formation} - {match.players.lineups.away_team.formation}"
             + "\n"
-            f"Possession -> {details.stats.possession.home_value} - {details.stats.possession.away_value}"
+            f"Possession -> {match.stats.possession.home_value} - {match.stats.possession.away_value}"
             + "\n"
-            f"Shots -> {details.stats.total_shots.home_value} - {details.stats.total_shots.away_value}"
+            f"Shots -> {match.stats.total_shots.home_value} - {match.stats.total_shots.away_value}"
             + "\n"
-            f"Yellow/Red cards -> {details.stats.yellow_cards.home_value}/{details.stats.red_cards.home_value} - {details.stats.yellow_cards.away_value}/{details.stats.red_cards.away_value}"
+            f"Yellow/Red cards -> {match.stats.yellow_cards.home_value}/{match.stats.red_cards.home_value} - {match.stats.yellow_cards.away_value}/{match.stats.red_cards.away_value}"
         )
         print("-------------------")
