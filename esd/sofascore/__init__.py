@@ -20,6 +20,7 @@ from .types import (
     Standing,
     Incident,
     IncidentType,
+    TopPlayersMatch,
 )
 
 __all__ = [
@@ -40,4 +41,5 @@ __all__ = [
     "Standing",
     "Incident",
     "IncidentType",
+    "TopPlayersMatch",
 ]

@@ -17,6 +17,7 @@ from .types import (
     Bracket,
     Standing,
     Incident,
+    TopPlayersMatch,
 )
 
 
@@ -69,6 +70,18 @@ class SofascoreClient:
             list[Incident]: The match incidents.
         """
         return self.__service.get_match_incidents(event_id)
+
+    def get_match_top_players(self, event_id: int) -> TopPlayersMatch:
+        """
+        Get the top players of a match.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            TopPlayersMatch: The match top players.
+        """
+        return self.__service.get_match_top_players(event_id)
 
     def get_match_stats(self, event_id: int) -> MatchStats:
         """

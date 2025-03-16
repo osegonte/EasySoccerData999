@@ -12,6 +12,7 @@ from .season import Season, parse_seasons, parse_season
 from .bracket import Bracket, parse_bracket, parse_brackets
 from .standing import Standing, parse_standing, parse_standings
 from .incident import Incident, IncidentType, parse_incident, parse_incidents
+from .top import TopPlayersMatch, parse_top_players_match
 from .entity import EntityType
 from .categories import Category
 
@@ -23,6 +24,8 @@ __all__ = [
     "Tournament",
     "parse_tournaments",
     "parse_tournament",
+    "TopPlayersMatch",
+    "parse_top_players_match",
     "Incident",
     "IncidentType",
     "parse_incident",

@@ -17,6 +17,8 @@ from .types import (
     parse_brackets,
     parse_standings,
     parse_incidents,
+    parse_top_players_match,
+    TopPlayersMatch,
     Incident,
     Bracket,
     Season,
@@ -122,6 +124,22 @@ class SofascoreService:
             url = self.endpoints.match_events_endpoint(event_id)
             data = get_json(url)["incidents"]
             return parse_incidents(data)
+        except Exception as exc:
+            raise exc
+
+    def get_match_top_players(self, event_id: int) -> TopPlayersMatch:
+        """
+        Get the top players of a match.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            TopPlayersMatch: The top players of the match.
+        """
+        try:
+            url = self.endpoints.match_top_players_endpoint(event_id)
+            return parse_top_players_match(get_json(url))
         except Exception as exc:
             raise exc
 
