@@ -3,25 +3,24 @@ In this example, we will get all the events using PromiedosClient and print them
 
 The output will be something like:
 
-League name: Liga Profesional Argentina - today
-Argentinos Juniors 0 - 0 Aldosivi
+League name: MLS - today
+San Jose Earthquakes 1 - 2 Colorado Rapids
+Status: Segundo Tiempo - 90+5'
+Goal: Cristian Arango (45'+1, is penalty: False)
+Goal: Cole Bassett (38', is penalty: False)
+Goal: Calvin Harris (71', is penalty: False)
+-----------------
+San Diego FC 1 - 1 Columbus Crew
+Status: Segundo Tiempo - 90+2'
+Goal: Onni Valakari (69', is penalty: False)
+Goal: Max Arfsten (13', is penalty: False)
+-----------------
+Portland Timbers 0 - 0 Los Angeles Galaxy
 Status: Prog. -
--------------------
-Godoy Cruz 0 - 0 San Lorenzo
+-----------------
+Atlanta United 0 - 0 Inter Miami
 Status: Prog. -
--------------------
-
-League name: LaLiga - today
-Las Palmas 0 - 1 Alavés
-Status: Entretiempo - 45'
-Formations -> 4-2-3-1 - 4-4-2
--------------------
-
-League name: Serie A - today
-Genoa 2 - 0 Lecce
-Status: Segundo Tiempo - 51'
-Formations -> 4-2-3-1 - 4-2-3-1
--------------------
+-----------------
 
 and more...
 
@@ -40,11 +39,13 @@ for event in events:
         print(
             f"{home_team.name} {match.scores.home} - {match.scores.away} {away_team.name}"
         )
+
         print(f"Status: {match.status.name} - {match.time_to_display}")
-        if match.status.enum == 2:  # In progress,
-            details = client.get_match(match.id)
-            print(
-                f"Formations -> {details.players.lineups.home_team.formation} - {details.players.lineups.away_team.formation}"
-            )
-        print("-------------------")
+        goals = home_team.goals + away_team.goals
+        if goals:
+            for goal in goals:
+                print(
+                    f"Goal: {goal.full_name} ({goal.time_to_display}, is penalty: {goal.is_penalty})"
+                )
+        print("-----------------")
     print()
