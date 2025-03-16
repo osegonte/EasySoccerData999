@@ -7,6 +7,9 @@ from enum import Enum
 
 
 class MatchStatus(Enum):
+    """
+    The match status.
+    """
     NOT_STARTED = 1
     FINISHED = 3
     IN_PROGRESS = 2
