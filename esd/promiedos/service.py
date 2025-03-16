@@ -66,9 +66,6 @@ class PromiedosService:
         try:
             url = self.endpoints.match_endpoint.format(id=match_id)
             data = get_json(url)["game"]
-            import json
-            with open('data.json', 'w') as f:
-                json.dump(data, f)
             match = parse_match(data)
             match.league = parse_league(data["league"])
             match.stats = parse_match_stats(data["statistics"])
