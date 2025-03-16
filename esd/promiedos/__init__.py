@@ -10,6 +10,7 @@ from .types import (
     League,
     Color,
     Status,
+    MatchStatus,
     MainOdds,
     OddsOption,
     TVNetwork,
@@ -18,6 +19,7 @@ from .types import (
     Players,
     Lineups,
     LineupTeam,
+    MatchStats,
 )
 
 __all__ = [
@@ -28,6 +30,7 @@ __all__ = [
     "League",
     "Color",
     "Status",
+    "MatchStatus",
     "MainOdds",
     "OddsOption",
     "TVNetwork",
@@ -36,4 +39,5 @@ __all__ = [
     "Players",
     "Lineups",
     "LineupTeam",
+    "MatchStats",
 ]

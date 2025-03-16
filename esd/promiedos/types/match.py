@@ -11,6 +11,7 @@ from .tvnetwork import TVNetwork, parse_tv_network
 from .odds import MainOdds, parse_main_odds
 from .league import League
 from .players import Players
+from .match_stats import MatchStats
 
 
 @dataclass
@@ -34,6 +35,7 @@ class Match:
     main_odds: MainOdds = field(default_factory=MainOdds)
     league: League = field(default_factory=League)
     players: Players = field(default_factory=Players)
+    stats: MatchStats = field(default_factory=MatchStats)
 
 
 def parse_match(data: dict) -> Match:
