@@ -35,7 +35,7 @@ for event in events:
         if match.status.value != esd.promiedos.MatchStatus.IN_PROGRESS:
             continue
 
-        print(f"League name: {event.league.name} - {event.date}")
+        print(f"League name: {event.league.name} - {event.date} - {match.id}")
 
         print(
             f"{match.home_team.name} {match.scores.home} - {match.scores.away} {match.away_team.name}"
