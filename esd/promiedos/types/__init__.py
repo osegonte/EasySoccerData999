@@ -9,7 +9,7 @@ from .status import Status, MatchStatus
 from .team import Team
 from .odds import MainOdds, OddsOption
 from .tvnetwork import TVNetwork
-from .scores import Scores
+from .scores import Scores, Penalties, GlobalScores
 from .match import Match, parse_match
 from .players import Player, Players, Lineups, LineupTeam, parse_players, parse_player
 from .match_stats import MatchStats, parse_match_stats
@@ -28,6 +28,8 @@ __all__ = [
     "OddsOption",
     "TVNetwork",
     "Scores",
+    "Penalties",
+    "GlobalScores",
     "Match",
     "parse_match",
     "Player",

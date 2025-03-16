@@ -31,12 +31,12 @@ class PromiedosClient:
         """
         return self.__service.get_events(date)
 
-    def get_match(self, match_id: int = None, match: Match = None) -> Match:
+    def get_match(self, match_id: str = None, match: Match = None) -> Match:
         """
         Get the match for the given slug and match ID.
 
         Args:
-            match_id (int): The ID of the match.
+            match_id (str): The match ID. E.g. "ediecji".
             Match (Match): The match object.
 
         Returns:
