@@ -16,17 +16,20 @@ class TeamGoal:
     short_name: str = field(default="")
     time: int = field(default=0.0)
     time_to_display: str = field(default="")
+    is_penalty: bool = field(default=False)
 
 
 def parse_team_goal(data: dict) -> TeamGoal:
     """
     Parse the team goal data.
     """
+    goal_type = data.get("goal_type", None)
     return TeamGoal(
         full_name=data.get("player_name"),
         short_name=data.get("player_sname"),
         time=int(data.get("time", 0.0)),
         time_to_display=data.get("time_to_display", ""),
+        is_penalty=goal_type == "Pen",
     )
 
 
