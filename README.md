@@ -32,6 +32,15 @@ for event in events:
     print(event)
 ```
 
+[How to search for matches, teams, tournaments, and players](https://github.com/manucabral/EasySoccerData/blob/main/examples/sofascore/search_matchs.py)
+
+[How to get tournament brackets](https://github.com/manucabral/EasySoccerData/blob/main/examples/sofascore/tournament_bracket.py)
+
+[How to get live match statistics](https://github.com/manucabral/EasySoccerData/blob/main/examples/sofascore/get_live_matchs.py)
+
+
+Check out [Sofascore module examples](https://github.com/manucabral/EasySoccerData/tree/main/examples/sofascore/)
+
 Now using FBRef
 ```py
 import esd
@@ -41,6 +50,8 @@ matchs = client.get_matchs()
 for match in matchs:
     print(match)
 ```
+
+Check out [FBref module examples](https://github.com/manucabral/EasySoccerData/tree/main/examples/fbref/)
 
 Using Promiedos
 ```py
@@ -52,21 +63,13 @@ for event in events:
     print(event)
 ```
 
+Check out [Promiedos module examples](https://github.com/manucabral/EasySoccerData/tree/main/examples/promiedos/)
+
 Simple demonstration of a live table using Sofascore module (see [source code](https://github.com/manucabral/EasySoccerData/blob/main/examples/live_table.py))
 <p align="center">
 <img src="https://github.com/manucabral/EasySoccerData/blob/main/assets/sofascore-live-table.gif" width="550" title="LiveTableUsingSofascore">
 </p>
 
-[How to search for matches, teams, tournaments, and players](https://github.com/manucabral/EasySoccerData/blob/main/examples/search_matchs.py)
-
-[How to get tournament brackets](https://github.com/manucabral/EasySoccerData/blob/main/examples/tournament_bracket.py)
-
-[How to get lineups for a match](https://github.com/manucabral/EasySoccerData/blob/main/examples/match_lineups.py)
-
-[How to get live match statistics](https://github.com/manucabral/EasySoccerData/blob/main/examples/get_live_matchs.py)
-
-
-And more! Check out [examples](https://github.com/manucabral/EasySoccerData/tree/main/examples)
 
 # Supported modules
 
