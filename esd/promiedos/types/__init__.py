@@ -13,6 +13,13 @@ from .scores import Scores, Penalties, GlobalScores
 from .match import Match, parse_match
 from .players import Player, Players, Lineups, LineupTeam, parse_players, parse_player
 from .match_stats import MatchStats, parse_match_stats
+from .match_events import (
+    MatchEvents,
+    parse_match_events,
+    EventItem,
+    EventType,
+    Substitution,
+)
 
 __all__ = [
     "Event",
@@ -40,4 +47,9 @@ __all__ = [
     "parse_player",
     "MatchStats",
     "parse_match_stats",
+    "MatchEvents",
+    "parse_match_events",
+    "EventItem",
+    "EventType",
+    "Substitution",
 ]

@@ -19,6 +19,7 @@ from .odds import MainOdds, parse_main_odds
 from .league import League
 from .players import Players
 from .match_stats import MatchStats
+from .match_events import MatchEvents, parse_match_events
 
 
 @dataclass
@@ -46,6 +47,7 @@ class Match:
     league: League = field(default_factory=League)
     players: Players = field(default_factory=Players)
     stats: MatchStats = field(default_factory=MatchStats)
+    events: MatchEvents = field(default_factory=MatchEvents)
 
 
 def parse_match(data: dict) -> Match:
@@ -82,4 +84,5 @@ def parse_match(data: dict) -> Match:
         time_status_to_display=data.get("game_time_status_to_display", ""),
         tv_networks=[parse_tv_network(tv) for tv in tv_networks_data],
         main_odds=parse_main_odds(data.get("main_odds", {})),
+        events=parse_match_events(data.get("events", [])),
     )

@@ -46,6 +46,7 @@ def parse_penalties(data: list) -> Penalties:
         return Penalties()
     return Penalties(home=int(data[0]), away=int(data[1]))
 
+
 def parse_global_scores(data: list) -> GlobalScores:
     """
     Parse the global scores data.

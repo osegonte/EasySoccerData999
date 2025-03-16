@@ -15,13 +15,12 @@ from .types import (
     OddsOption,
     TVNetwork,
     Scores,
-    Penalties,
-    GlobalScores,
     Player,
     Players,
     Lineups,
     LineupTeam,
     MatchStats,
+    MatchEvents,
 )
 
 __all__ = [
@@ -37,11 +36,10 @@ __all__ = [
     "OddsOption",
     "TVNetwork",
     "Scores",
-    "Penalties",
-    "GlobalScores",
     "Player",
     "Players",
     "Lineups",
     "LineupTeam",
     "MatchStats",
+    "MatchEvents",
 ]
