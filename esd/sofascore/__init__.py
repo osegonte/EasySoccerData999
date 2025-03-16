@@ -18,6 +18,8 @@ from .types import (
     Season,
     Bracket,
     Standing,
+    Incident,
+    IncidentType,
 )
 
 __all__ = [
@@ -36,4 +38,6 @@ __all__ = [
     "Season",
     "Bracket",
     "Standing",
+    "Incident",
+    "IncidentType",
 ]

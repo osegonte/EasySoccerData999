@@ -11,6 +11,7 @@ from .tournament import Tournament, parse_tournaments, parse_tournament
 from .season import Season, parse_seasons, parse_season
 from .bracket import Bracket, parse_bracket, parse_brackets
 from .standing import Standing, parse_standing, parse_standings
+from .incident import Incident, IncidentType, parse_incident, parse_incidents
 from .entity import EntityType
 from .categories import Category
 
@@ -22,6 +23,10 @@ __all__ = [
     "Tournament",
     "parse_tournaments",
     "parse_tournament",
+    "Incident",
+    "IncidentType",
+    "parse_incident",
+    "parse_incidents",
     "Standing",
     "parse_standing",
     "parse_standings",

@@ -92,6 +92,18 @@ class SofascoreEndpoints:
         """
         return f"{self.base_url}/event/{event_id}/statistics"
 
+    def match_events_endpoint(self, event_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the match events.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            str: The URL of the endpoint to get the match events.
+        """
+        return f"{self.base_url}/event/{event_id}/incidents"
+
     def match_probabilities_endpoint(self, event_id: int) -> str:
         """
         Returns the URL of the endpoint to get the match probabilities.

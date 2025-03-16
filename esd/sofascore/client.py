@@ -16,6 +16,7 @@ from .types import (
     Season,
     Bracket,
     Standing,
+    Incident,
 )
 
 
@@ -56,6 +57,18 @@ class SofascoreClient:
             Event: The event information.
         """
         return self.__service.get_event(event_id)
+
+    def get_match_incidents(self, event_id: int) -> list[Incident]:
+        """
+        Get the events of a match.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            list[Incident]: The match incidents.
+        """
+        return self.__service.get_match_incidents(event_id)
 
     def get_match_stats(self, event_id: int) -> MatchStats:
         """
