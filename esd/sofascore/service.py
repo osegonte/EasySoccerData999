@@ -18,6 +18,8 @@ from .types import (
     parse_standings,
     parse_incidents,
     parse_top_players_match,
+    parse_comments,
+    Comment,
     TopPlayersMatch,
     Incident,
     Bracket,
@@ -140,6 +142,23 @@ class SofascoreService:
         try:
             url = self.endpoints.match_top_players_endpoint(event_id)
             return parse_top_players_match(get_json(url))
+        except Exception as exc:
+            raise exc
+
+    def get_match_comments(self, event_id: int) -> list[Comment]:
+        """
+        Get the match comments.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            list[Comment]: The match comments.
+        """
+        try:
+            url = self.endpoints.match_comments_endpoint(event_id)
+            data = get_json(url)["comments"]
+            return parse_comments(data)
         except Exception as exc:
             raise exc
 
