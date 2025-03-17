@@ -19,6 +19,8 @@ from .types import (
     parse_incidents,
     parse_top_players_match,
     parse_comments,
+    parse_top_tournament_teams,
+    TopTournamentTeams,
     Comment,
     TopPlayersMatch,
     Incident,
@@ -297,6 +299,32 @@ class SofascoreService:
             url = self.endpoints.tournament_standings_endpoint(tournament_id, season_id)
             data = get_json(url)["standings"]
             return parse_standings(data)
+        except Exception as exc:
+            raise exc
+
+    def get_tournament_top_teams(
+            self, tournament_id: int | Tournament, season_id: int | Season
+    ) -> TopTournamentTeams:
+        """
+        Get different top teams of a tournament.
+
+        Args:
+            tournament_id (int, Tournament): The tournament id.
+            season_id (int, Season): The season id.
+
+        Returns:
+            TopTournamentTeams: The top teams of the tournament.
+        """
+        try:
+            if isinstance(tournament_id, Tournament):
+                tournament_id = tournament_id.id
+            if isinstance(season_id, Season):
+                season_id = season_id.id
+            url = self.endpoints.tournament_topteams_endpoint(tournament_id, season_id)
+            response = get_json(url)
+            if "topTeams" in response:
+                return parse_top_tournament_teams(response["topTeams"])
+            return TopTournamentTeams()
         except Exception as exc:
             raise exc
 

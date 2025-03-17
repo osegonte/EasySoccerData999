@@ -23,6 +23,7 @@ from .types import (
     TopPlayersMatch,
     Comment,
     CommentType,
+    TopTournamentTeams,
 )
 
 __all__ = [
@@ -46,4 +47,5 @@ __all__ = [
     "TopPlayersMatch",
     "Comment",
     "CommentType",
+    "TopTournamentTeams",
 ]
