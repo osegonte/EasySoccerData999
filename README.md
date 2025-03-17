@@ -3,8 +3,8 @@
 <p align="center">
 <img alt="PyPI - Version" src="https://img.shields.io/pypi/v/EasySoccerData?color=00329e">
 <img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/EasySoccerData?color=009903">
-<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/manucabral/easysoccerdata/pylint.yml">
 <img alt="GitHub License" src="https://img.shields.io/github/license/manucabral/easysoccerdata">
+<img alt="GitHub Actions Workflow Status" src="https://img.shields.io/github/actions/workflow/status/manucabral/easysoccerdata/pylint.yml">
 </p>
 
 <p align="center">
@@ -22,7 +22,7 @@ pip install EasySoccerData
 
 # Usage
 
-Using Sofascore
+## Sofascore
 ```py
 import esd
 
@@ -41,7 +41,7 @@ for event in events:
 
 Check out [Sofascore module examples](https://github.com/manucabral/EasySoccerData/tree/main/examples/sofascore/)
 
-Now using FBRef
+## FBRef
 ```py
 import esd
 
@@ -53,7 +53,7 @@ for match in matchs:
 
 Check out [FBref module examples](https://github.com/manucabral/EasySoccerData/tree/main/examples/fbref/)
 
-Using Promiedos
+## Promiedos
 ```py
 import esd
 
@@ -65,6 +65,7 @@ for event in events:
 
 Check out [Promiedos module examples](https://github.com/manucabral/EasySoccerData/tree/main/examples/promiedos/)
 
+## Demo
 Simple demonstration of a live table using Sofascore module (see [source code](https://github.com/manucabral/EasySoccerData/blob/main/examples/live_table.py))
 <p align="center">
 <img src="https://github.com/manucabral/EasySoccerData/blob/main/assets/sofascore-live-table.gif" width="550" title="LiveTableUsingSofascore">
