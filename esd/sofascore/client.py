@@ -218,6 +218,27 @@ class SofascoreClient:
         """
         return self.__service.get_tournament_top_teams(tournament_id, season_id)
 
+    def get_tournament_events(
+        self,
+        tournament_id: int | Tournament,
+        season_id: int | Season,
+        upcoming: bool = False,
+        page: int = 0,
+    ) -> list[Event]:
+        """
+        Get the events of the tournament.
+
+        Args:
+            tournament_id (int, Tournament): The tournament id.
+            season_id (int, Season): The season id.
+            upcoming (bool): Whether to get the upcoming events.
+            page (int): The page number.
+
+        Returns:
+            list[Event]: The events of the tournament.
+        """
+        return self.__service.get_tournament_events(tournament_id, season_id, upcoming, page)
+
     def search(
         self, query: str, entity: str | EntityType = EntityType.ALL
     ) -> list[Event | Team | Player | Tournament]:

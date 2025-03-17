@@ -303,7 +303,7 @@ class SofascoreService:
             raise exc
 
     def get_tournament_top_teams(
-            self, tournament_id: int | Tournament, season_id: int | Season
+        self, tournament_id: int | Tournament, season_id: int | Season
     ) -> TopTournamentTeams:
         """
         Get different top teams of a tournament.
@@ -325,6 +325,31 @@ class SofascoreService:
             if "topTeams" in response:
                 return parse_top_tournament_teams(response["topTeams"])
             return TopTournamentTeams()
+        except Exception as exc:
+            raise exc
+
+    def get_tournament_events(
+        self, tournament_id: int, season_id: int, upcoming: bool, page: int
+    ) -> list[Event]:
+        """
+        Get the events of a tournament.
+
+        Args:
+            tournament_id (int): The tournament id.
+            season_id (int): The season id.
+            upcoming (bool): The upcoming events.
+            page (int): The page number.
+
+        Returns:
+            list[Event]: The events of the tournament.
+        """
+        try:
+            url = self.endpoints.tournament_events_endpoint(
+                tournament_id, season_id, upcoming, page
+            )
+            if "events" in get_json(url):
+                return parse_events(get_json(url)["events"])
+            return []
         except Exception as exc:
             raise exc
 
