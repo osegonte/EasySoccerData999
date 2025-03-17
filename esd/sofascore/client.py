@@ -18,6 +18,7 @@ from .types import (
     Standing,
     Incident,
     TopPlayersMatch,
+    Comment,
 )
 
 
@@ -82,6 +83,18 @@ class SofascoreClient:
             TopPlayersMatch: The match top players.
         """
         return self.__service.get_match_top_players(event_id)
+
+    def get_match_comments(self, event_id: int) -> list[Comment]:
+        """
+        Get the comments of a match.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            list[Comment]: The match comments.
+        """
+        return self.__service.get_match_comments(event_id)
 
     def get_match_stats(self, event_id: int) -> MatchStats:
         """

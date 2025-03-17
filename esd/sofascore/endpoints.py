@@ -116,6 +116,18 @@ class SofascoreEndpoints:
         """
         return f"{self.base_url}/event/{event_id}/best-players/summary"
 
+    def match_comments_endpoint(self, event_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the comments of a match.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            str: The URL of the endpoint to get the comments of a match.
+        """
+        return f"{self.base_url}/event/{event_id}/comments"
+
     def match_probabilities_endpoint(self, event_id: int) -> str:
         """
         Returns the URL of the endpoint to get the match probabilities.

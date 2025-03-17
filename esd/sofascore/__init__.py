@@ -21,6 +21,8 @@ from .types import (
     Incident,
     IncidentType,
     TopPlayersMatch,
+    Comment,
+    CommentType,
 )
 
 __all__ = [
@@ -42,4 +44,6 @@ __all__ = [
     "Incident",
     "IncidentType",
     "TopPlayersMatch",
+    "Comment",
+    "CommentType",
 ]
