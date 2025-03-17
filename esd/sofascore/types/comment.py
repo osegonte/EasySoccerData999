@@ -64,6 +64,7 @@ def parse_comment_type(type_str: str) -> CommentType:
     except ValueError:
         return CommentType.UNKNOWN
 
+
 def parse_comment(data: dict) -> Comment:
     """
     Parse the comment data.
