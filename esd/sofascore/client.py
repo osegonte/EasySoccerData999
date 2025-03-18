@@ -149,6 +149,20 @@ class SofascoreClient:
         """
         return self.__service.get_team_players(team_id)
 
+    def get_team_events(self, team_id: int, upcoming: bool = False, page: int = 0) -> list[Event]:
+        """
+        Get the events (matchs) of a team. 
+
+        Args:
+            team_id (int): The team id.
+            upcoming (bool): Whether to get the upcoming events.
+            page (int): The page number.
+
+        Returns:
+            list[Event]: The events of the team.
+        """
+        return self.__service.get_team_events(team_id, upcoming, page)
+
     def get_tournaments(self, category_id: Category) -> list[Tournament]:
         """
         Get the tournaments by category.

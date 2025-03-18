@@ -80,6 +80,21 @@ class SofascoreEndpoints:
         """
         return self.team_endpoint(team_id) + "/players"
 
+    def team_events_endpoint(self, team_id: int, upcoming: bool, page: int) -> str:
+        """
+        Returns the URL of the endpoint to get the team events.
+
+        Args:
+            team_id (int): The team id.
+            upcoming (bool): Whether to get the upcoming events.
+            page (int): The page number.
+
+        Returns:
+            str: The URL of the endpoint to get the team events.
+        """
+        _from = "last" if not upcoming else "next"
+        return f"{self.base_url}/team/{team_id}/events/{_from}/{page}"
+
     def match_stats_endpoint(self, event_id: int) -> str:
         """
         Returns the URL of the endpoint to get the match statistics.

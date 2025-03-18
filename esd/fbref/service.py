@@ -56,7 +56,7 @@ class FBrefService:
         Raises:
             InvalidMatchId: If the match id is invalid.
         """
-        if not "matches" in match_id:
+        if "matches" not in match_id:
             raise InvalidMatchId(match_id)
         try:
             url = self.endpoints.match_details_endpoint.format(match_id=match_id)

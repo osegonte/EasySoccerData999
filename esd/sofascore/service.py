@@ -220,6 +220,27 @@ class SofascoreService:
         except Exception as exc:
             raise exc
 
+    def get_team_events(self, team_id: int, upcoming: bool, page: int) -> list[Event]:
+        """
+        Get the team events.
+
+        Args:
+            team_id (int): The team id.
+            upcoming (bool): The upcoming events.
+            page (int): The page number.
+
+        Returns:
+            list[Event]: The team events.
+        """
+        try:
+            url = self.endpoints.team_events_endpoint(team_id, upcoming, page)
+            data = get_json(url)
+            if "events" in data:
+                return parse_events(data["events"])
+            return []
+        except Exception as exc:
+            raise exc
+
     def get_tournaments_by_category(self, category_id: Category) -> list[Tournament]:
         """
         Get the tournaments by category id.
