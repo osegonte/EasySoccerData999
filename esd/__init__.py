@@ -1,15 +1,12 @@
 """
-EasySoccerData - A Python easy-to-use library for soccer data analysis from multiple sources.
-This package is not affiliated with any of the sources used to extract data.
+# EasySoccerData
 
-Usage example:
-```python
-from esd import SofascoreClient
-client = SofascoreClient()
-events = client.get_events()
-for event in events:
-    print(event)
-```
+A Python easy-to-use library for for fetching live football/soccer stats from multiple online sources/apis.
+
+Note! This package is not affiliated with any of the sources used to extract data.
+
+.. include:: ../READMEdoc.md
+   :start-line: 17
 """
 
 from .sofascore import SofascoreClient
