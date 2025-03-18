@@ -1,9 +1,11 @@
 """
 # EasySoccerData
 
-A Python easy-to-use library for for fetching live football/soccer stats from multiple online sources/apis.
+A Python easy-to-use library for for fetching live
+football/soccer statsfrom multiple online sources/apis.
 
-Note! This package is not affiliated with any of the sources used to extract data.
+Note! This package is not affiliated with
+any of the sources used to extract data.
 
 .. include:: ../READMEdoc.md
    :start-line: 17
