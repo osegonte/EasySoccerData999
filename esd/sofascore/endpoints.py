@@ -217,6 +217,20 @@ class SofascoreEndpoints:
         base = self.base_url + "/unique-tournament"
         return f"{base}/{tournament_id}/season/{season_id}/top-teams/overall"
 
+    def tournament_topplayers_endpoint(self, tournament_id: int, season_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the top players of a tournament.
+
+        Args:
+            tournament_id (int): The tournament id.
+            season_id (int): The season id.
+
+        Returns:
+            str: The URL of the endpoint to get the top players of a tournament.
+        """
+        base = self.base_url + "/unique-tournament"
+        return f"{base}/{tournament_id}/season/{season_id}/top-players/overall"
+
     def tournament_events_endpoint(
         self, tournament_id: int, season_id: int, upcoming: bool, page: int
     ) -> str:

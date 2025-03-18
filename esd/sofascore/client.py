@@ -20,6 +20,7 @@ from .types import (
     TopPlayersMatch,
     Comment,
     TopTournamentTeams,
+    TopTournamentPlayers,
 )
 
 
@@ -218,6 +219,21 @@ class SofascoreClient:
         """
         return self.__service.get_tournament_top_teams(tournament_id, season_id)
 
+    def get_tournament_top_players(
+        self, tournament_id: int | Tournament, season_id: int | Season
+    ) -> TopTournamentPlayers:
+        """
+        Get the top players of the tournament.
+
+        Args:
+            tournament_id (int, Tournament): The tournament id.
+            season_id (int, Season): The season id.
+
+        Returns:
+            TopTournamentPlayers: The top players of the tournament.
+        """
+        return self.__service.get_tournament_top_players(tournament_id, season_id)
+
     def get_tournament_events(
         self,
         tournament_id: int | Tournament,
@@ -237,7 +253,9 @@ class SofascoreClient:
         Returns:
             list[Event]: The events of the tournament.
         """
-        return self.__service.get_tournament_events(tournament_id, season_id, upcoming, page)
+        return self.__service.get_tournament_events(
+            tournament_id, season_id, upcoming, page
+        )
 
     def search(
         self, query: str, entity: str | EntityType = EntityType.ALL
