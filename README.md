@@ -71,6 +71,10 @@ Simple demonstration of a live table using Sofascore module (see [source code](h
 <img src="https://github.com/manucabral/EasySoccerData/blob/main/assets/sofascore-live-table.gif" width="550" title="LiveTableUsingSofascore">
 </p>
 
+# Documentation
+For the full documentation, please visit the [Documentation Page](https://manucabral.github.io/EasySoccerData/esd.html)
+
+If you have any questions or need further assistance, feel free to open an issue.
 
 # Supported modules
 
