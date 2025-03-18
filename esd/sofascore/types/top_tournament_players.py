@@ -13,6 +13,7 @@ class TopPlayerStat:
     """
     Top player statistics.
     """
+
     value: Union[float, int] = field(default=0)
     id: int = field(default=0)
     type: str = field(default="")
@@ -24,6 +25,7 @@ class TopPlayerItem:
     """
     Top player item.
     """
+
     stat: TopPlayerStat = field(default_factory=TopPlayerStat)
     played_enough: bool = field(default=False)
     player: Player = field(default_factory=Player)
