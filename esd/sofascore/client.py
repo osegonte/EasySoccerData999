@@ -62,6 +62,18 @@ class SofascoreClient:
         """
         return self.__service.get_event(event_id)
 
+    def get_player(self, player_id: int) -> Player:
+        """
+        Get the player information.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            Player: The player information.
+        """
+        return self.__service.get_player(player_id)
+
     def get_match_incidents(self, event_id: int) -> list[Incident]:
         """
         Get the events of a match.
