@@ -56,6 +56,54 @@ class SofascoreEndpoints:
         """
         return f"{self.base_url}/search/{entity_type}?q={query}&page=0"
 
+    def player_endpoint(self, player_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the player information.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            str: The URL of the endpoint to get the player information.
+        """
+        return f"{self.base_url}/player/{player_id}"
+
+    def player_charac_endpoint(self, player_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the player characteristics.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            str: The URL of the endpoint to get the player characteristics.
+        """
+        return f"{self.base_url}/player/{player_id}/characteristics"
+
+    def player_attributes_endpoint(self, player_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the player attributes.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            str: The URL of the endpoint to get the player attributes.
+        """
+        return f"{self.base_url}/player/{player_id}/attribute-overviews"
+
+    def player_stats_endpoint(self, player_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the player statistics.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            str: The URL of the endpoint to get the player statistics.
+        """
+        return f"{self.base_url}/player/{player_id}/statistics"
+
     def team_endpoint(self, team_id: int) -> str:
         """
         Returns the URL of the endpoint to get the team information.
