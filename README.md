@@ -76,16 +76,20 @@ For the full documentation, please visit the [Documentation Page](https://manuca
 
 If you have any questions or need further assistance, feel free to open an issue.
 
-# Supported modules
+## Supported modules
 
 | Name | Implemented |
 | :---  | :---: |
 | Sofascore   | ✔️ |
 | FBref    | ✔️ |
 | Promiedos    | ✔️ |
-| Understat | ❌ |
-...
 > Keep in mind that it is still under active development.
 
-### Constributions
+# Disclaimer
+This software is provided "as-is" without any warranties. Use it at your own risk and ensure you comply with all applicable laws, regulations, and the terms of service of any websites and APIs involved.
+
+The developers are not responsible for any damages or consequences arising from its use.
+
+
+# Constributions
 All constributions, bug reports or fixes and ideas are welcome.
