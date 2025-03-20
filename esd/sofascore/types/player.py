@@ -3,6 +3,7 @@ Player dataclass and parser.
 """
 
 from dataclasses import dataclass, field
+from .player_attributes import PlayerAttributes
 
 
 @dataclass
@@ -11,34 +12,62 @@ class Player:
     Player dataclass
     """
 
-    name: str = field(default=None)
-    slug: str = field(default=None)
-    short_name: str = field(default=None)
-    position: str = field(default=None)
-    jersey_number: str = field(default=None)
-    height: int = field(default=0)
-    preferred_foot: str = field(default=None)
-    gender: str = field(default=None)
     id: int = field(default=0)
+    """
+    The player internal id. Useful for fetching all player data.
+    """
+    name: str = field(default=None)
+    """
+    The player name.
+    """
+    slug: str = field(default=None)
+    """
+    The player slug.
+    """
+    short_name: str = field(default=None)
+    """
+    The player short name.
+    """
+    position: str = field(default=None)
+    """
+    The player position.
+    """
+    jersey_number: str = field(default=None)
+    """
+    The player jersey number.
+    """
+    height: int = field(default=0)
+    """
+    The player height in cm.
+    """
+    preferred_foot: str = field(default=None)
+    """
+    The player preferred foot.
+    """
+    gender: str = field(default=None)
+    """
+    The player gender, M or F.
+    """
     shirt_number: int = field(default=0)
+    """
+    The player shirt number.
+    """
     date_of_birth: int = field(default=0)
+    """
+    The player date of birth in timestamp.
+    """
     contract_until: int = field(default=0)
+    """
+    The player contract until in timestamp.
+    """
     market_value: int = field(default=0)  # proposed
     """
-    userCount: int
-    market_value_raw: ProposedMarketValueRaw = field(
-        default_factory=ProposedMarketValueRaw
-    )
-    fieldTranslations: Dict[str, Dict[str, str]]
-
-    def parse_proposed_market_value_raw(data: dict) -> ProposedMarketValueRaw:
-        return ProposedMarketValueRaw(value=data["value"], currency=data["currency"])
-
-    @dataclass
-    class ProposedMarketValueRaw:
-        value: int = field(default=0)
-        currency: str = field(default=None)
-"""
+    The player market value (proposed).
+    """
+    attributes: PlayerAttributes = field(default=None)
+    """
+    Contains the player attributes including the average.
+    """
 
 
 def parse_player(data: dict) -> Player:

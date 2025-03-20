@@ -5,6 +5,7 @@ Contains the types for the Sofascore service.
 from .event import Event, parse_events, parse_event
 from .team import Team, parse_team
 from .player import Player, parse_player
+from .player_attributes import PlayerAttributes, parse_player_attributes
 from .match_stats import MatchStats, parse_match_stats
 from .lineup import Lineups, PlayerLineup, TeamColor, TeamLineup, parse_lineups
 from .tournament import Tournament, parse_tournaments, parse_tournament
@@ -53,6 +54,8 @@ __all__ = [
     "parse_team",
     "Player",
     "parse_player",
+    "PlayerAttributes",
+    "parse_player_attributes",
     "MatchStats",
     "parse_match_stats",
     "Lineups",

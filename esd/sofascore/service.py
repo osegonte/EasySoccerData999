@@ -10,6 +10,7 @@ from .types import (
     parse_event,
     parse_events,
     parse_player,
+    parse_player_attributes,
     parse_team,
     parse_tournament,
     parse_tournaments,
@@ -32,6 +33,7 @@ from .types import (
     Standing,
     Team,
     Player,
+    PlayerAttributes,
     MatchStats,
     parse_match_stats,
     Lineups,
@@ -97,6 +99,44 @@ class SofascoreService:
         try:
             url = self.endpoints.live_events_endpoint
             return parse_events(get_json(url)["events"])
+        except Exception as exc:
+            raise exc
+
+    def get_player(self, player_id: int) -> Player:
+        """
+        Get the player information.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            Player: The player information.
+        """
+        try:
+            url = self.endpoints.player_endpoint(player_id)
+            data = get_json(url)
+            if "player" in data:
+                player = parse_player(data["player"])
+                player.attributes = self.get_player_attributes(player_id)
+                return player
+            return Player()
+        except Exception as exc:
+            raise exc
+
+    def get_player_attributes(self, player_id: int) -> PlayerAttributes:
+        """
+        Get the player attributes.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            dict: The player attributes.
+        """
+        try:
+            url = self.endpoints.player_attributes_endpoint(player_id)
+            data = get_json(url)
+            return parse_player_attributes(data)
         except Exception as exc:
             raise exc
 
