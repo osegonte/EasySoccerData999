@@ -19,6 +19,19 @@ def get_today() -> str:
     return time.strftime("%Y-%m-%d")
 
 
+def current_year(shift: int = 0) -> int:
+    """
+    Get the current year.
+
+    Args:
+        shift (int): The shift to the current year.
+
+    Returns:
+        int: The current year.
+    """
+    return datetime.now().year + shift
+
+
 def camel_to_snake(name: str) -> str:
     """
     Convert a camel case string to a snake case string.
