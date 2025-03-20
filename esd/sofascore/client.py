@@ -26,12 +26,15 @@ from .types import (
 
 class SofascoreClient:
     """
-    A class to represent the client for interacting with the Sofascore API.
+    Client for interacting with the Sofascore website.
+    This class provides methods to access and retrieve data from Sofascore.
     """
 
     def __init__(self) -> None:
         """
-        Initializes the Sofascore client.
+        Initializes a new instance of the SofascoreClient.
+
+        Required for interacting with the Sofascore website.
         """
         self.__service = SofascoreService()
 
@@ -161,9 +164,11 @@ class SofascoreClient:
         """
         return self.__service.get_team_players(team_id)
 
-    def get_team_events(self, team_id: int, upcoming: bool = False, page: int = 0) -> list[Event]:
+    def get_team_events(
+        self, team_id: int, upcoming: bool = False, page: int = 0
+    ) -> list[Event]:
         """
-        Get the events (matchs) of a team. 
+        Get the events (matchs) of a team.
 
         Args:
             team_id (int): The team id.
