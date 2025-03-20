@@ -140,6 +140,22 @@ class SofascoreService:
         except Exception as exc:
             raise exc
 
+    def get_player_stats(self, player_id: int) -> dict:
+        """
+        TODO: Get the player statistics.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            dict: The player statistics.
+        """
+        try:
+            url = self.endpoints.player_stats_endpoint(player_id)
+            return get_json(url)
+        except Exception as exc:
+            raise exc
+
     def get_match_lineups(self, event_id: int) -> Lineups:
         """
         Get the match lineups.
