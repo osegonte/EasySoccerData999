@@ -1,5 +1,5 @@
 """
-This module contains the client class for interacting with the Promiedos API.
+This module contains the client class for interacting with the Promiedos.
 """
 
 from __future__ import annotations
@@ -10,7 +10,8 @@ from .types import Event, Match
 
 class PromiedosClient:
     """
-    A class to represent the client for interacting with the Promiedos API.
+    Client for interacting with the Promiedos website.
+    This class provides methods to access and retrieve data from Promiedos.
     """
 
     def __init__(self) -> None:
