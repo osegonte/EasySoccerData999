@@ -86,9 +86,9 @@ If you have any questions or need further assistance, feel free to open an issue
 > Keep in mind that it is still under active development.
 
 # Disclaimer
-This software is provided "as-is" without any warranties. Use it at your own risk and ensure you comply with all applicable laws, regulations, and the terms of service of any websites and APIs involved.
+The data provided in this repository is gathered from various external sources and is intended solely for informational purposes. This software is distributed "as-is," without any warranties or guarantees. Users are solely responsible for ensuring that their use of this data complies with the terms of service of the respective data sources and all applicable laws.
 
-The developers are not responsible for any damages or consequences arising from its use.
+The developers of this project assume no liability for any misuse, legal issues, or damages arising from the use of the data or software.
 
 
 # Constributions
