@@ -10,6 +10,7 @@ from .team_score import TeamScore, parse_team_score
 from .tournament import Tournament, parse_tournament
 from .status import Status, parse_status
 
+
 @dataclass
 class Season:
     """
@@ -32,7 +33,6 @@ class RoundInfo:
     round: int
     name: str
     cup_round_type: int
-
 
 
 @dataclass
