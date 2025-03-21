@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from .player_attributes import PlayerAttributes
 from .team import Team, parse_team
 
+
 @dataclass
 class Player:
     """
@@ -72,6 +73,7 @@ class Player:
     """
     The current player team.
     """
+
 
 def parse_player(data: dict) -> Player:
     """
