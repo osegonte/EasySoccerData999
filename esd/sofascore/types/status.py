@@ -51,7 +51,6 @@ def parse_status(data: dict) -> Status:
     """
     Parse status data.
     """
-    print(data)
     return Status(
         # code=data.get("code", 0),
         description=data.get("description"),
