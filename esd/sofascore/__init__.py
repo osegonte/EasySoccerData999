@@ -3,53 +3,6 @@ Sofascore client module.
 """
 
 from .client import SofascoreClient
-from .types import (
-    EntityType,
-    Event,
-    Team,
-    Player,
-    PlayerAttributes,
-    MatchStats,
-    PlayerLineup,
-    TeamLineup,
-    Lineups,
-    TeamColor,
-    Category,
-    Tournament,
-    Season,
-    Bracket,
-    Standing,
-    Incident,
-    IncidentType,
-    TopPlayersMatch,
-    Comment,
-    CommentType,
-    TopTournamentTeams,
-    TopTournamentPlayers,
-)
+from . import types
 
-__all__ = [
-    "SofascoreClient",
-    "EntityType",
-    "Event",
-    "Team",
-    "Player",
-    "PlayerAttributes",
-    "MatchStats",
-    "PlayerLineup",
-    "TeamLineup",
-    "Lineups",
-    "TeamColor",
-    "Category",
-    "Tournament",
-    "Season",
-    "Bracket",
-    "Standing",
-    "Incident",
-    "IncidentType",
-    "TopPlayersMatch",
-    "Comment",
-    "CommentType",
-    "TopTournamentTeams",
-    "TopTournamentPlayers",
-]
+__all__ = ["SofascoreClient", "types"]

@@ -11,14 +11,16 @@ any of the sources used to extract data.
    :start-line: 17
 """
 
-from .sofascore import SofascoreClient
-from .promiedos import PromiedosClient
+from .sofascore import SofascoreClient, types as SofascoreTypes
+from .promiedos import PromiedosClient, types as PromiedosTypes
 from .fbref import FBrefClient
 
 
 __all__ = [
     "SofascoreClient",
+    "SofascoreTypes",
     "PromiedosClient",
+    "PromiedosTypes",
     "FBrefClient",
 ]
 
