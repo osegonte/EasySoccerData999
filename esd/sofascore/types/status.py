@@ -36,7 +36,6 @@ class Status:
     """
 
 
-
 def get_status_type(code: int) -> StatusType:
     """
     Get the status type from the code.
@@ -46,6 +45,7 @@ def get_status_type(code: int) -> StatusType:
         return StatusType(code)
     except ValueError:
         return StatusType.UNKNOWN
+
 
 def parse_status(data: dict) -> Status:
     """
