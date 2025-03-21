@@ -4,7 +4,7 @@ Player dataclass and parser.
 
 from dataclasses import dataclass, field
 from .player_attributes import PlayerAttributes
-
+from .team import Team, parse_team
 
 @dataclass
 class Player:
@@ -68,7 +68,10 @@ class Player:
     """
     Contains the player attributes including the average.
     """
-
+    team: Team = field(default=None)
+    """
+    The current player team.
+    """
 
 def parse_player(data: dict) -> Player:
     """
@@ -94,6 +97,7 @@ def parse_player(data: dict) -> Player:
         date_of_birth=data.get("dateOfBirthTimestamp", 0),
         contract_until=data.get("contractUntilTimestamp", 0),
         market_value=data.get("proposedMarketValue", 0),
+        team=parse_team(data.get("team", {})),
         # userCount=data["userCount"],
         # market_value_raw=parse_proposed_market_value_raw(
         #     data["proposedMarketValueRaw"]
