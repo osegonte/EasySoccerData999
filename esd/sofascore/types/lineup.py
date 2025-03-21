@@ -52,6 +52,16 @@ class PlayerLineup:
 
 
 @dataclass
+class MissingPlayer:
+    """
+    Missing player data class.
+    """
+
+    player: Player = field(default=None)
+    reason: int = field(default=0)
+
+
+@dataclass
 class TeamColor:
     """
     Team color data class. Simple.
@@ -70,6 +80,7 @@ class TeamLineup:
     """
 
     players: list[PlayerLineup] = field(default_factory=list)
+    missing_players: list[MissingPlayer] = field(default_factory=list)
     support_staff: list[Any] = field(default_factory=list)
     formation: str = field(default="")
     player_color: TeamColor = field(default=None)
@@ -171,6 +182,19 @@ def parse_lineups(data: dict) -> Lineups:
             ),
         )
 
+    def parse_missing_player(d: dict) -> MissingPlayer:
+        """
+        Parse the missing player data.
+
+        Args:
+            d (list): The missing player data.
+
+        Returns:
+            MissingPlayer: The missing player object.
+        """
+        player_obj = parse_player(d.get("player", {}))
+        return MissingPlayer(player=player_obj, reason=d.get("reason", 0))
+
     def parse_team_lineup(d: dict) -> TeamLineup:
         """
         Parse the team lineup data.
@@ -184,6 +208,9 @@ def parse_lineups(data: dict) -> Lineups:
         players = [parse_player_item(item) for item in d.get("players", [])]
         support_staff = d.get("supportStaff", [])
         formation = d.get("formation", "")
+        missing_players = [
+            parse_missing_player(item) for item in d.get("missingPlayers", [])
+        ]
         player_color = parse_team_color(d.get("playerColor", {}))
         goalkeeper_color = parse_team_color(d.get("goalkeeperColor", {}))
         return TeamLineup(
@@ -191,6 +218,7 @@ def parse_lineups(data: dict) -> Lineups:
             support_staff=support_staff,
             formation=formation,
             player_color=player_color,
+            missing_players=missing_players,
             goalkeeper_color=goalkeeper_color,
         )
 
