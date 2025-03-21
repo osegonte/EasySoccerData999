@@ -7,49 +7,7 @@ from datetime import datetime
 from dataclasses import dataclass, field
 from .team import Team, parse_team
 from .team_score import TeamScore, parse_team_score
-
-
-@dataclass
-class Category:
-    """
-    Category data class.
-    """
-
-    id: int
-    country: dict
-    name: str
-    slug: str
-    flag: str
-
-
-@dataclass
-class UniqueTournament:
-    """
-    Unique tournament data class. (will be moved to tournament.py)
-    """
-
-    id: int
-    name: str
-    slug: str
-    category: Category
-    has_event_player_statistics: bool
-    # user_count: int
-    # has_performance_graph_feature: bool
-    # displayInverseHomeAwayTeams: bool
-
-
-@dataclass
-class Tournament:
-    """
-    Tournament data class (also will be moved to tournament.py).
-    """
-
-    name: str
-    slug: str
-    category: Category
-    unique_tournament: UniqueTournament
-    priority: int
-    id: int
+from .tournament import Tournament, parse_tournament
 
 
 @dataclass
@@ -125,6 +83,7 @@ class Event:
     away_team: Team = field(default_factory=Team)
     away_score: TeamScore = field(default_factory=TeamScore)
     time: TimeEvent = field(default_factory=TimeEvent)
+    tournament: Tournament = field(default_factory=Tournament)
     status_time: StatusTime = field(default_factory=StatusTime)
     start_timestamp: int = field(default=0)
     slug: str = field(default="")
@@ -265,6 +224,7 @@ def parse_event(data: dict) -> Event:
         # feed_locked=data.get("feedLocked"),
         # final_result_only=data.get("finalResultOnly"),
         # coverage=data.get("coverage"),
+        tournament=parse_tournament(data.get("tournament", {})),
         time=parse_time_event(data.get("time", {})),
         status_time=parse_status_time(data.get("statusTime", {})),
         home_team=parse_team(data.get("homeTeam", {})),
