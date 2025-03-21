@@ -3,6 +3,7 @@ Contains the types for the Sofascore service.
 """
 
 from .event import Event, parse_events, parse_event
+from .status import StatusType, Status
 from .team import Team, parse_team
 from .player import Player, parse_player
 from .player_attributes import PlayerAttributes, parse_player_attributes
@@ -65,4 +66,6 @@ __all__ = [
     "parse_lineups",
     "EntityType",
     "Category",
+    "StatusType",
+    "Status",
 ]

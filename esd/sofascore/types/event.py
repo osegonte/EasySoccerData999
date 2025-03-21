@@ -8,7 +8,7 @@ from dataclasses import dataclass, field
 from .team import Team, parse_team
 from .team_score import TeamScore, parse_team_score
 from .tournament import Tournament, parse_tournament
-
+from .status import Status, parse_status
 
 @dataclass
 class Season:
@@ -33,16 +33,6 @@ class RoundInfo:
     name: str
     cup_round_type: int
 
-
-@dataclass
-class Status:
-    """
-    Status data class.
-    """
-
-    code: int = 0
-    description: str = "n/a"
-    type: str = "n/a"
 
 
 @dataclass
@@ -186,23 +176,6 @@ def parse_round_info(data: dict) -> RoundInfo:
         round=data.get("round", 0),
         name=data.get("name", "n/a"),
         cup_round_type=data.get("cupRoundType", 0),
-    )
-
-
-def parse_status(data: dict) -> Status:
-    """
-    Parse the status data.
-
-    Args:
-        data (dict): The status data.
-
-    Returns:
-        Status: The status object.
-    """
-    return Status(
-        code=data.get("code", 0),
-        description=data.get("description", "n/a"),
-        type=data.get("type", "n/a"),
     )
 
 
