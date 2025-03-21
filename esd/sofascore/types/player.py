@@ -5,6 +5,7 @@ Player dataclass and parser.
 from dataclasses import dataclass, field
 from .player_attributes import PlayerAttributes
 from .team import Team, parse_team
+from .country import Country, parse_country
 
 
 @dataclass
@@ -73,6 +74,10 @@ class Player:
     """
     The current player team.
     """
+    country: Country = field(default=None)
+    """
+    The player country.
+    """
 
 
 def parse_player(data: dict) -> Player:
@@ -98,8 +103,10 @@ def parse_player(data: dict) -> Player:
         shirt_number=data.get("shirtNumber", 0),
         date_of_birth=data.get("dateOfBirthTimestamp", 0),
         contract_until=data.get("contractUntilTimestamp", 0),
-        market_value=data.get("proposedMarketValue", 0),
+        market_value=data.get("proposedMarketValue")
+        or data.get("proposedMarketValueRaw", {}).get("value", 0),
         team=parse_team(data.get("team", {})),
+        country=parse_country(data.get("country", {})),
         # userCount=data["userCount"],
         # market_value_raw=parse_proposed_market_value_raw(
         #     data["proposedMarketValueRaw"]
