@@ -27,13 +27,13 @@ tournament: PromiedosTypes.Tournament = client.get_tournament("fhc")
 # print some info
 print(tournament.league.name, tournament.league.slug)
 
-# Get the current filter for getting the matches
-filter: PromiedosTypes.TournamentFilter = tournament.current_filter()
-print("Current filter is", filter.name)
+# Get the current stage for getting the matches
+stage: PromiedosTypes.Stage = tournament.current_stage()
+print("Current stage is", stage.name)
 
 # Get the matches for the tournament
 matches: list[PromiedosTypes.Match] = client.get_tournament_matchs(
-    tournament.league.id, filter.id
+    tournament.league.id, stage.id
 )
 
 # Print the matches
