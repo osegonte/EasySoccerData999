@@ -24,7 +24,7 @@ __all__ = [
     "FBrefClient",
 ]
 
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 __description__ = (
     "A simple python package for extracting real-time soccer data "
     "from diverse online sources, providing essential statistics and insights."
