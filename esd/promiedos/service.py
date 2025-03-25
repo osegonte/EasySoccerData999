@@ -9,11 +9,13 @@ from .exceptions import InvalidDate
 from .types import (
     Event,
     Match,
+    Tournament,
     parse_events,
     parse_match,
     parse_league,
     parse_players,
     parse_match_stats,
+    parse_tournament,
 )
 
 
@@ -72,5 +74,44 @@ class PromiedosService:
                 match.stats = parse_match_stats(data["statistics"])
             match.players = parse_players(data.get("players", []))
             return match
+        except Exception as exc:
+            raise exc
+
+    def get_tournament(self, tournament_id: str) -> Tournament:
+        """
+        Get the matches for the given tournament ID.
+
+        Args:
+            tournament_id (str): The tournament ID. E.g. "dss".
+
+        Returns:
+            Tournament: The tournament data.
+        """
+        try:
+            url = self.endpoints.tournament_endpoint.format(id=tournament_id)
+            data = get_json(url)
+            return parse_tournament(data)
+        except Exception as exc:
+            raise exc
+
+    def get_tournament_matchs(
+        self, tournament_id: str, stage_id: str = None
+    ) -> list[Match]:
+        """
+        Get the matches for the given tournament ID.
+
+        Args:
+            tournament_id (str): The tournament ID. E.g. "dss".
+            stage_id (str): The stage ID.
+
+        Returns:
+            list[Match]: The matches for the given tournament ID.
+        """
+        try:
+            url = self.endpoints.tournament_matchs_endpoint.format(
+                id=tournament_id, stage_id=stage_id
+            )
+            data = get_json(url)["games"]
+            return [parse_match(match) for match in data]
         except Exception as exc:
             raise exc

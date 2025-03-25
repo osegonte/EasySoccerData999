@@ -5,7 +5,7 @@ This module contains the client class for interacting with the Promiedos.
 from __future__ import annotations
 from .exceptions import NotMatchIdProvided
 from .service import PromiedosService
-from .types import Event, Match
+from .types import Event, Match, Tournament
 
 
 class PromiedosClient:
@@ -50,3 +50,29 @@ class PromiedosClient:
         if match:
             return self.__service.get_match(match.id)
         return self.__service.get_match(match_id)
+
+    def get_tournament(self, tournament_id: str) -> Tournament:
+        """
+        Get the matches for the given tournament ID.
+
+        Args:
+            tournament_id (str): The tournament ID. E.g. "hc".
+
+        Returns:
+            Tournament: The tournament for the given tournament ID.
+        """
+        return self.__service.get_tournament(tournament_id)
+
+    def get_tournament_matchs(
+        self, tournament_id: str, stage_id: str = None
+    ) -> list[Match]:
+        """
+        Get the matches for the given tournament ID using the stage ID.
+
+        Args:
+            tournament_id (str): The tournament ID. E.g. "hc".
+            stage_id (str): The stage ID.
+        Returns:
+            list[Match]: The matches for the given tournament ID.
+        """
+        return self.__service.get_tournament_matchs(tournament_id, stage_id)

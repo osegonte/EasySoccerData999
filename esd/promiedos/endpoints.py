@@ -24,3 +24,17 @@ class PromiedosEndpoints:
         Get the match endpoint.
         """
         return self.base_url + "gamecenter/{id}"
+
+    @property
+    def tournament_endpoint(self) -> str:
+        """
+        Get the tournament endpoint.
+        """
+        return self.base_url + "league/tables_and_fixtures/{id}"
+
+    @property
+    def tournament_matchs_endpoint(self) -> str:
+        """
+        Get the tournament matches endpoint.
+        """
+        return self.base_url + "league/games/{id}/{stage_id}"

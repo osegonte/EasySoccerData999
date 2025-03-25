@@ -28,15 +28,15 @@ class Tournament:
 
     def current_stage(self) -> Stage:
         """
-        Get the current filter for the tournament.
+        Get the current stage of the tournament.
         Useful to get the matches.
         """
-        return next(filter(lambda f: f.selected, self.filters), None)
+        return next(filter(lambda f: f.selected, self.stages), None)
 
 
-def parse_tournament_filter(data: dict) -> Stage:
+def parse_tournament_stage(data: dict) -> Stage:
     """
-    Parse the tournament filter data.
+    Parse the tournament stage data.
     """
     return Stage(
         id=data.get("key"), name=data.get("name"), selected=data.get("selected", False)
@@ -50,7 +50,5 @@ def parse_tournament(data: dict) -> Tournament:
     stages = []
     games = data.get("games")
     if games:
-        stages = [
-            parse_tournament_filter(filter) for filter in games.get("filters", {})
-        ]
+        stages = [parse_tournament_stage(stage) for stage in games.get("filters", {})]
     return Tournament(league=parse_league(data.get("league", {})), stages=stages)

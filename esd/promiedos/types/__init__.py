@@ -20,11 +20,15 @@ from .match_events import (
     EventType,
     Substitution,
 )
+from .tournament import Tournament, Stage, parse_tournament
 
 __all__ = [
     "Event",
     "parse_event",
     "parse_events",
+    "Tournament",
+    "Stage",
+    "parse_tournament",
     "League",
     "parse_league",
     "Color",
