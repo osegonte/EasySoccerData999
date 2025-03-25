@@ -20,10 +20,12 @@ from .types import (
     parse_incidents,
     parse_top_players_match,
     parse_comments,
+    parse_shots,
     parse_top_tournament_teams,
     parse_top_tournament_players,
     TopTournamentPlayers,
     TopTournamentTeams,
+    Shot,
     Comment,
     TopPlayersMatch,
     Incident,
@@ -238,6 +240,25 @@ class SofascoreService:
             url = self.endpoints.match_probabilities_endpoint(event_id)
             win_probabilities = get_json(url).get("winProbability", {})
             return parse_match_stats(data, win_probabilities)
+        except Exception as exc:
+            raise exc
+
+    def get_match_shots(self, event_id: int) -> dict:
+        """
+        Get the match shots.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            dict: The match shots.
+        """
+        try:
+            url = self.endpoints.match_shots_endpoint(event_id)
+            data = get_json(url)
+            if "shotmap" in data:
+                return parse_shots(data["shotmap"])
+            return Shot()
         except Exception as exc:
             raise exc
 

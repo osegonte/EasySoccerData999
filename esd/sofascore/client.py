@@ -11,6 +11,7 @@ from .types import (
     Player,
     MatchStats,
     Lineups,
+    Shot,
     Category,
     Tournament,
     Season,
@@ -136,6 +137,18 @@ class SofascoreClient:
             Lineups: The match lineups.
         """
         return self.__service.get_match_lineups(event_id)
+
+    def get_match_shots(self, event_id: int) -> list[Shot]:
+        """
+        Get the shots of a match.
+
+        Args:
+            event_id (int): The event id.
+
+        Returns:
+            list[Shot]: The match shots.
+        """
+        return self.__service.get_match_shots(event_id)
 
     def get_team(self, team_id: int) -> Team:
         """

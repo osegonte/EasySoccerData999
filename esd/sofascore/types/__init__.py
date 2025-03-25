@@ -9,6 +9,7 @@ from .player import Player, parse_player
 from .player_attributes import PlayerAttributes, parse_player_attributes
 from .match_stats import MatchStats, parse_match_stats
 from .lineup import Lineups, PlayerLineup, TeamColor, TeamLineup, parse_lineups
+from .shot import Shot, parse_shots
 from .tournament import Tournament, parse_tournaments, parse_tournament
 from .season import Season, parse_seasons, parse_season
 from .bracket import Bracket, parse_bracket, parse_brackets
@@ -33,6 +34,8 @@ __all__ = [
     "parse_top_tournament_players",
     "TopTournamentTeams",
     "parse_top_tournament_teams",
+    "Shot",
+    "parse_shots",
     "Comment",
     "CommentType",
     "parse_comments",
