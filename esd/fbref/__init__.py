@@ -3,6 +3,6 @@ FBref client module.
 """
 
 from .client import FBrefClient
-from .types import Match, MatchDetails
+from . import types
 
-__all__ = ["FBrefClient", "Match", "MatchDetails"]
+__all__ = ["FBrefClient", "types"]

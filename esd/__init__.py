@@ -13,7 +13,7 @@ any of the sources used to extract data.
 
 from .sofascore import SofascoreClient, types as SofascoreTypes
 from .promiedos import PromiedosClient, types as PromiedosTypes
-from .fbref import FBrefClient
+from .fbref import FBrefClient, types as FBrefTypes
 
 
 __all__ = [
@@ -22,9 +22,10 @@ __all__ = [
     "PromiedosClient",
     "PromiedosTypes",
     "FBrefClient",
+    "FBrefTypes",
 ]
 
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 __description__ = (
     "A simple python package for extracting real-time soccer data "
     "from diverse online sources, providing essential statistics and insights."
