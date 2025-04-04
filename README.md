@@ -80,9 +80,9 @@ If you have any questions or need further assistance, feel free to open an issue
 
 | Name | Implemented |
 | :---  | :---: |
-| Sofascore   | ✔️ |
-| FBref    | ✔️ |
-| Promiedos    | ✔️ |
+| Sofascore   | 90% |
+| FBref    | 10% |
+| Promiedos    | 70% |
 > Keep in mind that it is still under active development.
 
 # Disclaimer
