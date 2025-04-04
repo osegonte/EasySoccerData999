@@ -4,7 +4,7 @@ This module contains the client class for interacting with the FBref website.
 
 from __future__ import annotations
 from .service import FBrefService
-from .types import Match
+from .types import Match, MatchDetails
 
 
 class FBrefClient:
@@ -30,11 +30,14 @@ class FBrefClient:
         """
         return self.__service.get_matchs(date)
 
-    def get_match_details(self, match_id: str) -> None:
+    def get_match_details(self, match_id: str) -> MatchDetails:
         """
         Get the match report.
 
         Args:
             match_id (str): The match id.
+
+        Returns:
+            MatchDetails: The match details.
         """
         return self.__service.get_match_details(match_id)
