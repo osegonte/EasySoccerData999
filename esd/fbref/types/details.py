@@ -313,7 +313,7 @@ def parse_match_details(data: lxml.html.HtmlElement) -> MatchDetails:
             continue
         found_tables = child.xpath(".//table")
         if "shots" in element_id:
-            # TODO: add shots parser
+            # ... add shots parser
             continue
         target_key = "home_players" if is_home else "away_players"
         setattr(
@@ -340,17 +340,17 @@ def parse_match_details(data: lxml.html.HtmlElement) -> MatchDetails:
         match_details.away_players = parse_table_wrapped(found_tables, 2)
         match_details.away_keeper = parse_table_wrapped(found_tables, 3)
 
-    # TODO: mix wrappered goalkeeper stats if is switcher
+    # ... mix wrappered goalkeeper stats if is switcher
     # mixed_content = get_table_wrappers(data)
     # found_tables = []
     # for child in mixed_content:
-        # tables = child.xpath(".//table")
-        # for table in tables:
-            # table_id = table.get("id", "unknown")
-            # if "keeper" in table_id:
-                #found_tables.append(table)
-        #match_details.home_keeper = parse_table_wrapped(found_tables, 0)
-        #match_details.away_keeper = parse_table_wrapped(found_tables, 1)
+    # tables = child.xpath(".//table")
+    # for table in tables:
+    # table_id = table.get("id", "unknown")
+    # if "keeper" in table_id:
+    # found_tables.append(table)
+    # match_details.home_keeper = parse_table_wrapped(found_tables, 0)
+    # match_details.away_keeper = parse_table_wrapped(found_tables, 1)
     return match_details
 
 
