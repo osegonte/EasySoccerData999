@@ -42,8 +42,8 @@ class PlayerStatsRow(PlayerStatRow):
     tackles_won: int = field(default=0)
     interceptions: int = field(default=0)
     own_goals: int = field(default=0)
-    pens_won: int | None = field(default=None)
-    pens_conceded: int | None = field(default=None)
+    pens_won: int = field(default=None)
+    pens_conceded: int = field(default=None)
 
 
 @dataclass
