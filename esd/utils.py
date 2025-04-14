@@ -63,6 +63,11 @@ def get_json(page: Page, url: str) -> dict:
     """
 
     try:
+        if page is None:
+            with httpx.Client() as client:
+                response = client.get(url)
+                response.raise_for_status()
+                return response.json()
         page.goto(url, wait_until="networkidle")
         content = page.content()
         doc = html.fromstring(content)
