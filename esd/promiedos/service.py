@@ -50,7 +50,7 @@ class PromiedosService:
                 ) from exc
         try:
             url = self.endpoints.events_endpoint.format(date=date)
-            data = get_json(url)["leagues"]
+            data = get_json(None, url)["leagues"]
             return parse_events(date, data)
         except Exception as exc:
             raise exc
@@ -67,7 +67,7 @@ class PromiedosService:
         """
         try:
             url = self.endpoints.match_endpoint.format(id=match_id)
-            data = get_json(url)["game"]
+            data = get_json(None, url)["game"]
             match = parse_match(data)
             match.league = parse_league(data["league"])
             if data.get("statistics"):
@@ -89,7 +89,7 @@ class PromiedosService:
         """
         try:
             url = self.endpoints.tournament_endpoint.format(id=tournament_id)
-            data = get_json(url)
+            data = get_json(None, url)
             return parse_tournament(data)
         except Exception as exc:
             raise exc
@@ -111,7 +111,7 @@ class PromiedosService:
             url = self.endpoints.tournament_matchs_endpoint.format(
                 id=tournament_id, stage_id=stage_id
             )
-            data = get_json(url)["games"]
+            data = get_json(None, url)["games"]
             return [parse_match(match) for match in data]
         except Exception as exc:
             raise exc
