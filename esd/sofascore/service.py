@@ -12,6 +12,7 @@ from .types import (
     parse_events,
     parse_player,
     parse_player_attributes,
+    parse_transfer_history,
     parse_team,
     parse_tournament,
     parse_tournaments,
@@ -37,6 +38,7 @@ from .types import (
     Team,
     Player,
     PlayerAttributes,
+    TransferHistory,
     MatchStats,
     parse_match_stats,
     Lineups,
@@ -159,6 +161,7 @@ class SofascoreService:
             if "player" in data:
                 player = parse_player(data["player"])
                 player.attributes = self.get_player_attributes(player_id)
+                player.transfer_history = self.get_player_transfer_history(player_id)
                 return player
             return Player()
         except Exception as exc:
@@ -177,7 +180,28 @@ class SofascoreService:
         try:
             url = self.endpoints.player_attributes_endpoint(player_id)
             data = get_json(self.page, url)
-            return parse_player_attributes(data)
+            if "playerAttributes" in data:
+                return parse_player_attributes(data["playerAttributes"])
+            return PlayerAttributes()
+        except Exception as exc:
+            raise exc
+
+    def get_player_transfer_history(self, player_id: int) -> TransferHistory:
+        """
+        Get the player transfer history.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            TransferHistory: The player transfer history.
+        """
+        try:
+            url = self.endpoints.player_transfer_history_endpoint(player_id)
+            data = get_json(self.page, url)
+            if data is not None:
+                return parse_transfer_history(data)
+            return TransferHistory()
         except Exception as exc:
             raise exc
 

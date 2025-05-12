@@ -7,6 +7,7 @@ from .status import StatusType, Status
 from .team import Team, parse_team
 from .player import Player, parse_player
 from .player_attributes import PlayerAttributes, parse_player_attributes
+from .transfer import TransferHistory, parse_transfer_history
 from .match_stats import MatchStats, parse_match_stats
 from .lineup import Lineups, PlayerLineup, TeamColor, TeamLineup, parse_lineups
 from .shot import Shot, parse_shots
@@ -58,6 +59,8 @@ __all__ = [
     "parse_team",
     "Player",
     "parse_player",
+    "TransferHistory",
+    "parse_transfer_history",
     "PlayerAttributes",
     "parse_player_attributes",
     "MatchStats",

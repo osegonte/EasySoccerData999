@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from .player_attributes import PlayerAttributes
 from .team import Team, parse_team
 from .country import Country, parse_country
+from .transfer import TransferHistory
 
 
 @dataclass
@@ -78,6 +79,7 @@ class Player:
     """
     The player country.
     """
+    transfer_history: TransferHistory = field(default=None)
 
 
 def parse_player(data: dict) -> Player:

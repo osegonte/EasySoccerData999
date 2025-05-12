@@ -68,6 +68,18 @@ class SofascoreEndpoints:
         """
         return f"{self.base_url}/player/{player_id}"
 
+    def player_transfer_history_endpoint(self, player_id: int) -> str:
+        """
+        Returns the URL of the endpoint to get the player transfer history.
+
+        Args:
+            player_id (int): The player id.
+
+        Returns:
+            str: The URL of the endpoint to get the player transfer history.
+        """
+        return f"{self.base_url}/player/{player_id}/transfer-history"
+
     def player_charac_endpoint(self, player_id: int) -> str:
         """
         Returns the URL of the endpoint to get the player characteristics.
