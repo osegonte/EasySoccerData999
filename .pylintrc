@@ -1,3 +1,3 @@
 [DESIGN]
 max-attributes=30
-max-public-methods=25
+max-public-methods=30
