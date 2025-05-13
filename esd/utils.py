@@ -75,7 +75,17 @@ def get_json(page: Page, url: str) -> dict:
         if pre_text_list:
             json_string = pre_text_list[0].strip()
             try:
-                return json.loads(json_string)
+                data = json.loads(json_string)
+                if "error" in data and "code" in data["error"]:
+                    code = data["error"]["code"]
+                    if code == 403:
+                        print(
+                            "Access denied. Please use a proxt, VPN or renew your ip address."
+                        )
+                    if code == 404:
+                        print("No found.")
+                    return {}
+                return data
             except json.JSONDecodeError as e:
                 print("Could not decode JSON:", e)
                 return {}

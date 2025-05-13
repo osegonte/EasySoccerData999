@@ -22,6 +22,7 @@ Slovan Bratislava vs Stuttgart
 and more...
 
 """
+
 from esd import PromiedosClient, PromiedosTypes
 
 client = PromiedosClient()
