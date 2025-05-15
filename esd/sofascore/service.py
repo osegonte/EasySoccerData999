@@ -1,8 +1,13 @@
 """
-Sofascore service module
+Sofascore service module with improved browser path detection
 """
 
 from __future__ import annotations
+import os
+import sys
+import platform
+import subprocess
+from pathlib import Path
 import playwright
 from ..utils import get_json, get_today
 from .endpoints import SofascoreEndpoints
@@ -56,13 +61,75 @@ class SofascoreService:
     def __init__(self, browser_path: str = None):
         """
         Initializes the SofaScore service.
+        
+        Args:
+            browser_path (str, optional): The path to the browser executable.
+                If None, the browser will be detected automatically.
         """
-        self.browser_path = (
-            browser_path or r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-        )
+        self.browser_path = browser_path or self._detect_browser_path()
         self.endpoints = SofascoreEndpoints()
         self.playwright = self.browser = self.page = None
         self.__init_playwright()
+
+    def _detect_browser_path(self) -> str:
+        """
+        Detect the browser path based on the operating system.
+        
+        Returns:
+            str: The detected browser path or None if not found.
+        """
+        system = platform.system()
+        
+        if system == "Windows":
+            # Common Chrome paths on Windows
+            paths = [
+                r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+                r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+                r"C:\Users\{}\AppData\Local\Google\Chrome\Application\chrome.exe".format(os.getlogin()),
+            ]
+            
+            for path in paths:
+                if os.path.exists(path):
+                    return path
+        
+        elif system == "Darwin":  # macOS
+            # Common Chrome paths on macOS
+            paths = [
+                "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                f"/Users/{os.getlogin()}/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+            ]
+            
+            for path in paths:
+                if os.path.exists(path):
+                    return path
+            
+            # Try to find using mdfind
+            try:
+                cmd = "mdfind 'kMDItemCFBundleIdentifier == com.google.Chrome'"
+                chrome_app = subprocess.check_output(cmd, shell=True).decode('utf-8').strip()
+                if chrome_app:
+                    chrome_path = os.path.join(chrome_app.split('\n')[0], 'Contents/MacOS/Google Chrome')
+                    if os.path.exists(chrome_path):
+                        return chrome_path
+            except (subprocess.SubprocessError, IndexError):
+                pass
+        
+        elif system == "Linux":
+            # Common Chrome paths on Linux
+            paths = [
+                "/usr/bin/google-chrome",
+                "/usr/bin/google-chrome-stable",
+                "/usr/bin/chromium",
+                "/usr/bin/chromium-browser",
+            ]
+            
+            for path in paths:
+                if os.path.exists(path):
+                    return path
+        
+        # If no browser is found, return None and let playwright handle it
+        print("Warning: No Chrome browser found. Using playwright's default browser.")
+        return None
 
     def __init_playwright(self):
         """
@@ -70,12 +137,45 @@ class SofascoreService:
         """
         try:
             self.playwright = playwright.sync_api.sync_playwright().start()
-            self.browser = self.playwright.chromium.launch(
-                headless=True, executable_path=self.browser_path
-            )
+            
+            # Launch browser with or without executable path
+            if self.browser_path:
+                try:
+                    self.browser = self.playwright.chromium.launch(
+                        headless=True, executable_path=self.browser_path
+                    )
+                except Exception as browser_exc:
+                    print(f"Warning: Failed to launch browser at {self.browser_path}")
+                    print(f"Error details: {str(browser_exc)}")
+                    print("Trying with playwright's default browser...")
+                    self.browser = self.playwright.chromium.launch(headless=True)
+            else:
+                # Let playwright handle browser discovery
+                self.browser = self.playwright.chromium.launch(headless=True)
+                
             self.page = self.browser.new_page()
         except Exception as exc:
-            raise RuntimeError("Failed to initialize browser") from exc
+            error_msg = f"Failed to initialize browser: {str(exc)}"
+            print(f"Error: {error_msg}")
+            
+            # Provide OS-specific guidance
+            system = platform.system()
+            if system == "Windows":
+                print("\nTroubleshooting steps for Windows:")
+                print("1. Ensure Google Chrome is installed at C:\\Program Files\\Google\\Chrome\\Application\\")
+                print("2. Or specify the browser_path parameter with the correct path to chrome.exe")
+            elif system == "Darwin":  # macOS
+                print("\nTroubleshooting steps for macOS:")
+                print("1. Ensure Google Chrome is installed in /Applications/")
+                print("2. Or specify the browser_path parameter with the correct path to the Chrome executable")
+                print("3. You can also install playwright browsers with: python -m playwright install")
+            elif system == "Linux":
+                print("\nTroubleshooting steps for Linux:")
+                print("1. Ensure Google Chrome or Chromium is installed and in your PATH")
+                print("2. Or specify the browser_path parameter with the correct path to the Chrome executable")
+                print("3. You can also install playwright browsers with: python -m playwright install")
+            
+            raise RuntimeError(error_msg) from exc
 
     def close(self):
         """
@@ -89,7 +189,7 @@ class SofascoreService:
             if self.playwright:
                 self.playwright.stop()
         except Exception as exc:
-            raise RuntimeError("Failed to close browser") from exc
+            print(f"Warning: Failed to close browser: {str(exc)}")
 
     def __del__(self):
         """

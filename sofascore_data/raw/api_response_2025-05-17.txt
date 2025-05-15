@@ -1,3 +1,0 @@
-Status: 403
-Headers: {'Connection': 'close', 'Content-Length': '48', 'Server': 'Varnish', 'Retry-After': '0', 'content-type': 'application/json', 'Accept-Ranges': 'bytes', 'Date': 'Thu, 15 May 2025 02:50:02 GMT'}
-Content: {"error": {"code": 403, "reason": "Forbidden" }}...
