@@ -1,0 +1,105 @@
+away_avg_corners,away_avg_fouls,away_avg_goals_conceded,away_avg_goals_scored,away_avg_pass_accuracy,away_avg_possession,away_avg_red_cards,away_avg_shots,away_avg_shots_on_target,away_avg_yellow_cards,away_draw_percentage,away_form_summary,away_loss_percentage,away_matches_analyzed,away_team,away_win_percentage,fixture_id,home_avg_corners,home_avg_fouls,home_avg_goals_conceded,home_avg_goals_scored,home_avg_pass_accuracy,home_avg_possession,home_avg_red_cards,home_avg_shots,home_avg_shots_on_target,home_avg_yellow_cards,home_draw_percentage,home_form_summary,home_loss_percentage,home_matches_analyzed,home_team,home_win_percentage,is_home,league,match_date,opponent_name,status,team_name
+,,,,,,,,,,,,,,Betis,,0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Rayo Vallecano,0.0,True,La Liga,2025-05-15,Betis,nan,Rayo Vallecano
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Betis,0.0,0,,,,,,,,,,,,,,,Rayo Vallecano,,False,La Liga,2025-05-15,Rayo Vallecano,nan,Betis
+,,,,,,,,,,,,,,Atlético Madrid,,1,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Osasuna,0.0,True,La Liga,2025-05-15,Atlético Madrid,nan,Osasuna
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Atlético Madrid,0.0,1,,,,,,,,,,,,,,,Osasuna,,False,La Liga,2025-05-15,Osasuna,nan,Atlético Madrid
+,,,,,,,,,,,,,,Athletic Club,,2,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Getafe,0.0,True,La Liga,2025-05-15,Athletic Club,nan,Getafe
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Athletic Club,0.0,2,,,,,,,,,,,,,,,Getafe,,False,La Liga,2025-05-15,Getafe,nan,Athletic Club
+,,,,,,,,,,,,,,Barcelona,,3,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Espanyol,0.0,True,La Liga,2025-05-15,Barcelona,nan,Espanyol
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Barcelona,0.0,3,,,,,,,,,,,,,,,Espanyol,,False,La Liga,2025-05-15,Espanyol,nan,Barcelona
+,,,,,,,,,,,,,,Tottenham,,4,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Aston Villa,0.0,True,Premier League,2025-05-16,Tottenham,nan,Aston Villa
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Tottenham,0.0,4,,,,,,,,,,,,,,,Aston Villa,,False,Premier League,2025-05-16,Aston Villa,nan,Tottenham
+,,,,,,,,,,,,,,Manchester Utd,,5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Chelsea,0.0,True,Premier League,2025-05-16,Manchester Utd,nan,Chelsea
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Manchester Utd,0.0,5,,,,,,,,,,,,,,,Chelsea,,False,Premier League,2025-05-16,Chelsea,nan,Manchester Utd
+,,,,,,,,,,,,,,Eint Frankfurt,,6,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Freiburg,0.0,True,Bundesliga,2025-05-17,Eint Frankfurt,nan,Freiburg
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Eint Frankfurt,0.0,6,,,,,,,,,,,,,,,Freiburg,,False,Bundesliga,2025-05-17,Freiburg,nan,Eint Frankfurt
+,,,,,,,,,,,,,,Bochum,,7,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,St. Pauli,0.0,True,Bundesliga,2025-05-17,Bochum,nan,St. Pauli
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Bochum,0.0,7,,,,,,,,,,,,,,,St. Pauli,,False,Bundesliga,2025-05-17,St. Pauli,nan,Bochum
+,,,,,,,,,,,,,,Holstein Kiel,,8,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Dortmund,0.0,True,Bundesliga,2025-05-17,Holstein Kiel,nan,Dortmund
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Holstein Kiel,0.0,8,,,,,,,,,,,,,,,Dortmund,,False,Bundesliga,2025-05-17,Dortmund,nan,Holstein Kiel
+,,,,,,,,,,,,,,Werder Bremen,,9,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Heidenheim,0.0,True,Bundesliga,2025-05-17,Werder Bremen,nan,Heidenheim
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Werder Bremen,0.0,9,,,,,,,,,,,,,,,Heidenheim,,False,Bundesliga,2025-05-17,Heidenheim,nan,Werder Bremen
+,,,,,,,,,,,,,,Stuttgart,,10,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,RB Leipzig,0.0,True,Bundesliga,2025-05-17,Stuttgart,nan,RB Leipzig
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Stuttgart,0.0,10,,,,,,,,,,,,,,,RB Leipzig,,False,Bundesliga,2025-05-17,RB Leipzig,nan,Stuttgart
+,,,,,,,,,,,,,,Union Berlin,,11,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Augsburg,0.0,True,Bundesliga,2025-05-17,Union Berlin,nan,Augsburg
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Union Berlin,0.0,11,,,,,,,,,,,,,,,Augsburg,,False,Bundesliga,2025-05-17,Augsburg,nan,Union Berlin
+,,,,,,,,,,,,,,Wolfsburg,,12,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Gladbach,0.0,True,Bundesliga,2025-05-17,Wolfsburg,nan,Gladbach
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Wolfsburg,0.0,12,,,,,,,,,,,,,,,Gladbach,,False,Bundesliga,2025-05-17,Gladbach,nan,Wolfsburg
+,,,,,,,,,,,,,,Bayern Munich,,13,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Hoffenheim,0.0,True,Bundesliga,2025-05-17,Bayern Munich,nan,Hoffenheim
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Bayern Munich,0.0,13,,,,,,,,,,,,,,,Hoffenheim,,False,Bundesliga,2025-05-17,Hoffenheim,nan,Bayern Munich
+,,,,,,,,,,,,,,Leverkusen,,14,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Mainz 05,0.0,True,Bundesliga,2025-05-17,Leverkusen,nan,Mainz 05
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Leverkusen,0.0,14,,,,,,,,,,,,,,,Mainz 05,,False,Bundesliga,2025-05-17,Mainz 05,nan,Leverkusen
+,,,,,,,,,,,,,,Toulouse,,15,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Saint-Étienne,0.0,True,Ligue 1,2025-05-17,Toulouse,nan,Saint-Étienne
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Toulouse,0.0,15,,,,,,,,,,,,,,,Saint-Étienne,,False,Ligue 1,2025-05-17,Saint-Étienne,nan,Toulouse
+,,,,,,,,,,,,,,Auxerre,,16,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Paris S-G,0.0,True,Ligue 1,2025-05-17,Auxerre,nan,Paris S-G
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Auxerre,0.0,16,,,,,,,,,,,,,,,Paris S-G,,False,Ligue 1,2025-05-17,Paris S-G,nan,Auxerre
+,,,,,,,,,,,,,,Angers,,17,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Lyon,0.0,True,Ligue 1,2025-05-17,Angers,nan,Lyon
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Angers,0.0,17,,,,,,,,,,,,,,,Lyon,,False,Ligue 1,2025-05-17,Lyon,nan,Angers
+,,,,,,,,,,,,,,Le Havre,,18,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Strasbourg,0.0,True,Ligue 1,2025-05-17,Le Havre,nan,Strasbourg
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Le Havre,0.0,18,,,,,,,,,,,,,,,Strasbourg,,False,Ligue 1,2025-05-17,Strasbourg,nan,Le Havre
+,,,,,,,,,,,,,,Monaco,,19,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Lens,0.0,True,Ligue 1,2025-05-17,Monaco,nan,Lens
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Monaco,0.0,19,,,,,,,,,,,,,,,Lens,,False,Ligue 1,2025-05-17,Lens,nan,Monaco
+,,,,,,,,,,,,,,Rennes,,20,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Marseille,0.0,True,Ligue 1,2025-05-17,Rennes,nan,Marseille
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Rennes,0.0,20,,,,,,,,,,,,,,,Marseille,,False,Ligue 1,2025-05-17,Marseille,nan,Rennes
+,,,,,,,,,,,,,,Montpellier,,21,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Nantes,0.0,True,Ligue 1,2025-05-17,Montpellier,nan,Nantes
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Montpellier,0.0,21,,,,,,,,,,,,,,,Nantes,,False,Ligue 1,2025-05-17,Nantes,nan,Montpellier
+,,,,,,,,,,,,,,Brest,,22,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Nice,0.0,True,Ligue 1,2025-05-17,Brest,nan,Nice
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Brest,0.0,22,,,,,,,,,,,,,,,Nice,,False,Ligue 1,2025-05-17,Nice,nan,Brest
+,,,,,,,,,,,,,,Reims,,23,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Lille,0.0,True,Ligue 1,2025-05-17,Reims,nan,Lille
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Reims,0.0,23,,,,,,,,,,,,,,,Lille,,False,Ligue 1,2025-05-17,Lille,nan,Reims
+,,,,,,,,,,,,,,Southampton,,24,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Everton,0.0,True,Premier League,2025-05-18,Southampton,nan,Everton
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Southampton,0.0,24,,,,,,,,,,,,,,,Everton,,False,Premier League,2025-05-18,Everton,nan,Southampton
+,,,,,,,,,,,,,,Nott'ham Forest,,25,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,West Ham,0.0,True,Premier League,2025-05-18,Nott'ham Forest,nan,West Ham
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Nott'ham Forest,0.0,25,,,,,,,,,,,,,,,West Ham,,False,Premier League,2025-05-18,West Ham,nan,Nott'ham Forest
+,,,,,,,,,,,,,,Fulham,,26,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Brentford,0.0,True,Premier League,2025-05-18,Fulham,nan,Brentford
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Fulham,0.0,26,,,,,,,,,,,,,,,Brentford,,False,Premier League,2025-05-18,Brentford,nan,Fulham
+,,,,,,,,,,,,,,Ipswich Town,,27,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Leicester City,0.0,True,Premier League,2025-05-18,Ipswich Town,nan,Leicester City
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Ipswich Town,0.0,27,,,,,,,,,,,,,,,Leicester City,,False,Premier League,2025-05-18,Leicester City,nan,Ipswich Town
+,,,,,,,,,,,,,,Newcastle Utd,,28,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Arsenal,0.0,True,Premier League,2025-05-18,Newcastle Utd,nan,Arsenal
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Newcastle Utd,0.0,28,,,,,,,,,,,,,,,Arsenal,,False,Premier League,2025-05-18,Arsenal,nan,Newcastle Utd
+,,,,,,,,,,,,,,Leganés,,29,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Las Palmas,0.0,True,La Liga,2025-05-18,Leganés,nan,Las Palmas
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Leganés,0.0,29,,,,,,,,,,,,,,,Las Palmas,,False,La Liga,2025-05-18,Las Palmas,nan,Leganés
+,,,,,,,,,,,,,,Getafe,,30,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Mallorca,0.0,True,La Liga,2025-05-18,Getafe,nan,Mallorca
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Getafe,0.0,30,,,,,,,,,,,,,,,Mallorca,,False,La Liga,2025-05-18,Mallorca,nan,Getafe
+,,,,,,,,,,,,,,Athletic Club,,31,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Valencia,0.0,True,La Liga,2025-05-18,Athletic Club,nan,Valencia
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Athletic Club,0.0,31,,,,,,,,,,,,,,,Valencia,,False,La Liga,2025-05-18,Valencia,nan,Athletic Club
+,,,,,,,,,,,,,,Betis,,32,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Atlético Madrid,0.0,True,La Liga,2025-05-18,Betis,nan,Atlético Madrid
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Betis,0.0,32,,,,,,,,,,,,,,,Atlético Madrid,,False,La Liga,2025-05-18,Atlético Madrid,nan,Betis
+,,,,,,,,,,,,,,Espanyol,,33,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Osasuna,0.0,True,La Liga,2025-05-18,Espanyol,nan,Osasuna
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Espanyol,0.0,33,,,,,,,,,,,,,,,Osasuna,,False,La Liga,2025-05-18,Osasuna,nan,Espanyol
+,,,,,,,,,,,,,,Villarreal,,34,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Barcelona,0.0,True,La Liga,2025-05-18,Villarreal,nan,Barcelona
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Villarreal,0.0,34,,,,,,,,,,,,,,,Barcelona,,False,La Liga,2025-05-18,Barcelona,nan,Villarreal
+,,,,,,,,,,,,,,Alavés,,35,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Valladolid,0.0,True,La Liga,2025-05-18,Alavés,nan,Valladolid
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Alavés,0.0,35,,,,,,,,,,,,,,,Valladolid,,False,La Liga,2025-05-18,Valladolid,nan,Alavés
+,,,,,,,,,,,,,,Girona,,36,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Real Sociedad,0.0,True,La Liga,2025-05-18,Girona,nan,Real Sociedad
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Girona,0.0,36,,,,,,,,,,,,,,,Real Sociedad,,False,La Liga,2025-05-18,Real Sociedad,nan,Girona
+,,,,,,,,,,,,,,Real Madrid,,37,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Sevilla,0.0,True,La Liga,2025-05-18,Real Madrid,nan,Sevilla
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Real Madrid,0.0,37,,,,,,,,,,,,,,,Sevilla,,False,La Liga,2025-05-18,Sevilla,nan,Real Madrid
+,,,,,,,,,,,,,,Rayo Vallecano,,38,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Celta Vigo,0.0,True,La Liga,2025-05-18,Rayo Vallecano,nan,Celta Vigo
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Rayo Vallecano,0.0,38,,,,,,,,,,,,,,,Celta Vigo,,False,La Liga,2025-05-18,Celta Vigo,nan,Rayo Vallecano
+,,,,,,,,,,,,,,Atalanta,,39,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Genoa,0.0,True,Serie A,2025-05-18,Atalanta,nan,Genoa
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Atalanta,0.0,39,,,,,,,,,,,,,,,Genoa,,False,Serie A,2025-05-18,Genoa,nan,Atalanta
+,,,,,,,,,,,,,,Udinese,,40,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Juventus,0.0,True,Serie A,2025-05-18,Udinese,nan,Juventus
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Udinese,0.0,40,,,,,,,,,,,,,,,Juventus,,False,Serie A,2025-05-18,Juventus,nan,Udinese
+,,,,,,,,,,,,,,Bologna,,41,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Fiorentina,0.0,True,Serie A,2025-05-18,Bologna,nan,Fiorentina
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Bologna,0.0,41,,,,,,,,,,,,,,,Fiorentina,,False,Serie A,2025-05-18,Fiorentina,nan,Bologna
+,,,,,,,,,,,,,,Napoli,,42,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Parma,0.0,True,Serie A,2025-05-18,Napoli,nan,Parma
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Napoli,0.0,42,,,,,,,,,,,,,,,Parma,,False,Serie A,2025-05-18,Parma,nan,Napoli
+,,,,,,,,,,,,,,Lazio,,43,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Inter,0.0,True,Serie A,2025-05-18,Lazio,nan,Inter
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Lazio,0.0,43,,,,,,,,,,,,,,,Inter,,False,Serie A,2025-05-18,Inter,nan,Lazio
+,,,,,,,,,,,,,,Torino,,44,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Lecce,0.0,True,Serie A,2025-05-18,Torino,nan,Lecce
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Torino,0.0,44,,,,,,,,,,,,,,,Lecce,,False,Serie A,2025-05-18,Lecce,nan,Torino
+,,,,,,,,,,,,,,Venezia,,45,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Cagliari,0.0,True,Serie A,2025-05-18,Venezia,nan,Cagliari
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Venezia,0.0,45,,,,,,,,,,,,,,,Cagliari,,False,Serie A,2025-05-18,Cagliari,nan,Venezia
+,,,,,,,,,,,,,,Empoli,,46,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Monza,0.0,True,Serie A,2025-05-18,Empoli,nan,Monza
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Empoli,0.0,46,,,,,,,,,,,,,,,Monza,,False,Serie A,2025-05-18,Monza,nan,Empoli
+,,,,,,,,,,,,,,Como,,47,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Hellas Verona,0.0,True,Serie A,2025-05-18,Como,nan,Hellas Verona
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Como,0.0,47,,,,,,,,,,,,,,,Hellas Verona,,False,Serie A,2025-05-18,Hellas Verona,nan,Como
+,,,,,,,,,,,,,,Milan,,48,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Roma,0.0,True,Serie A,2025-05-18,Milan,nan,Roma
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Milan,0.0,48,,,,,,,,,,,,,,,Roma,,False,Serie A,2025-05-18,Roma,nan,Milan
+,,,,,,,,,,,,,,Liverpool,,49,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Brighton,0.0,True,Premier League,2025-05-19,Liverpool,nan,Brighton
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Liverpool,0.0,49,,,,,,,,,,,,,,,Brighton,,False,Premier League,2025-05-19,Brighton,nan,Liverpool
+,,,,,,,,,,,,,,Bournemouth,,50,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Manchester City,0.0,True,Premier League,2025-05-20,Bournemouth,nan,Manchester City
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Bournemouth,0.0,50,,,,,,,,,,,,,,,Manchester City,,False,Premier League,2025-05-20,Manchester City,nan,Bournemouth
+,,,,,,,,,,,,,,Wolves,,51,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Crystal Palace,0.0,True,Premier League,2025-05-20,Wolves,nan,Crystal Palace
+0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,0.0,0,Wolves,0.0,51,,,,,,,,,,,,,,,Crystal Palace,,False,Premier League,2025-05-20,Crystal Palace,nan,Wolves
