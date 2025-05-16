@@ -88,31 +88,45 @@ class AdvancedSofaScoreScraper:
         print("Initializing browser session to get cookies...")
         
         try:
-            # Set up Chrome options
+            # Set up Chrome options with more evasion techniques
             chrome_options = Options()
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+            chrome_options.add_argument("--disable-features=IsolateOrigins,site-per-process")
             chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
             chrome_options.add_experimental_option('useAutomationExtension', False)
             chrome_options.add_argument(f"user-agent={random.choice(self.get_random_headers()['User-Agent'])}")
+            
+            # Add more realistic browser fingerprinting
+            chrome_options.add_argument("--window-size=1920,1080")
+            chrome_options.add_argument("--start-maximized")
             
             # Initialize Chrome driver
             service = Service(ChromeDriverManager().install())
             driver = webdriver.Chrome(service=service, options=chrome_options)
             
-            # Mask WebDriver to avoid detection
+            # Execute stealth JavaScript to avoid detection
             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            driver.execute_script("Object.defineProperty(navigator, 'platform', {get: () => 'Win32'})")
+            driver.execute_script("Object.defineProperty(navigator, 'productSub', {get: () => '20100101'})")
             
-            # Visit SofaScore homepage to get cookies
+            # Visit SofaScore homepage indirectly to get cookies
+            driver.get("https://www.google.com")
+            time.sleep(2 + random.random() * 3)
             driver.get("https://www.sofascore.com/")
             
-            # Wait for the page to load
-            time.sleep(5)
+            # Wait for the page to load with randomized delay
+            time.sleep(8 + random.random() * 5)
             
             # Extract cookies
             cookies = driver.get_cookies()
+            
+            # Save page source for debugging
+            source_file = os.path.join(self.raw_dir, "browser_session_debug.html")
+            with open(source_file, 'w', encoding='utf-8') as f:
+                f.write(driver.page_source)
             
             # Close the browser
             driver.quit()
@@ -151,62 +165,80 @@ class AdvancedSofaScoreScraper:
         for cookie_name, cookie_value in self.cookies.items():
             self.scraper.cookies.set(cookie_name, cookie_value)
         
-        # Try each endpoint
+        # Try each endpoint with retry logic
         for endpoint in endpoints:
-            try:
-                # Get random proxy if available
-                proxy = self.get_random_proxy()
-                
-                # Add a random delay to appear more human-like
-                time.sleep(2 + random.random() * 3)
-                
-                print(f"Trying API endpoint: {endpoint}")
-                
-                # Make the request with cloudscraper
-                response = self.scraper.get(
-                    endpoint, 
-                    proxies=proxy,
-                    timeout=20
-                )
-                
-                # Save response details for debugging
-                debug_file = os.path.join(self.raw_dir, f"api_response_{target_date}.txt")
-                with open(debug_file, 'w', encoding='utf-8') as f:
-                    f.write(f"Status: {response.status_code}\n")
-                    f.write(f"Headers: {dict(response.headers)}\n")
-                    f.write(f"Content: {response.text[:1000]}...\n")
-                
-                if response.status_code == 403:
-                    print(f"  ⚠️ 403 Forbidden for {endpoint}")
-                    continue
-                
-                if response.status_code != 200:
-                    print(f"  ⚠️ Status code {response.status_code} for {endpoint}")
-                    continue
-                
-                # Try to parse the JSON response
-                try:
-                    data = response.json()
-                    
-                    # Find events data in the response
-                    events = None
-                    if 'events' in data:
-                        events = data['events']
-                    elif 'scheduledEvents' in data:
-                        events = data['scheduledEvents']
-                    elif 'data' in data and isinstance(data['data'], list):
-                        events = data['data']
-                    
-                    if events and len(events) > 0:
-                        print(f"  ✓ Found {len(events)} events using API")
-                        return events
-                except:
-                    print(f"  ⚠️ Failed to parse JSON from API response")
-                    continue
+            retry_count = 0
+            max_retries = 3
             
-            except Exception as e:
-                print(f"  ⚠️ Error with {endpoint}: {str(e)}")
-                continue
+            while retry_count < max_retries:
+                try:
+                    # Get random proxy if available
+                    proxy = self.get_random_proxy()
+                    
+                    # Add a random delay to appear more human-like
+                    time.sleep(2 + random.random() * 5)
+                    
+                    print(f"Trying API endpoint: {endpoint} (Attempt {retry_count + 1}/{max_retries})")
+                    
+                    # Make the request with cloudscraper
+                    response = self.scraper.get(
+                        endpoint, 
+                        proxies=proxy,
+                        timeout=30
+                    )
+                    
+                    # Save response details for debugging
+                    debug_file = os.path.join(self.raw_dir, f"api_response_{target_date}_{retry_count}.txt")
+                    with open(debug_file, 'w', encoding='utf-8') as f:
+                        f.write(f"Status: {response.status_code}\n")
+                        f.write(f"Headers: {dict(response.headers)}\n")
+                        f.write(f"Content: {response.text[:1000]}...\n")
+                    
+                    if response.status_code == 403:
+                        print(f"  ⚠️ 403 Forbidden for {endpoint}")
+                        retry_count += 1
+                        time.sleep(10 * retry_count)  # Exponential backoff
+                        continue
+                    
+                    if response.status_code != 200:
+                        print(f"  ⚠️ Status code {response.status_code} for {endpoint}")
+                        retry_count += 1
+                        time.sleep(5 * retry_count)
+                        continue
+                    
+                    # Try to parse the JSON response
+                    try:
+                        data = response.json()
+                        
+                        # Find events data in the response
+                        events = None
+                        if 'events' in data:
+                            events = data['events']
+                        elif 'scheduledEvents' in data:
+                            events = data['scheduledEvents']
+                        elif 'data' in data and isinstance(data['data'], list):
+                            events = data['data']
+                        
+                        if events and len(events) > 0:
+                            print(f"  ✓ Found {len(events)} events using API")
+                            return events
+                        else:
+                            print("  ⚠️ No events found in API response")
+                            break
+                    except Exception as json_error:
+                        print(f"  ⚠️ Failed to parse JSON from API response: {str(json_error)}")
+                        retry_count += 1
+                        time.sleep(5 * retry_count)
+                        continue
+                    
+                    # If we reach here, we didn't find any events but the response was valid
+                    break
+                
+                except Exception as e:
+                    print(f"  ⚠️ Error with {endpoint}: {str(e)}")
+                    retry_count += 1
+                    time.sleep(10 * retry_count)
+                    continue
         
         print(f"  ✖ Failed to fetch events via API for {target_date}")
         return None
@@ -224,22 +256,31 @@ class AdvancedSofaScoreScraper:
         print(f"Attempting to fetch events via browser for {target_date}...")
         
         try:
-            # Set up Chrome options
+            # Set up Chrome options with enhanced anti-detection
             chrome_options = Options()
             chrome_options.add_argument("--headless")
             chrome_options.add_argument("--no-sandbox")
             chrome_options.add_argument("--disable-dev-shm-usage")
             chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+            chrome_options.add_argument("--disable-features=IsolateOrigins,site-per-process")
             chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
             chrome_options.add_experimental_option('useAutomationExtension', False)
             chrome_options.add_argument(f"user-agent={random.choice(self.get_random_headers()['User-Agent'])}")
+            chrome_options.add_argument("--window-size=1920,1080")
+            chrome_options.add_argument("--start-maximized")
             
             # Initialize Chrome driver
             service = Service(ChromeDriverManager().install())
             driver = webdriver.Chrome(service=service, options=chrome_options)
             
-            # Mask WebDriver to avoid detection
+            # Apply stealth techniques
             driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+            driver.execute_script("Object.defineProperty(navigator, 'platform', {get: () => 'Win32'})")
+            driver.execute_script("Object.defineProperty(navigator, 'productSub', {get: () => '20100101'})")
+            
+            # Use a referrer to look more legitimate
+            driver.get("https://www.google.com/search?q=sofascore+football")
+            time.sleep(3 + random.random() * 2)
             
             # Format the date for URL
             url = f"https://www.sofascore.com/football/{target_date}"
@@ -249,11 +290,11 @@ class AdvancedSofaScoreScraper:
             driver.get(url)
             
             # Wait for the page to load and events to appear
-            wait = WebDriverWait(driver, 30)
+            wait = WebDriverWait(driver, 45)
             wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "body")))
             
             # Give extra time for JavaScript to load all events
-            time.sleep(10)
+            time.sleep(15 + random.random() * 10)
             
             # Save the page source for debugging
             page_source = driver.page_source
@@ -308,12 +349,8 @@ class AdvancedSofaScoreScraper:
             else:
                 print(f"  ⚠️ Failed to extract data from browser: {result}")
             
-            # If we didn't get events from JavaScript state, try to parse events from the DOM
-            # This is a more complex task and would require parsing the HTML structure
-            # which can be added as another fallback mechanism
-            
             return None
-            
+                
         except Exception as e:
             print(f"  ✖ Error using browser method: {str(e)}")
             return None

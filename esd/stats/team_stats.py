@@ -86,6 +86,8 @@ class TeamStatsCollector:
         stats['match_id'] = match_id
         stats['match_date'] = datetime.fromtimestamp(match.start_timestamp).strftime('%Y-%m-%d')
         stats['opponent'] = match.away_team.name if is_home else match.home_team.name
+        stats['opponent_id'] = match.away_team.id if is_home else match.home_team.id
+        stats['tournament'] = match.tournament.name
         
         return stats
     
@@ -115,7 +117,10 @@ class TeamStatsCollector:
             'corners': 0,
             'yellow_cards': 0,
             'red_cards': 0,
-            'fouls': 0
+            'fouls': 0,
+            'expected_goals': 0,
+            'big_chances_created': 0,
+            'goalkeeper_saves': 0,
         }
         
         # Get actual scores from the match
@@ -128,6 +133,9 @@ class TeamStatsCollector:
         
         # Extract the statistics if available
         if match_stats.all is not None:
+            # Expected goals
+            stats['expected_goals'] = getattr(match_stats.all.match_overview.expected_goals, f"{key_prefix}_value", 0)
+            
             # Shots
             stats['shots_on_target'] = getattr(match_stats.all.shots.shots_on_goal, f"{key_prefix}_value", 0)
             stats['total_shots'] = getattr(match_stats.all.shots.total_shots_on_goal, f"{key_prefix}_value", 0)
@@ -151,6 +159,12 @@ class TeamStatsCollector:
             
             # Fouls
             stats['fouls'] = getattr(match_stats.all.match_overview.fouls, f"{key_prefix}_value", 0)
+            
+            # Big chances
+            stats['big_chances_created'] = getattr(match_stats.all.match_overview.big_chance_created, f"{key_prefix}_value", 0)
+            
+            # Goalkeeper saves
+            stats['goalkeeper_saves'] = getattr(match_stats.all.match_overview.goalkeeper_saves, f"{key_prefix}_value", 0)
         
         return stats
     
@@ -219,7 +233,7 @@ class TeamStatsCollector:
             print(f"Found team: {team.name} (ID: {team_id})")
             
             # Get recent matches
-            recent_matches = self.get_team_recent_matches(team_id)
+            recent_matches = self.get_team_recent_matches(team_id, limit=7)  # Get last 7 matches
             if not recent_matches:
                 print(f"No recent matches found for team: {team_name}")
                 return None
@@ -247,6 +261,10 @@ class TeamStatsCollector:
             avg_stats = self._calculate_average_stats(all_stats)
             avg_stats['matches_analyzed'] = len(all_stats)
             
+            # Add form metrics (wins, draws, losses in last matches)
+            form_stats = self._calculate_form_stats(all_stats)
+            avg_stats.update(form_stats)
+            
             # Add recent match details
             for i, match_stat in enumerate(all_stats[:5]):  # Include up to 5 recent matches
                 prefix = f"recent_match_{i+1}"
@@ -254,12 +272,46 @@ class TeamStatsCollector:
                 avg_stats[f"{prefix}_opponent"] = match_stat['opponent']
                 avg_stats[f"{prefix}_goals_scored"] = match_stat['goals_scored']
                 avg_stats[f"{prefix}_goals_conceded"] = match_stat['goals_conceded']
+                avg_stats[f"{prefix}_tournament"] = match_stat['tournament']
             
             return avg_stats
             
         except Exception as e:
             print(f"Error processing team {team_name}: {str(e)}")
             return None
+    
+    def _calculate_form_stats(self, all_stats: List[Dict[str, Any]]) -> Dict[str, int]:
+        """
+        Calculate form statistics (wins, draws, losses).
+        
+        Args:
+            all_stats (List[Dict[str, Any]]): List of match statistics
+            
+        Returns:
+            Dict[str, int]: Form statistics
+        """
+        if not all_stats:
+            return {'wins': 0, 'draws': 0, 'losses': 0}
+        
+        wins = draws = losses = 0
+        
+        for match in all_stats:
+            goals_scored = match['goals_scored']
+            goals_conceded = match['goals_conceded']
+            
+            if goals_scored > goals_conceded:
+                wins += 1
+            elif goals_scored == goals_conceded:
+                draws += 1
+            else:
+                losses += 1
+        
+        return {
+            'wins': wins,
+            'draws': draws,
+            'losses': losses,
+            'points': wins * 3 + draws
+        }
     
     def _calculate_average_stats(self, all_stats: List[Dict[str, Any]]) -> Dict[str, float]:
         """
@@ -285,7 +337,10 @@ class TeamStatsCollector:
             'corners',
             'yellow_cards',
             'red_cards',
-            'fouls'
+            'fouls',
+            'expected_goals',
+            'big_chances_created',
+            'goalkeeper_saves'
         ]
         
         avg_stats = {}
@@ -296,6 +351,10 @@ class TeamStatsCollector:
             total = sum(match.get(stat, 0) for match in all_stats)
             # Calculate the average
             avg_stats[f'avg_{stat}'] = total / matches_count if matches_count > 0 else 0
+        
+        # Add derived statistics
+        avg_stats['avg_goal_diff'] = avg_stats['avg_goals_scored'] - avg_stats['avg_goals_conceded']
+        avg_stats['avg_shots_conversion'] = (avg_stats['avg_goals_scored'] / avg_stats['avg_total_shots'] * 100) if avg_stats['avg_total_shots'] > 0 else 0
         
         return avg_stats
     

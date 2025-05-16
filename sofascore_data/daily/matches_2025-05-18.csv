@@ -1,0 +1,26 @@
+id,home_team,away_team,league,country,start_timestamp,start_time,status,venue,round,source
+,Everton,Southampton,Premier League,,,,,,,fbref
+,West Ham,Nott'ham Forest,Premier League,,,,,,,fbref
+,Brentford,Fulham,Premier League,,,,,,,fbref
+,Leicester City,Ipswich Town,Premier League,,,,,,,fbref
+,Arsenal,Newcastle Utd,Premier League,,,,,,,fbref
+,Las Palmas,Leganés,La Liga,,,,,,,fbref
+,Mallorca,Getafe,La Liga,,,,,,,fbref
+,Valencia,Athletic Club,La Liga,,,,,,,fbref
+,Atlético Madrid,Betis,La Liga,,,,,,,fbref
+,Osasuna,Espanyol,La Liga,,,,,,,fbref
+,Barcelona,Villarreal,La Liga,,,,,,,fbref
+,Valladolid,Alavés,La Liga,,,,,,,fbref
+,Real Sociedad,Girona,La Liga,,,,,,,fbref
+,Sevilla,Real Madrid,La Liga,,,,,,,fbref
+,Celta Vigo,Rayo Vallecano,La Liga,,,,,,,fbref
+,Genoa,Atalanta,Serie A,,,,,,,fbref
+,Juventus,Udinese,Serie A,,,,,,,fbref
+,Fiorentina,Bologna,Serie A,,,,,,,fbref
+,Parma,Napoli,Serie A,,,,,,,fbref
+,Inter,Lazio,Serie A,,,,,,,fbref
+,Lecce,Torino,Serie A,,,,,,,fbref
+,Cagliari,Venezia,Serie A,,,,,,,fbref
+,Monza,Empoli,Serie A,,,,,,,fbref
+,Hellas Verona,Como,Serie A,,,,,,,fbref
+,Roma,Milan,Serie A,,,,,,,fbref

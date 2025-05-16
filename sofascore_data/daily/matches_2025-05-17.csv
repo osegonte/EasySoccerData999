@@ -1,0 +1,19 @@
+id,home_team,away_team,league,country,start_timestamp,start_time,status,venue,round,source
+,Freiburg,Eint Frankfurt,Bundesliga,,,,,,,fbref
+,St. Pauli,Bochum,Bundesliga,,,,,,,fbref
+,Dortmund,Holstein Kiel,Bundesliga,,,,,,,fbref
+,Heidenheim,Werder Bremen,Bundesliga,,,,,,,fbref
+,RB Leipzig,Stuttgart,Bundesliga,,,,,,,fbref
+,Augsburg,Union Berlin,Bundesliga,,,,,,,fbref
+,Gladbach,Wolfsburg,Bundesliga,,,,,,,fbref
+,Hoffenheim,Bayern Munich,Bundesliga,,,,,,,fbref
+,Mainz 05,Leverkusen,Bundesliga,,,,,,,fbref
+,Saint-Étienne,Toulouse,Ligue 1,,,,,,,fbref
+,Paris S-G,Auxerre,Ligue 1,,,,,,,fbref
+,Lyon,Angers,Ligue 1,,,,,,,fbref
+,Strasbourg,Le Havre,Ligue 1,,,,,,,fbref
+,Lens,Monaco,Ligue 1,,,,,,,fbref
+,Marseille,Rennes,Ligue 1,,,,,,,fbref
+,Nantes,Montpellier,Ligue 1,,,,,,,fbref
+,Nice,Brest,Ligue 1,,,,,,,fbref
+,Lille,Reims,Ligue 1,,,,,,,fbref
